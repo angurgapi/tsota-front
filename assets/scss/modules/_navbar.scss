@@ -1,0 +1,42 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    z-index: 500;
+    justify-content: space-between;
+    padding: 24px;
+    width: 100%;
+    height: 60px;
+
+    &__right {
+        button {
+            margin-left: 10px;
+        }
+    }
+
+    &__link {
+        display: flex;
+        align-items: center;
+        font-family: 'PF';
+        font-weight: 500;
+        font-size: 20px;
+        color: #024013;
+
+        img {
+            margin-right: 6px;
+            fill: #024013;
+        }
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    .btn {
+        border: 1px solid #024013;
+    }
+
+    &--fixed {
+        box-shadow: 0 4px 6px -2px rgb(0 0 0 / 30%);
+        backdrop-filter: blur(6px);
+    }
+}

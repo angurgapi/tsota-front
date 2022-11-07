@@ -1,0 +1,50 @@
+{
+  "Contacts": {
+    "description": "Auto imported from components/Contacts.vue"
+  },
+  "FooterBlock": {
+    "description": "Auto imported from components/FooterBlock.vue"
+  },
+  "NavBar": {
+    "description": "Auto imported from components/NavBar.vue"
+  },
+  "ProjectTemplate": {
+    "description": "Auto imported from components/ProjectTemplate.vue"
+  },
+  "Puzzle": {
+    "description": "Auto imported from components/Puzzle.vue"
+  },
+  "PuzzleTile": {
+    "description": "Auto imported from components/PuzzleTile.vue"
+  },
+  "SvgIcon": {
+    "description": "Auto imported from components/SvgIcon.vue"
+  },
+  "DropzoneFile": {
+    "description": "Auto imported from components/dropzone/DropzoneFile.vue"
+  },
+  "DropzoneWidget": {
+    "description": "Auto imported from components/dropzone/DropzoneWidget.vue"
+  },
+  "ElementsAccordion": {
+    "description": "Auto imported from components/elements/Accordion.vue"
+  },
+  "ElementsSvgImage": {
+    "description": "Auto imported from components/elements/SvgImage.vue"
+  },
+  "ElementsTooltip": {
+    "description": "Auto imported from components/elements/Tooltip.vue"
+  },
+  "HelpersVuePrototypeFunctions": {
+    "description": "Auto imported from components/helpers/vuePrototypeFunctions.js"
+  },
+  "ToastsNotificationSlot": {
+    "description": "Auto imported from components/toasts/NotificationSlot.vue"
+  },
+  "ToastsToastForm": {
+    "description": "Auto imported from components/toasts/ToastForm.vue"
+  },
+  "ToastsToastMessage": {
+    "description": "Auto imported from components/toasts/ToastMessage.vue"
+  }
+}
