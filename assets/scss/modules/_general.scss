@@ -75,3 +75,31 @@
   width: 100%;
   height: 100%;
 }
+
+.form {
+  padding: 24px;
+
+  &__input {
+    outline: none;
+    border: 1px solid #a8aaad;
+    border-radius: 5px;
+    padding: 10px;
+    height: 46px;
+    background: #fff;
+
+    &:focus {
+      border: 1px solid black;
+    }
+  }
+
+  &__actions {
+    display: grid;
+    grid-gap: 18px;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 30px;
+  }
+}
+
+.highlighted {
+  color: $primary;
+}

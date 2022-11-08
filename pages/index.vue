@@ -55,7 +55,7 @@ export default {
         const { data } = await this.$axios.get(
           'http://localhost:1337/api/lessons'
         )
-        console.log(data.data)
+        // console.log(data.data)
         this.lessons = data.data
         // this.lessons = response.data
         // for (let lesson in this.lessons) {

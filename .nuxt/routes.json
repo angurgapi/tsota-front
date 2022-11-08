@@ -19,6 +19,20 @@
     "_name": "_6c0eeb9a"
   },
   {
+    "name": "lessons-id___ru",
+    "path": "/ru/lessons/:id?",
+    "component": "/home/s0f/_nuxt/tsota-frnt/pages/lessons/_id.vue",
+    "chunkName": "pages/lessons/_id",
+    "_name": "_7dae7e90"
+  },
+  {
+    "name": "lessons-id___en",
+    "path": "/lessons/:id?",
+    "component": "/home/s0f/_nuxt/tsota-frnt/pages/lessons/_id.vue",
+    "chunkName": "pages/lessons/_id",
+    "_name": "_7dae7e90"
+  },
+  {
     "name": "index___en",
     "path": "/",
     "component": "/home/s0f/_nuxt/tsota-frnt/pages/index.vue",

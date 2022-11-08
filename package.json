@@ -1,5 +1,5 @@
 {
-  "name": "prtfl",
+  "name": "blab",
   "version": "1.2.0",
   "private": true,
   "scripts": {
@@ -40,6 +40,7 @@
     "nuxt-i18n": "^6.28.1",
     "nuxt-start": "2.15.8",
     "nuxt-user-agent": "1.2.2",
+    "swiper": "6.8.4",
     "tls": "^0.0.1",
     "v-mask": "2.2.4",
     "vue": "^2.7.10",

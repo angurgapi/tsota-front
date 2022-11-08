@@ -1,30 +1,41 @@
 <template>
-  <div class="navbar f-row" :class="{ 'navbar--fixed': isFixed }">
+  <nav class="navbar f-row" :class="{ 'navbar--fixed': isFixed }">
     <nuxt-link class="navbar__link" to="/">
-      <svg-image name="home" height="20" width="20" />
+      <img class="navbar__logo" src="img/blab.png" />
     </nuxt-link>
     <div class="navbar__right f-row">
-      <nuxt-link class="navbar__link" to="/pets">
+      <!-- <nuxt-link class="navbar__link" to="/pets">
         <svg-image height="20" width="20" name="book" />
-        {{ $t('Navbar.projects') }}
-      </nuxt-link>
-      <button
+        Уроки
+      </nuxt-link> -->
+      <div class="navbar__menu">
+        <button class="navbar__link" @click="isDropdownOpen = !isDropdownOpen">
+          <svg-image height="20" width="20" name="book" />
+          Учить алфавит
+        </button>
+        <NavDropdown v-if="isDropdownOpen" @close="isDropdownOpen = false" />
+      </div>
+      <!-- <button
         v-for="locale in availableLocales"
         :key="locale.code"
         class="btn navbar__link"
         @click="changeLocale(locale.code)"
       >
         {{ locale.name }}
-      </button>
+      </button> -->
     </div>
-  </div>
+  </nav>
 </template>
 
 <script>
+import NavDropdown from './NavDropdown'
+
 export default {
   name: 'NavBar',
+  components: { NavDropdown },
   data: () => ({
-    isFixed: false
+    isFixed: false,
+    isDropdownOpen: false
   }),
   computed: {
     availableLocales() {

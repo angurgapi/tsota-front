@@ -13,13 +13,26 @@
         }
     }
 
+    &__menu {
+        // position: relative;
+        display: flex;
+    }
+
+    &__logo {
+        width: 20px;
+        height: 20px;
+    }
+
     &__link {
         display: flex;
         align-items: center;
+        border: none;
         font-family: 'PF';
         font-weight: 500;
         font-size: 20px;
         color: #024013;
+        background: none;
+        transition: 0.4s all ease-in-out;
 
         img {
             margin-right: 6px;
@@ -27,7 +40,7 @@
         }
 
         &:hover {
-            transform: scale(1.1);
+            border-bottom: 2px solid #024013;
         }
     }
 

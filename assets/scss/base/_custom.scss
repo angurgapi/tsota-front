@@ -48,7 +48,7 @@
     min-height: 100vh;
     font-family: 'Rubik';
     line-height: 1.5;
-    text-rendering: optimizeSpeed;
+    text-rendering: optimizespeed;
     scroll-behavior: smooth;
   }
 
@@ -60,7 +60,6 @@
 
   a {
     text-decoration: none;
-    color: #fff;
   }
 
   a:not([class]) {

@@ -8,6 +8,9 @@
   "NavBar": {
     "description": "Auto imported from components/NavBar.vue"
   },
+  "NavDropdown": {
+    "description": "Auto imported from components/NavDropdown.vue"
+  },
   "ProjectTemplate": {
     "description": "Auto imported from components/ProjectTemplate.vue"
   },
@@ -37,6 +40,9 @@
   },
   "HelpersVuePrototypeFunctions": {
     "description": "Auto imported from components/helpers/vuePrototypeFunctions.js"
+  },
+  "LessonsWordGuess": {
+    "description": "Auto imported from components/lessons/WordGuess.vue"
   },
   "ToastsNotificationSlot": {
     "description": "Auto imported from components/toasts/NotificationSlot.vue"
