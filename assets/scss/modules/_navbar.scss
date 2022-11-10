@@ -3,24 +3,28 @@
     top: 0;
     z-index: 500;
     justify-content: space-between;
-    padding: 24px;
+    padding: 0;
     width: 100%;
     height: 60px;
+    font-family: "PF";
 
     &__right {
+        height: 100%;
+
         button {
             margin-left: 10px;
         }
     }
 
     &__menu {
-        // position: relative;
         display: flex;
+        height: 100%;
     }
 
     &__logo {
-        width: 20px;
-        height: 20px;
+       height: 60px;
+
+    //    width: 60px;
     }
 
     &__link {
@@ -30,22 +34,34 @@
         font-family: 'PF';
         font-weight: 500;
         font-size: 20px;
-        color: #024013;
+        text-decoration: none;
+        color: #02071d;
+        background: none;
+        transition: 0.4s all ease-in-out;
+    }
+
+    &__btn {
+        display: flex;
+        align-items: center;
+        border: none;
+        padding: 14px;
+        height: 100%;
         background: none;
         transition: 0.4s all ease-in-out;
 
-        img {
-            margin-right: 6px;
-            fill: #024013;
+        svg {
+            margin-right: 10px;
+            fill: #02071d;
         }
 
         &:hover {
-            border-bottom: 2px solid #024013;
-        }
-    }
+            color: #fff;
+            background-color: #02071d;
 
-    .btn {
-        border: 1px solid #024013;
+            svg {
+                fill: #fff;
+            }
+        }
     }
 
     &--fixed {
@@ -53,3 +69,35 @@
         backdrop-filter: blur(6px);
     }
 }
+
+.dropdown {
+    position: absolute;
+    right: 30px;
+    top: 70px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    padding: 10px 0;
+    height: fit-content;
+    background: #fff;
+
+    &__links {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      height: fit-content;
+    }
+
+    &__link {
+      padding: 6px 18px;
+      height: 36px;
+      font-size: 18px;
+      line-height: 20px;
+      color: #000;
+
+      &:hover {
+        color: $primary;
+      }
+    }
+  }

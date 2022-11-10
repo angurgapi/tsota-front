@@ -1,13 +1,14 @@
 <template>
   <div class="word-guess">
-    <span>{{ wordData.attributes.value }}</span>
+    <span class="word-guess__label">{{ wordData.attributes.value }}</span>
     <input
-      v-model="word"
       maxlength="55"
       type="text"
       class="form__input"
       :class="{ correct: isCorrect }"
       :placeholder="wordData.attributes.hint"
+      @keypress="checkSpelling"
+      @input="checkSpelling"
     />
     <!-- <span>{{ wordData.attributes.hint }}</span> -->
   </div>
@@ -28,8 +29,16 @@ export default {
   }),
   watch: {
     word(newVal, oldVal) {
+      if (newVal !== oldVal) {
+        this.checkSpelling()
+      }
+    }
+  },
+  methods: {
+    checkSpelling(event) {
+      let word = event.target.value
       this.isCorrect =
-        newVal.toLowerCase() ===
+        word.toLowerCase().trim() ===
         this.wordData.attributes.transliteration.toLowerCase()
     }
   }
@@ -41,8 +50,15 @@ export default {
   display: grid;
   align-items: center;
   grid-gap: 18px;
-  grid-template-columns: 1fr 2fr;
+
+  // grid-template-columns: 2fr 3fr;
+  grid-template-columns: repeat(2, 1fr);
   margin-bottom: 18px;
+  max-width: 100%;
+
+  &__label {
+    width: 100%;
+  }
 }
 
 .correct {

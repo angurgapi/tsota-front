@@ -80,11 +80,14 @@
   padding: 24px;
 
   &__input {
+    display: flex;
     outline: none;
     border: 1px solid #a8aaad;
     border-radius: 5px;
     padding: 10px;
     height: 46px;
+    max-width: 100%;
+    font-family: 'PF';
     background: #fff;
 
     &:focus {
@@ -102,4 +105,10 @@
 
 .highlighted {
   color: $primary;
+}
+
+.lesson {
+  &__title {
+    color: $primary;
+  }
 }

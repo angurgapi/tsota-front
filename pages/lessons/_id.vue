@@ -1,6 +1,6 @@
 <template>
   <div class="page lesson">
-    <h2>Урок {{ $route.params.id }}</h2>
+    <h2 class="lesson__title">Урок {{ $route.params.id }}</h2>
     <div class="lesson__info">
       <div class="lesson__letters">
         <div v-for="letter in letters" :key="letter.id" class="lesson__letter">
@@ -24,6 +24,9 @@
                 class="lesson__img"
                 :src="`http://localhost:1337${image.attributes.url}`"
               />
+              <span class="lesson__royalty">
+                ©{{ image.attributes.caption }}</span
+              >
             </div>
           </div>
           <div class="swiper-pagination"></div>
@@ -31,9 +34,11 @@
       </div>
     </div>
     <div class="lesson__words">
-      <h4>Тренировка</h4>
-      <h5>Вы <span class="highlighted">уже можете</span> это прочесть!</h5>
-      <h5>Заполните пропуски напротив слов латинской транслитерацией</h5>
+      <h3 class="lesson__headline">Тренировка</h3>
+      <p class="lesson__legend">
+        Вы <span class="highlighted">уже можете</span> это прочесть!<br />Заполните
+        пропуски напротив слов латинской транслитерацией
+      </p>
       <WordGuess
         v-for="word in words"
         :key="word.transliteration"
@@ -78,6 +83,7 @@ export default {
   }),
 
   mounted() {
+    console.log(this.images)
     Swiper.use([Navigation, Pagination, Autoplay])
 
     const swiper = new Swiper('.swiper-container', {
@@ -108,13 +114,10 @@ export default {
 
 <style lang="scss" scoped>
 .lesson {
-  h4,
-  h5 {
+  &__legend {
+    margin: 20px auto;
+    font-family: 'PF';
     text-align: center;
-  }
-
-  h5 {
-    margin-bottom: 20px;
   }
 
   &__info {
@@ -139,10 +142,14 @@ export default {
 
   &__letter {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 
     span {
-      max-width: 300px;
+      // max-width: 300px;
+
+      &:not(:first-child) {
+        font-family: 'PF';
+      }
 
       &:first-child {
         margin-right: 20px;
@@ -157,12 +164,29 @@ export default {
   }
 
   &__img {
+    position: relative;
     width: 100%;
     height: auto;
   }
 
+  &__royalty {
+    position: absolute;
+    right: 5px;
+    font-family: 'Rubik';
+    font-size: 12px;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 40%);
+  }
+
   &__words {
     margin-top: 30px;
+    max-width: 100%;
+  }
+
+  &__title,
+  &__headline {
+    font-family: 'PF';
+    text-align: center;
   }
 }
 

@@ -12,7 +12,7 @@ export default {
   ssr: true,
 
   head: {
-    title: 'blabi',
+    title: 'brick',
     // htmlAttrs: {
     //   lang: 'en'
     // },
@@ -21,7 +21,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/img/blab.png' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/img/brick-icon.png' }]
   },
   script: [
     {
