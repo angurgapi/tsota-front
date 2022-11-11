@@ -4,29 +4,19 @@
     <div class="lesson__info">
       <div class="lesson__letters">
         <div v-for="letter in letters" :key="letter.id" class="lesson__letter">
-          <span
-            >{{ letter.attributes.value }} ({{
-              letter.attributes.transliteration
-            }})</span
-          >
-          <span>{{ letter.attributes.description }} </span>
+          <span>{{ letter.value }} ({{ letter.transliteration }})</span>
+          <span>{{ letter.description }} </span>
         </div>
       </div>
       <div v-if="images" class="lesson__images">
         <div class="swiper-container">
           <div class="swiper-wrapper">
-            <div
-              v-for="image in images"
-              :key="image.attributes.url"
-              class="swiper-slide"
-            >
+            <div v-for="image in images" :key="image.url" class="swiper-slide">
               <img
                 class="lesson__img"
-                :src="`http://localhost:1337${image.attributes.url}`"
+                :src="`https://tsota.herokuapp.com${image.url}`"
               />
-              <span class="lesson__royalty">
-                ©{{ image.attributes.caption }}</span
-              >
+              <span class="lesson__royalty"> ©{{ image.caption }}</span>
             </div>
           </div>
           <div class="swiper-pagination"></div>
@@ -60,16 +50,17 @@ export default {
   async asyncData({ $axios, route }) {
     try {
       const { data } = await $axios.get(
-        `http://localhost:1337/api/lessons/${route.params.id}?populate=*`
+        `https://tsota.herokuapp.com/lessons?order_num=${route.params.id}`
       )
 
-      const lessonData = data.data.attributes
+      const lessonData = data[0]
+      console.log('lesson data', data)
       console.log(lessonData)
 
       return {
-        words: lessonData.words.data,
-        letters: lessonData.letters.data,
-        images: lessonData.images.data
+        words: lessonData.words,
+        letters: lessonData.letters,
+        images: lessonData.slides
       }
     } catch (e) {
       console.log(e)
@@ -142,7 +133,7 @@ export default {
 
   &__letter {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
 
     span {
       // max-width: 300px;

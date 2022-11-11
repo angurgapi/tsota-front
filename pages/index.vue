@@ -24,7 +24,7 @@
           </button>
         </div> -->
         <div v-for="lesson in lessons" :key="lesson.id">
-          {{ lesson.attributes.title }}
+          {{ lesson.title }}
         </div>
       </div>
     </template>
@@ -44,7 +44,7 @@ export default {
   },
 
   head: {
-    title: 'angurgapee',
+    title: 'bricks',
     script: [{ src: '/js/sortable.min.js', defer: true }]
   },
 
@@ -53,31 +53,31 @@ export default {
       this.isLoading = true
       try {
         const { data } = await this.$axios.get(
-          'http://localhost:1337/api/lessons'
+          'https://tsota.herokuapp.com/lessons'
         )
-        // console.log(data.data)
-        this.lessons = data.data
-        // this.lessons = response.data
-        // for (let lesson in this.lessons) {
-        //   console.log(lesson)
-        // }
+        console.log(data)
+
+        this.lessons = data
       } catch (e) {
         console.log(e)
       }
       this.isLoading = false
     },
-    showDetails() {
-      this.detailsVisible = true
-    },
-    showProjects() {
-      this.$router.push('/pets')
+
+    async checkApi() {
+      try {
+        const response = await this.$axios.get(
+          'https://tsota.herokuapp.com/lessons'
+        )
+        // console.log('response from api', response)
+      } catch (e) {
+        console.log(e)
+      }
     }
   },
   mounted() {
-    // setTimeout(() => {
-    //   this.isLoading = false
-    // }, 2000)
     window.addEventListener('scroll', this.showDetails)
+    // this.checkApi()
   },
   beforeUnmount() {
     window.removeEventListener('scroll', this.showDetails)

@@ -38,7 +38,7 @@ export default {
     base: '/'
   },
   axios: {
-    // proxy: true,
+    proxy: true,
     credentials: false
     // proxyHeaders: false,
   },
@@ -46,6 +46,9 @@ export default {
   //   host: "localhost",
   //   port: 3000,
   // },
+  proxy: {
+    '/api/': process.env.API_URL
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [

@@ -1,12 +1,12 @@
 <template>
   <div class="word-guess">
-    <span class="word-guess__label">{{ wordData.attributes.value }}</span>
+    <span class="word-guess__label">{{ wordData.value }}</span>
     <input
       maxlength="55"
       type="text"
       class="form__input"
       :class="{ correct: isCorrect }"
-      :placeholder="wordData.attributes.hint"
+      :placeholder="wordData.hint"
       @keypress="checkSpelling"
       @input="checkSpelling"
     />
@@ -24,7 +24,6 @@ export default {
     }
   },
   data: () => ({
-    word: '',
     isCorrect: false
   }),
   watch: {
@@ -39,7 +38,7 @@ export default {
       let word = event.target.value
       this.isCorrect =
         word.toLowerCase().trim() ===
-        this.wordData.attributes.transliteration.toLowerCase()
+        this.wordData.transliteration.toLowerCase()
     }
   }
 }
@@ -51,8 +50,9 @@ export default {
   align-items: center;
   grid-gap: 18px;
 
-  // grid-template-columns: 2fr 3fr;
-  grid-template-columns: repeat(2, 1fr);
+  // grid-template-columns: minmax(100px, 1fr);
+
+  grid-template-columns: 34% 60%;
   margin-bottom: 18px;
   max-width: 100%;
 
@@ -62,7 +62,7 @@ export default {
 }
 
 .correct {
-  border: 1px solid green;
-  background: #61ff69;
+  border: 1px solid rgba(17, 237, 75, 90%);
+  background: rgba(17, 237, 75, 30%);
 }
 </style>
