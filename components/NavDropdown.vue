@@ -34,7 +34,6 @@ export default {
     ...mapState('links', ['links'])
   },
   created() {
-    console.log('created')
     this.$store.dispatch('links/getLinks')
   }
 }

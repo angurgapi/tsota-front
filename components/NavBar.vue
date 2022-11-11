@@ -11,7 +11,7 @@
       <div class="navbar__menu">
         <button class="navbar__btn" @click="isDropdownOpen = !isDropdownOpen">
           <svg-icon height="20" width="20" name="book" />
-          Учить алфавит
+          Алфавит
         </button>
         <NavDropdown v-if="isDropdownOpen" @close="isDropdownOpen = false" />
       </div>
