@@ -104,6 +104,10 @@ export default {
 
   mounted() {
     console.log(this.images)
+    if (!this.isLoading) {
+      this.isLoading = true
+      setTimeout((this.isLoading = false), 2000)
+    }
     Swiper.use([Navigation, Pagination, Autoplay])
 
     const swiper = new Swiper('.swiper-container', {
