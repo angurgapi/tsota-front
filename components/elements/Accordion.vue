@@ -52,8 +52,6 @@ export default {
   font-family: 'PF';
 
   &__btn {
-    color: #fff;
-
     img {
       margin-left: 10px;
       transition: 0.4s all ease-in-out;

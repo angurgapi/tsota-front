@@ -218,4 +218,22 @@ export default {
 .swiper-pagination-bullets {
   bottom: -5px;
 }
+
+.loader {
+  //border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  fill: #000;
+  animation: load8 2s infinite linear;
+}
+
+@keyframes load8 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
 </style>

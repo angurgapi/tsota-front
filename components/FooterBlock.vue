@@ -59,6 +59,10 @@ export default {
 
   &::v-deep .accordion {
     width: fit-content;
+
+    &__btn {
+      color: #fff;
+    }
   }
 
   &__links {

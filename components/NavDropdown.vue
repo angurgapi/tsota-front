@@ -42,3 +42,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.dropdown {
+  &::v-deep.accordion__btn {
+    font-family: 'PF';
+    font-weight: 600;
+    letter-spacing: 0.7px;
+    color: #000 !important;
+    opacity: 0.9;
+  }
+}
+</style>
