@@ -16,7 +16,9 @@
                 class="lesson__img"
                 :src="`https://tsota.herokuapp.com${image.url}`"
               />
-              <span class="lesson__royalty"> ©{{ image.caption }}</span>
+              <span class="lesson__royalty">
+                ©{{ image.caption || 'getty images' }}</span
+              >
             </div>
           </div>
           <div class="swiper-pagination"></div>

@@ -45,15 +45,15 @@ export default {
   data: () => ({
     isLoading: true,
     lessons: [],
-    detailsVisible: false
+    links: []
   }),
-  // async fetch() {
-  //   await this.getLessons()
-  // },
+  async fetch() {
+    await this.getLessons()
+  },
 
   head: {
-    title: 'bricks',
-    script: [{ src: '/js/sortable.min.js', defer: true }]
+    title: 'bricks'
+    // script: [{ src: '/js/sortable.min.js', defer: true }]
   },
   computed: {
     ...mapState('links', ['links'])
@@ -67,21 +67,17 @@ export default {
         )
         console.log(data)
 
-        this.lessons = data
+        this.links = data
       } catch (e) {
         console.log(e)
       }
       this.isLoading = false
     }
-  },
-
-  mounted() {
-    window.addEventListener('scroll', this.showDetails)
-    this.$store.dispatch('links/getLinks')
-  },
-  beforeUnmount() {
-    window.removeEventListener('scroll', this.showDetails)
   }
+
+  // mounted() {
+  //   this.$store.dispatch('links/getLinks')
+  // }
 }
 </script>
 
