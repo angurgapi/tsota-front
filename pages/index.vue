@@ -7,6 +7,7 @@
     </template>
     <template v-else>
       <div class="intro-page__about f-column">
+        <h2>გამარჯობა! | гамарджоба!</h2>
         <p class="intro-page__intro">
           <span class="highlighted">Aguri (აგური)</span> переводится с
           грузинского языка как "кирпич". Если начать с малого, со временем
@@ -93,7 +94,21 @@ export default {
 
   &__about {
     width: 100%;
+    max-width: 600px;
     text-align: left;
+
+    h2 {
+      margin-top: 50px;
+      letter-spacing: 0.6px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+
+  &__intro {
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: justify;
   }
 
   &__subtitle {
@@ -109,6 +124,7 @@ export default {
   &__links {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin-top: 30px;
   }
 
