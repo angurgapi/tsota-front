@@ -22,9 +22,9 @@
     }
 
     &__logo {
+       margin-left: 12px;
+       width: 100px;
        height: 60px;
-
-    //    width: 60px;
     }
 
     &__link {
@@ -46,21 +46,19 @@
         border: none;
         padding: 14px;
         height: 100%;
+        font-size: 18px;
+        letter-spacing: .5px;
         background: none;
+        opacity: .7;
         transition: 0.4s all ease-in-out;
 
-        svg {
+        img {
             margin-right: 10px;
-            fill: #02071d;
         }
 
         &:hover {
-            color: #fff;
-            background-color: #02071d;
-
-            svg {
-                fill: #fff;
-            }
+            text-decoration: underline;
+            opacity: 1;
         }
     }
 
@@ -72,7 +70,7 @@
 
 .dropdown {
     position: absolute;
-    right: 30px;
+    right: 10px;
     top: 70px;
     z-index: 1000;
     display: flex;
@@ -82,6 +80,14 @@
     height: fit-content;
     background: #fff;
 
+    .accordion__btn[data-v-202842ea] {
+        font-family: 'PF';
+        font-weight: 600;
+        letter-spacing: 0.7px;
+        color: #000;
+        opacity: .9;
+    }
+
     &__links {
       display: flex;
       flex-direction: column;
@@ -90,10 +96,11 @@
     }
 
     &__link {
-      padding: 6px 18px;
+      padding: 6px 20px;
       height: 36px;
       font-size: 18px;
       line-height: 20px;
+      letter-spacing: .5px;
       color: #000;
 
       &:hover {

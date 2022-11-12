@@ -11,15 +11,15 @@ export const nuxtOptions = {
 export const options = {
   vueI18n: {},
   vueI18nLoader: false,
-  locales: [{"code":"en","name":"en","file":"en.js"},{"code":"ru","name":"ru","file":"ru.js"}],
-  defaultLocale: "en",
+  locales: [],
+  defaultLocale: "",
   defaultDirection: "ltr",
   routesNameSeparator: "___",
   defaultLocaleRouteNameSuffix: "default",
   sortRoutes: true,
   strategy: "prefix_except_default",
-  lazy: true,
-  langDir: "/home/s0f/_nuxt/tsota-frnt/lang",
+  lazy: false,
+  langDir: null,
   rootRedirect: null,
   detectBrowserLanguage: {"alwaysRedirect":false,"cookieCrossOrigin":false,"cookieDomain":null,"cookieKey":"i18n_redirected","cookieSecure":false,"fallbackLocale":"","onlyOnNoPrefix":false,"onlyOnRoot":false,"useCookie":true},
   differentDomains: false,
@@ -32,12 +32,8 @@ export const options = {
   beforeLanguageSwitch: () => null,
   onBeforeLanguageSwitch: () => {},
   onLanguageSwitched: () => null,
-  loadLanguagesAsync: true,
-  normalizedLocales: [{"code":"en","name":"en","file":"en.js"},{"code":"ru","name":"ru","file":"ru.js"}],
-  localeCodes: ["en","ru"],
+  normalizedLocales: [],
+  localeCodes: [],
 }
 
-export const localeMessages = {
-  'en.js': () => import('../../lang/en.js' /* webpackChunkName: "lang-en.js" */),
-  'ru.js': () => import('../../lang/ru.js' /* webpackChunkName: "lang-ru.js" */),
-}
+export const localeMessages = {}

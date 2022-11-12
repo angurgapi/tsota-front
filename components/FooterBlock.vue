@@ -1,6 +1,6 @@
 <template>
   <div class="footer f-column">
-    <Accordion :title="`${$t('Footer.contacts')}`">
+    <Accordion title="контакты">
       <template #content>
         <ul class="footer__links">
           <li>
@@ -33,7 +33,7 @@
         </ul>
       </template>
     </Accordion>
-    <span class="footer__copyright">&#169; angurgapi {{ currentYear }}</span>
+    <span class="footer__copyright">&#169; Aguri {{ currentYear }}</span>
   </div>
 </template>
 

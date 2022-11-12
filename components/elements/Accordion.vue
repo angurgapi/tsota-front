@@ -6,7 +6,11 @@
       @click="toggleAccordion"
     >
       <span class="accordion__title">{{ title }}</span>
-      <svg-image name="chevron-down" height="5" width="10" />
+      <svg-image
+        :name="dark ? 'chevron-down-dark' : 'chevron-down'"
+        height="5"
+        width="10"
+      />
     </button>
     <transition name="fade">
       <div v-show="isOpen" class="accordion__content">
@@ -23,6 +27,10 @@ export default {
     title: {
       type: String,
       required: true
+    },
+    dark: {
+      type: Boolean,
+      default: false
     }
   },
   data: () => ({

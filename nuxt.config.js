@@ -12,7 +12,7 @@ export default {
   ssr: true,
 
   head: {
-    title: 'brick',
+    title: 'Aguri',
     // htmlAttrs: {
     //   lang: 'en'
     // },
@@ -21,7 +21,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/img/brick-icon.png' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/img/aguri-small.svg' }]
   },
   script: [
     {
@@ -42,10 +42,7 @@ export default {
     credentials: false
     // proxyHeaders: false,
   },
-  // proxy: {
-  //   host: "localhost",
-  //   port: 3000,
-  // },
+
   proxy: {
     '/api/': process.env.API_URL
   },
@@ -72,24 +69,24 @@ export default {
     defaultLocale: 'ru',
     locales: ['ru']
   },
-  i18n: {
-    locales: [
-      {
-        code: 'en',
-        name: 'en',
-        file: 'en.js'
-      },
-      {
-        code: 'ru',
-        name: 'ru',
-        file: 'ru.js'
-      }
-    ],
-    lazy: true,
-    langDir: 'lang/',
-    defaultLocale: 'en',
-    loadLanguagesAsync: true
-  },
+  // i18n: {
+  //   locales: [
+  //     {
+  //       code: 'en',
+  //       name: 'en',
+  //       file: 'en.js'
+  //     },
+  //     {
+  //       code: 'ru',
+  //       name: 'ru',
+  //       file: 'ru.js'
+  //     }
+  //   ],
+  //   lazy: true,
+  //   langDir: 'lang/',
+  //   defaultLocale: 'en',
+  //   loadLanguagesAsync: true
+  // },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

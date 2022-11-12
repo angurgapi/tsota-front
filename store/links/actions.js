@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default {
   async getLinks({ commit }) {
-    console.log('getting links in actions')
+    // console.log('getting links in actions')
 
     try {
       const { data } = await axios.get('https://tsota.herokuapp.com/lessons')

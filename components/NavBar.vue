@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar f-row" :class="{ 'navbar--fixed': isFixed }">
     <nuxt-link class="navbar__link" to="/">
-      <img class="navbar__logo" src="img/logo1.png" />
+      <img class="navbar__logo" src="img/ag.svg" />
     </nuxt-link>
     <div class="navbar__right f-row">
       <!-- <nuxt-link class="navbar__link" to="/pets">
@@ -9,9 +9,13 @@
         Уроки
       </nuxt-link> -->
       <div class="navbar__menu">
-        <button class="navbar__btn" @click="isDropdownOpen = !isDropdownOpen">
-          <svg-icon height="20" width="20" name="book" />
-          Алфавит
+        <button
+          class="navbar__btn"
+          @click="isDropdownOpen = !isDropdownOpen"
+          @mouseover="isDropdownOpen = !isDropdownOpen"
+        >
+          <svg-image height="20" width="20" name="book" />
+          учиться
         </button>
         <NavDropdown v-if="isDropdownOpen" @close="isDropdownOpen = false" />
       </div>

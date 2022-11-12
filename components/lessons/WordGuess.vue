@@ -39,6 +39,13 @@ export default {
       this.isCorrect =
         word.toLowerCase().trim() ===
         this.wordData.transliteration.toLowerCase()
+      if (this.isCorrect) {
+        this.playSound()
+      }
+    },
+    playSound() {
+      let audio = new Audio('sounds/correct.mp3')
+      audio.play()
     }
   }
 }

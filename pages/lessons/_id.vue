@@ -1,42 +1,57 @@
 <template>
   <div class="page lesson">
-    <h2 class="lesson__title">Урок {{ $route.params.id }}</h2>
-    <div class="lesson__info">
-      <div class="lesson__letters">
-        <div v-for="letter in letters" :key="letter.id" class="lesson__letter">
-          <span>{{ letter.value }} ({{ letter.transliteration }})</span>
-          <span>{{ letter.description }} </span>
-        </div>
+    <template v-if="isLoading">
+      <div>
+        <img class="loader" src="img/khinkali.png" />
       </div>
-      <div v-if="images" class="lesson__images">
-        <div class="swiper-container">
-          <div class="swiper-wrapper">
-            <div v-for="image in images" :key="image.url" class="swiper-slide">
-              <img
-                class="lesson__img"
-                :src="`https://tsota.herokuapp.com${image.url}`"
-              />
-              <span class="lesson__royalty">
-                ©{{ image.caption || 'getty images' }}</span
-              >
-            </div>
+    </template>
+    <template v-else>
+      <h2 class="lesson__title">Урок {{ $route.params.id }}</h2>
+      <div class="lesson__info">
+        <div class="lesson__letters">
+          <div
+            v-for="letter in letters"
+            :key="letter.id"
+            class="lesson__letter"
+          >
+            <span>{{ letter.value }} ({{ letter.transliteration }})</span>
+            <span>{{ letter.description }} </span>
           </div>
-          <div class="swiper-pagination"></div>
+        </div>
+        <div v-if="illustrations" class="lesson__images">
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <div
+                v-for="image in illustrations"
+                :key="image.url"
+                class="swiper-slide"
+              >
+                <img
+                  class="lesson__img"
+                  :src="`https://tsota.herokuapp.com${image.url}`"
+                />
+                <span class="lesson__royalty">
+                  ©{{ image.caption || 'getty images' }}</span
+                >
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="lesson__words">
-      <h3 class="lesson__headline">Тренировка</h3>
-      <p class="lesson__legend">
-        Вы <span class="highlighted">уже можете</span> это прочесть!<br />Заполните
-        пропуски напротив слов латинской транслитерацией
-      </p>
-      <WordGuess
-        v-for="word in words"
-        :key="word.transliteration"
-        :wordData="word"
-      />
-    </div>
+      <div class="lesson__words">
+        <h3 class="lesson__headline">Тренировка</h3>
+        <p class="lesson__legend">
+          Вы <span class="highlighted">уже можете</span> это прочесть!<br />Заполните
+          пропуски напротив слов латинской транслитерацией
+        </p>
+        <WordGuess
+          v-for="word in words"
+          :key="word.transliteration"
+          :wordData="word"
+        />
+      </div>
+    </template>
   </div>
 </template>
 
@@ -49,31 +64,43 @@ export default {
   name: 'LessonPage',
   components: { WordGuess },
 
-  async asyncData({ $axios, route }) {
-    try {
-      const { data } = await $axios.get(
-        `https://tsota.herokuapp.com/lessons?order_num=${route.params.id}`
-      )
-
-      const lessonData = data[0]
-      console.log('lesson data', data)
-      console.log(lessonData)
-
-      return {
-        words: lessonData.words,
-        letters: lessonData.letters,
-        images: lessonData.slides
-      }
-    } catch (e) {
-      console.log(e)
-    }
-  },
   data: () => ({
+    isLoading: false,
     letters: [],
     words: [],
     images: [],
+    files: [],
     swiper: null
   }),
+  async fetch() {
+    await this.getLesson()
+  },
+  computed: {
+    illustrations() {
+      return this.files || this.images
+    }
+  },
+
+  methods: {
+    async getLesson() {
+      this.isLoading = true
+      try {
+        const { data } = await this.$axios.get(
+          `https://tsota.herokuapp.com/lessons?order_num=${this.$route.params.id}`
+        )
+
+        const lessonData = data[0]
+        console.log('lesson data', data)
+        ;(this.words = lessonData.words),
+          (this.letters = lessonData.letters),
+          (this.images = lessonData.slides),
+          (this.files = lessonData.files)
+      } catch (e) {
+        console.log(e)
+      }
+      this.isLoading = false
+    }
+  },
 
   mounted() {
     console.log(this.images)

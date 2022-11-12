@@ -1,27 +1,19 @@
 [
   {
-    "name": "index___ru",
-    "path": "/ru",
-    "component": "/home/s0f/_nuxt/tsota-frnt/pages/index.vue",
-    "chunkName": "pages/index",
-    "_name": "_505552fc"
+    "name": "icons-list",
+    "path": "/_icons",
+    "component": "/home/s0f/_nuxt/tsota-frnt/node_modules/@nuxtjs/svg-sprite/lib/pages/icons-list.vue",
+    "_name": "_6c0eeb9a"
   },
   {
-    "name": "lessons-id___ru",
-    "path": "/ru/lessons/:id?",
-    "component": "/home/s0f/_nuxt/tsota-frnt/pages/lessons/_id.vue",
-    "chunkName": "pages/lessons/_id",
-    "_name": "_7dae7e90"
-  },
-  {
-    "name": "lessons-id___en",
+    "name": "lessons-id",
     "path": "/lessons/:id?",
     "component": "/home/s0f/_nuxt/tsota-frnt/pages/lessons/_id.vue",
     "chunkName": "pages/lessons/_id",
     "_name": "_7dae7e90"
   },
   {
-    "name": "index___en",
+    "name": "index",
     "path": "/",
     "component": "/home/s0f/_nuxt/tsota-frnt/pages/index.vue",
     "chunkName": "pages/index",

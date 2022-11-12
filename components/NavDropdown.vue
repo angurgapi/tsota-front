@@ -1,14 +1,18 @@
 <template>
-  <div class="dropdown">
-    <ul class="dropdown__links" @click="$emit('close')">
-      <li v-for="link in links" :key="link.order_num">
-        <nuxt-link
-          class="dropdown__link f-row"
-          :to="`/lessons/${link.order_num}`"
-          >Урок {{ link.order_num }}</nuxt-link
-        >
-      </li>
-    </ul>
+  <div class="dropdown" @mouseleave="$emit('close')">
+    <Accordion title="буквы" dark>
+      <template #content>
+        <ul keep-alive class="dropdown__links" @click="$emit('close')">
+          <li v-for="link in links" :key="link.order_num">
+            <nuxt-link
+              class="dropdown__link f-row"
+              :to="`/lessons/${link.order_num}`"
+              >урок {{ link.order_num }}</nuxt-link
+            >
+          </li>
+        </ul>
+      </template>
+    </Accordion>
   </div>
 </template>
 <script>
