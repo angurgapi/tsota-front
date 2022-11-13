@@ -25,9 +25,7 @@ export default {
     words: [],
     swiper: null
   }),
-  async fetch() {
-    await this.getImages()
-  },
+
   methods: {
     async getImages() {
       try {
@@ -49,20 +47,12 @@ export default {
         loop: true,
         modules: [Navigation, Pagination, Autoplay],
         slidesPerView: 1,
-        pagination: {
-          el: '.swiper-pagination',
-          type: 'bullets',
-          clickable: true
-        },
-        draggable: true,
-
-        autoplay: {
-          delay: 3000
-        }
+        draggable: true
       })
     }
   },
-  mounted() {
+  async mounted() {
+    await this.getImages()
     if (this.words.length) {
       this.initSwiper()
     }
@@ -71,8 +61,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.lesson__title {
+  margin-bottom: 30px;
+}
+
 .swiper-container {
-  padding-bottom: 30px;
+  padding-bottom: 40px;
   max-width: 300px;
 }
 

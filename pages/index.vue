@@ -83,7 +83,7 @@ export default {
       })
     }
   },
-  mounted() {
+  beforeMount() {
     this.isLoading = true
     setTimeout(() => {
       this.isLoading = false

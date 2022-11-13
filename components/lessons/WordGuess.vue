@@ -44,7 +44,8 @@ export default {
       }
     },
     playSound() {
-      let audio = new Audio('sounds/correct.mp3')
+      let audio = new Audio('sounds/yepp.mp3')
+      audio.volume = 0.7
       audio.play()
     }
   }

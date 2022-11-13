@@ -9,6 +9,7 @@
     font-family: "PF";
 
     &__right {
+        padding-right: 15px;
         height: 100%;
 
         button {
@@ -71,7 +72,7 @@
 
 .dropdown {
     position: absolute;
-    right: 10px;
+    right: 18px;
     top: 70px;
     z-index: 1000;
     display: flex;
