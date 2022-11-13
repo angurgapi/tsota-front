@@ -18,20 +18,16 @@
             <span>{{ letter.description }} </span>
           </div>
         </div>
-        <div v-if="illustrations" class="lesson__images">
+        <div v-if="files" class="lesson__images">
           <div class="swiper-container">
             <div class="swiper-wrapper">
-              <div
-                v-for="image in illustrations"
-                :key="image.url"
-                class="swiper-slide"
-              >
+              <div v-for="file in files" :key="file.id" class="swiper-slide">
                 <img
                   class="lesson__img"
-                  :src="`https://tsota.herokuapp.com${image.url}`"
+                  :src="`https://tsota.herokuapp.com${file.file[0].url}`"
                 />
                 <span class="lesson__royalty">
-                  ©{{ image.caption || 'getty images' }}</span
+                  ©{{ file.royalty || 'getty images' }}</span
                 >
               </div>
             </div>
@@ -51,6 +47,7 @@
           :wordData="word"
         />
       </div>
+      <PaginationBtns v-if="pagesTotal" :totalPages="pagesTotal" />
     </template>
   </div>
 </template>
@@ -59,79 +56,90 @@
 import { Swiper, Navigation, Pagination, Autoplay } from 'swiper'
 import 'swiper/swiper-bundle.min.css'
 import WordGuess from '@/components/lessons/WordGuess'
+import PaginationBtns from '@/components/elements/PaginationBtns'
 
 export default {
   name: 'LessonPage',
-  components: { WordGuess },
+  components: { WordGuess, PaginationBtns },
 
   data: () => ({
     isLoading: false,
     letters: [],
     words: [],
-    images: [],
+    // images: [],
     files: [],
-    swiper: null
+    swiper: null,
+    pagesTotal: 0
   }),
   async fetch() {
     await this.getLesson()
-  },
-  computed: {
-    illustrations() {
-      return this.files || this.images
-    }
+    await this.getTotalPages()
   },
 
   methods: {
     async getLesson() {
-      this.isLoading = true
+      // this.isLoading = true
       try {
         const { data } = await this.$axios.get(
           `https://tsota.herokuapp.com/lessons?order_num=${this.$route.params.id}`
         )
 
         const lessonData = data[0]
-        console.log('lesson data', data)
-        ;(this.words = lessonData.words),
-          (this.letters = lessonData.letters),
-          (this.images = lessonData.slides),
-          (this.files = lessonData.files)
+        // console.log('lesson data', data)
+        this.words = lessonData.words
+        this.letters = lessonData.letters
+        this.files = lessonData.files
+        console.log(this.files)
       } catch (e) {
         console.log(e)
       }
-      this.isLoading = false
+      // this.isLoading = false
+    },
+    async getTotalPages() {
+      try {
+        const { data } = await this.$axios.get(
+          `https://tsota.herokuapp.com/lessons`
+        )
+        this.pagesTotal = data.length
+      } catch (e) {
+        console.log(e)
+      }
     }
+  },
+  created() {
+    this.isLoading = true
+    setTimeout(() => {
+      this.isLoading = false
+    }, 1500)
   },
 
   mounted() {
-    console.log(this.images)
-    if (!this.isLoading) {
-      this.isLoading = true
-      setTimeout((this.isLoading = false), 2000)
+    if (this.files?.length) {
+      Swiper.use([Navigation, Pagination, Autoplay])
+
+      const swiper = new Swiper('.swiper-container', {
+        //https://swiperjs.com/swiper-api#parameters
+        direction: 'horizontal',
+        loop: true,
+        // remove unused modules if needed
+        modules: [Navigation, Pagination, Autoplay],
+
+        pagination: {
+          el: '.swiper-pagination',
+          type: 'bullets',
+          clickable: true
+        },
+
+        autoplay: {
+          delay: 3000
+        }
+        // Navigation arrows
+        // navigation: {
+        //   nextEl: '.swiper-button-next',
+        //   prevEl: '.swiper-button-prev'
+        // }
+      })
     }
-    Swiper.use([Navigation, Pagination, Autoplay])
-
-    const swiper = new Swiper('.swiper-container', {
-      //https://swiperjs.com/swiper-api#parameters
-      direction: 'horizontal',
-      loop: true,
-      // remove unused modules if needed
-      modules: [Navigation, Pagination, Autoplay],
-
-      pagination: {
-        el: '.swiper-pagination',
-        type: 'bullets',
-        clickable: true
-      },
-
-      autoplay: {
-        delay: 3000
-      }
-      // Navigation arrows
-      // navigation: {
-      //   nextEl: '.swiper-button-next',
-      //   prevEl: '.swiper-button-prev'
-      // }
-    })
   }
 }
 </script>
@@ -204,6 +212,7 @@ export default {
 
   &__words {
     margin-top: 30px;
+    margin-bottom: 30px;
     max-width: 100%;
   }
 

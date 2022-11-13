@@ -17,6 +17,7 @@ You can directly use them in pages and other components without the need to impo
 - `<DropzoneFile>` | `<dropzone-file>` (components/dropzone/DropzoneFile.vue)
 - `<DropzoneWidget>` | `<dropzone-widget>` (components/dropzone/DropzoneWidget.vue)
 - `<ElementsAccordion>` | `<elements-accordion>` (components/elements/Accordion.vue)
+- `<ElementsPaginationBtns>` | `<elements-pagination-btns>` (components/elements/PaginationBtns.vue)
 - `<ElementsSvgImage>` | `<elements-svg-image>` (components/elements/SvgImage.vue)
 - `<ElementsTooltip>` | `<elements-tooltip>` (components/elements/Tooltip.vue)
 - `<HelpersVuePrototypeFunctions>` | `<helpers-vue-prototype-functions>` (components/helpers/vuePrototypeFunctions.js)

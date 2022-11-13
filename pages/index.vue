@@ -74,6 +74,12 @@ export default {
         return letter.value
       })
     }
+  },
+  created() {
+    this.isLoading = true
+    setTimeout(() => {
+      this.isLoading = false
+    }, 1500)
   }
 
   // mounted() {

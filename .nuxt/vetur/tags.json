@@ -32,6 +32,9 @@
   "ElementsAccordion": {
     "description": "Auto imported from components/elements/Accordion.vue"
   },
+  "ElementsPaginationBtns": {
+    "description": "Auto imported from components/elements/PaginationBtns.vue"
+  },
   "ElementsSvgImage": {
     "description": "Auto imported from components/elements/SvgImage.vue"
   },
