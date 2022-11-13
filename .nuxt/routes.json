@@ -6,6 +6,13 @@
     "_name": "_6c0eeb9a"
   },
   {
+    "name": "words",
+    "path": "/words",
+    "component": "/home/s0f/_nuxt/tsota-frnt/pages/words.vue",
+    "chunkName": "pages/words",
+    "_name": "_92defd5a"
+  },
+  {
     "name": "lessons-id",
     "path": "/lessons/:id?",
     "component": "/home/s0f/_nuxt/tsota-frnt/pages/lessons/_id.vue",

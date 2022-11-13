@@ -6,7 +6,7 @@
       </div>
     </template>
     <template v-else>
-      <div class="intro-page__about f-column">
+      <div class="intro-page__about card f-column">
         <h2>გამარჯობა! | гамарджоба!</h2>
         <p class="intro-page__intro">
           <span class="highlighted">Aguri (აგური)</span> переводится с
@@ -16,6 +16,14 @@
           <!-- <s>стену, покрыть крышу черепицей, созвать друзей на шашлыки...</s> -->
           и ценники в супермаркете читаются быстро, не оставляя вопросов, где
           тут Киндзмараули по акции. Мы, конечно, начнем с алфавита.
+          <br />
+          В каждом уроке вы найдете краткое описание нескольких букв. Ниже
+          расположен блок для практики: слово слева написано на грузинском, а
+          справа поле ввода, в которое нужно вписать транслитерацию этого слова.
+          <b
+            >Подсказки для иностранных слов дают только общее представление, но
+            не всегда являются русским переводом.</b
+          >
         </p>
 
         <ul class="intro-page__links">
@@ -75,7 +83,7 @@ export default {
       })
     }
   },
-  created() {
+  mounted() {
     this.isLoading = true
     setTimeout(() => {
       this.isLoading = false
@@ -99,12 +107,12 @@ export default {
   font-size: 26px;
 
   &__about {
+    margin-top: 60px;
     width: 100%;
     max-width: 600px;
     text-align: left;
 
     h2 {
-      margin-top: 50px;
       letter-spacing: 0.6px;
       text-align: center;
       text-transform: uppercase;

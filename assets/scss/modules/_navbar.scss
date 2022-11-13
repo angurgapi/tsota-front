@@ -64,6 +64,7 @@
 
     &--fixed {
         box-shadow: 0 4px 6px -2px rgb(0 0 0 / 30%);
+        background-color: rgba(234, 237, 240, 80%);
         backdrop-filter: blur(6px);
     }
 }
@@ -96,6 +97,10 @@
       color: #000;
 
       &:hover {
+        color: $primary;
+      }
+
+      &--active {
         color: $primary;
       }
     }

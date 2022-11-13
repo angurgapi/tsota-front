@@ -65,6 +65,7 @@ export default {
 
   &__label {
     width: 100%;
+    font-size: 18px;
   }
 }
 

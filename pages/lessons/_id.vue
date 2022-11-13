@@ -6,36 +6,32 @@
       </div>
     </template>
     <template v-else>
-      <h2 class="lesson__title">Урок {{ $route.params.id }}</h2>
-      <div class="lesson__info">
-        <div class="lesson__letters">
-          <div
-            v-for="letter in letters"
-            :key="letter.id"
-            class="lesson__letter"
-          >
-            <span>{{ letter.value }} ({{ letter.transliteration }})</span>
-            <span>{{ letter.description }} </span>
+      <div class="lesson__data card">
+        <h2 class="lesson__title">Урок {{ $route.params.id }}</h2>
+        <div class="lesson__info">
+          <div class="lesson__letters">
+            <div
+              v-for="letter in letters"
+              :key="letter.id"
+              class="lesson__letter"
+            >
+              <span>{{ letter.value }} ({{ letter.transliteration }})</span>
+              <span>{{ letter.description }} </span>
+            </div>
           </div>
-        </div>
-        <div v-if="files" class="lesson__images">
-          <div class="swiper-container">
+          <div v-if="images" class="lesson__images swiper-container">
             <div class="swiper-wrapper">
-              <div v-for="file in files" :key="file.id" class="swiper-slide">
-                <img
-                  class="lesson__img"
-                  :src="`https://tsota.herokuapp.com${file.file[0].url}`"
-                />
-                <span class="lesson__royalty">
-                  ©{{ file.royalty || 'getty images' }}</span
-                >
+              <div v-for="image in images" :key="image" class="swiper-slide">
+                <img class="lesson__img" :src="image" />
+                <span class="lesson__royalty"> ©getty images</span>
               </div>
             </div>
             <div class="swiper-pagination"></div>
           </div>
         </div>
       </div>
-      <div class="lesson__words">
+
+      <div class="lesson__words card">
         <h3 class="lesson__headline">Тренировка</h3>
         <p class="lesson__legend">
           Вы <span class="highlighted">уже можете</span> это прочесть!<br />Заполните
@@ -66,8 +62,7 @@ export default {
     isLoading: false,
     letters: [],
     words: [],
-    // images: [],
-    files: [],
+    images: [],
     swiper: null,
     pagesTotal: 0
   }),
@@ -88,8 +83,14 @@ export default {
         // console.log('lesson data', data)
         this.words = lessonData.words
         this.letters = lessonData.letters
-        this.files = lessonData.files
-        console.log(this.files)
+        this.images = lessonData.words
+          .filter((word) => {
+            return word.image_url
+          })
+          .map((word) => {
+            return word.image_url
+          })
+        console.log(this.images)
       } catch (e) {
         console.log(e)
       }
@@ -104,31 +105,23 @@ export default {
       } catch (e) {
         console.log(e)
       }
-    }
-  },
-  created() {
-    this.isLoading = true
-    setTimeout(() => {
-      this.isLoading = false
-    }, 1500)
-  },
-
-  mounted() {
-    if (this.files?.length) {
+    },
+    initSwiper() {
       Swiper.use([Navigation, Pagination, Autoplay])
+      console.log(Swiper)
 
-      const swiper = new Swiper('.swiper-container', {
+      this.swiper = new Swiper('.swiper-container', {
         //https://swiperjs.com/swiper-api#parameters
         direction: 'horizontal',
         loop: true,
-        // remove unused modules if needed
         modules: [Navigation, Pagination, Autoplay],
-
+        slidesPerView: 'auto',
         pagination: {
           el: '.swiper-pagination',
           type: 'bullets',
           clickable: true
         },
+        draggable: true,
 
         autoplay: {
           delay: 3000
@@ -140,26 +133,43 @@ export default {
         // }
       })
     }
+  },
+
+  mounted() {
+    this.isLoading = true
+    setTimeout(() => {
+      this.isLoading = false
+    }, 1500)
+    setTimeout(() => {
+      this.initSwiper()
+    }, 1500)
+    if (this.images.length) {
+      this.initSwiper()
+    }
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .lesson {
   &__legend {
     margin: 20px auto;
     font-family: 'PF';
+    font-size: 18px;
     text-align: center;
   }
 
   &__info {
     display: grid;
-    justify-items: center;
+
+    // justify-items: center;
+    align-items: start;
     grid-gap: 30px;
     grid-template-columns: repeat(2, 1fr);
+    padding-top: 30px;
     width: 100%;
 
-    @media (max-width: 1000px) {
+    @media (max-width: 800px) {
       grid-template-columns: 1fr;
     }
   }
@@ -169,12 +179,14 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    width: fit-content;
+
+    // width: fit-content;
   }
 
   &__letter {
     display: flex;
     align-items: center;
+    font-size: 18px;
 
     span {
       // max-width: 300px;
@@ -199,6 +211,7 @@ export default {
     position: relative;
     width: 100%;
     height: auto;
+    max-width: 300px;
   }
 
   &__royalty {
@@ -228,9 +241,14 @@ export default {
   max-width: 300px;
 }
 
-.swiper-pagination-bullets {
-  bottom: -5px;
+.swiper-wrapper {
+  width: 100%;
+  max-width: 300px;
 }
+
+// .swiper-pagination-bullets {
+//   bottom: -5px;
+// }
 
 .loader {
   //border-radius: 50%;

@@ -6,6 +6,7 @@
           <li v-for="link in links" :key="link.order_num">
             <nuxt-link
               class="dropdown__link f-row"
+              :class="{ 'dropdown__link--active': isCurrent(link.order_num) }"
               :to="`/lessons/${link.order_num}`"
               >урок {{ link.order_num }}</nuxt-link
             >
@@ -36,6 +37,11 @@ export default {
   //   }),
   computed: {
     ...mapState('links', ['links'])
+  },
+  methods: {
+    isCurrent(linkNum) {
+      return this.$route.params.id == linkNum
+    }
   },
   created() {
     this.$store.dispatch('links/getLinks')
