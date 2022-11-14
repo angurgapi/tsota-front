@@ -73,12 +73,17 @@ export default {
 
 .swiper-container {
   padding-bottom: 45px;
-  max-width: 450px;
+
+  //   max-width: 450px;
 }
 
 .swiper-wrapper {
   width: 100%;
   max-width: 450px;
+
+  @media (max-width: 700px) {
+    max-width: 90vw;
+  }
 }
 
 .swiper-slide {
