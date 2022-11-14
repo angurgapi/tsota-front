@@ -32,6 +32,17 @@
       </div>
 
       <div class="lesson__words card">
+        <button
+          class="btn lesson__volume"
+          :class="{ 'lesson__volume--active': isSoundOn }"
+          @click="isSoundOn = !isSoundOn"
+        >
+          <svg-image
+            :name="`${isSoundOn ? 'volume-off' : 'volume-on'}`"
+            height="25"
+            width="25"
+          />
+        </button>
         <h3 class="lesson__headline">Тренировка</h3>
         <p class="lesson__legend">
           Вы <span class="highlighted">уже можете</span> это прочесть!<br />Заполните
@@ -41,6 +52,7 @@
           v-for="word in words"
           :key="word.transliteration"
           :wordData="word"
+          :sound="isSoundOn"
         />
       </div>
       <PaginationBtns v-if="pagesTotal" :totalPages="pagesTotal" />
@@ -64,7 +76,8 @@ export default {
     words: [],
     images: [],
     swiper: null,
-    pagesTotal: 0
+    pagesTotal: 0,
+    isSoundOn: true
   }),
   async fetch() {
     await this.getLesson()
@@ -108,8 +121,6 @@ export default {
     },
     initSwiper() {
       Swiper.use([Navigation, Pagination, Autoplay])
-      console.log(Swiper)
-
       this.swiper = new Swiper('.swiper-container', {
         //https://swiperjs.com/swiper-api#parameters
         direction: 'horizontal',
@@ -152,7 +163,7 @@ export default {
 
 <style lang="scss">
 .swiper-container {
-  padding-bottom: 30px;
+  padding-bottom: 45px;
   max-width: 300px;
 }
 
@@ -166,6 +177,8 @@ export default {
 // }
 
 .loader {
+  margin: auto;
+
   //border-radius: 50%;
   width: 42px;
   height: 42px;

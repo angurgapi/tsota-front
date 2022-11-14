@@ -51,7 +51,8 @@ export default {
   plugins: [
     '@/plugins/global-components',
     '@/plugins/show-toast-mixin.js',
-    '@/plugins/vue-prototype-functions.js'
+    '@/plugins/vue-prototype-functions.js',
+    '@/plugins/vue-click-outside'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

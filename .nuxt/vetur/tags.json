@@ -23,12 +23,6 @@
   "SvgIcon": {
     "description": "Auto imported from components/SvgIcon.vue"
   },
-  "DropzoneFile": {
-    "description": "Auto imported from components/dropzone/DropzoneFile.vue"
-  },
-  "DropzoneWidget": {
-    "description": "Auto imported from components/dropzone/DropzoneWidget.vue"
-  },
   "ElementsAccordion": {
     "description": "Auto imported from components/elements/Accordion.vue"
   },

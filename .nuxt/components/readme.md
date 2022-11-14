@@ -14,8 +14,6 @@ You can directly use them in pages and other components without the need to impo
 - `<Puzzle>` | `<puzzle>` (components/Puzzle.vue)
 - `<PuzzleTile>` | `<puzzle-tile>` (components/PuzzleTile.vue)
 - `<SvgIcon>` | `<svg-icon>` (components/SvgIcon.vue)
-- `<DropzoneFile>` | `<dropzone-file>` (components/dropzone/DropzoneFile.vue)
-- `<DropzoneWidget>` | `<dropzone-widget>` (components/dropzone/DropzoneWidget.vue)
 - `<ElementsAccordion>` | `<elements-accordion>` (components/elements/Accordion.vue)
 - `<ElementsPaginationBtns>` | `<elements-pagination-btns>` (components/elements/PaginationBtns.vue)
 - `<ElementsSvgImage>` | `<elements-svg-image>` (components/elements/SvgImage.vue)

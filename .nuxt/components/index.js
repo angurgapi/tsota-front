@@ -6,8 +6,6 @@ export { default as ProjectTemplate } from '../../components/ProjectTemplate.vue
 export { default as Puzzle } from '../../components/Puzzle.vue'
 export { default as PuzzleTile } from '../../components/PuzzleTile.vue'
 export { default as SvgIcon } from '../../components/SvgIcon.vue'
-export { default as DropzoneFile } from '../../components/dropzone/DropzoneFile.vue'
-export { default as DropzoneWidget } from '../../components/dropzone/DropzoneWidget.vue'
 export { default as ElementsAccordion } from '../../components/elements/Accordion.vue'
 export { default as ElementsPaginationBtns } from '../../components/elements/PaginationBtns.vue'
 export { default as ElementsSvgImage } from '../../components/elements/SvgImage.vue'

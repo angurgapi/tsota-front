@@ -49,8 +49,8 @@
         height: 100%;
         font-size: 18px;
         letter-spacing: .5px;
+        color: $logo-indigo;
         background: none;
-        opacity: .7;
         transition: 0.4s all ease-in-out;
 
         img {
@@ -59,7 +59,7 @@
 
         &:hover {
             text-decoration: underline;
-            opacity: 1;
+            opacity: .8;
         }
     }
 
@@ -98,11 +98,11 @@
       color: #000;
 
       &:hover {
-        color: $primary;
+        color: $logo-indigo;
       }
 
       &--active {
-        color: $primary;
+        color: $logo-indigo;
       }
     }
   }

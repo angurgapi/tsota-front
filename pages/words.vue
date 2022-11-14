@@ -4,9 +4,13 @@
       <h2 class="lesson__title">Слова для запоминания</h2>
       <div v-if="words" class="lesson__images swiper-container">
         <div class="swiper-wrapper">
-          <div v-for="word in words" :key="word.id" class="swiper-slide">
-            <img class="lesson__img" :src="word.image_url" />
-            <span class="lesson__royalty"> ©getty images</span>
+          <div
+            v-for="word in words"
+            :key="word.id"
+            class="swiper-slide flashcard"
+          >
+            <img class="flashcard__img" :src="word.image_url" />
+            <span class="flashcard__royalty"> ©getty images</span>
           </div>
         </div>
         <div class="swiper-pagination"></div>
@@ -33,9 +37,11 @@ export default {
           'https://tsota.herokuapp.com/words'
         )
 
-        this.words = data.filter((word) => {
-          return word.image_url
-        })
+        this.words = data
+          .filter((word) => {
+            return word.image_url
+          })
+          .sort(() => Math.random() - 0.5)
       } catch (e) {
         console.log(e)
       }
@@ -66,17 +72,33 @@ export default {
 }
 
 .swiper-container {
-  padding-bottom: 40px;
-  max-width: 300px;
+  padding-bottom: 45px;
+  max-width: 450px;
 }
 
 .swiper-wrapper {
   width: 100%;
-  max-width: 300px;
+  max-width: 450px;
 }
 
 .swiper-slide {
   width: 100%;
   height: auto;
+}
+
+.flashcard {
+  img {
+    margin: auto;
+    width: 100%;
+    height: auto;
+  }
+
+  &__royalty {
+    float: right;
+    width: 100%;
+    text-align: right;
+    text-transform: uppercase;
+    opacity: 0.3;
+  }
 }
 </style>

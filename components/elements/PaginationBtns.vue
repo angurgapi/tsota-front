@@ -69,7 +69,7 @@ export default {
     }
 
     &--current {
-      color: rgb(11, 110, 249);
+      color: #4b83a6;
     }
   }
 }

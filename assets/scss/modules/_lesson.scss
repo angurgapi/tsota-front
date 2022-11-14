@@ -1,0 +1,113 @@
+.lesson {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 700px;
+
+    &__legend {
+      margin: 20px auto;
+      font-family: 'PF';
+      font-size: 18px;
+      line-height: 20px;
+      text-align: center;
+    }
+
+    &__volume {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      border-radius: 50%;
+      padding: 0;
+      width: 42px;
+      height: 42px;
+      box-shadow: rgba(0, 0, 0, 35%) 0 5px 15px;
+      background: rgba(53, 68, 115, 2%);
+      opacity: .6;
+
+      &--active {
+        opacity: 1;
+      }
+    }
+
+    &__info {
+      display: grid;
+      align-items: start;
+      grid-gap: 30px;
+      grid-template-columns: repeat(2, 1fr);
+      padding-top: 30px;
+      width: 100%;
+
+      @media (max-width: 800px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &__letters {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      max-width: 400px;
+
+      // width: fit-content;
+    }
+
+    &__letter {
+      display: flex;
+      font-size: 18px;
+
+      &:not(:first-child) {
+          margin-top: 18px;
+      }
+
+      span {
+        &:not(:first-child) {
+          font-family: 'PF';
+          text-align: justify;
+          opacity: .9;
+        }
+
+        &:first-child {
+          margin-right: 20px;
+          font-size: 22px;
+          line-height: 24px;
+          white-space: nowrap;
+        }
+      }
+
+      @media (max-width: 800px) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    &__img {
+      position: relative;
+      width: 100%;
+      height: auto;
+      max-width: 300px;
+    }
+
+    &__royalty {
+      position: absolute;
+      right: 5px;
+      font-family: 'Rubik';
+      font-size: 12px;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 40%);
+    }
+
+    &__words {
+      position: relative;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      max-width: 100%;
+    }
+
+    &__title,
+    &__headline {
+      font-family: 'PF';
+      text-align: center;
+      color: $logo-indigo;
+    }
+  }

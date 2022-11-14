@@ -10,6 +10,7 @@
       @keypress="checkSpelling"
       @input="checkSpelling"
     />
+
     <!-- <span>{{ wordData.attributes.hint }}</span> -->
   </div>
 </template>
@@ -21,11 +22,16 @@ export default {
     wordData: {
       type: Object,
       required: true
+    },
+    sound: {
+      type: Boolean,
+      default: true
     }
   },
   data: () => ({
     isCorrect: false
   }),
+
   watch: {
     word(newVal, oldVal) {
       if (newVal !== oldVal) {
@@ -39,7 +45,7 @@ export default {
       this.isCorrect =
         word.toLowerCase().trim() ===
         this.wordData.transliteration.toLowerCase()
-      if (this.isCorrect) {
+      if (this.isCorrect && this.sound) {
         this.playSound()
       }
     },
@@ -67,6 +73,10 @@ export default {
   &__label {
     width: 100%;
     font-size: 18px;
+
+    @media (max-width: 340px) {
+      font-size: 15px;
+    }
   }
 }
 

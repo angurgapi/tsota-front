@@ -8,12 +8,15 @@
         <svg-image height="20" width="20" name="book" />
         Уроки
       </nuxt-link> -->
-      <div class="navbar__menu">
-        <button
-          class="navbar__btn"
-          @click="isDropdownOpen = !isDropdownOpen"
-          @mouseover="isDropdownOpen = !isDropdownOpen"
-        >
+      <div
+        v-click-outside="
+          () => {
+            isDropdownOpen = false
+          }
+        "
+        class="navbar__menu"
+      >
+        <button class="navbar__btn" @click="isDropdownOpen = !isDropdownOpen">
           <svg-image height="20" width="20" name="book" />
           учиться
         </button>

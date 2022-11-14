@@ -14,12 +14,16 @@
         </ul>
       </template>
     </Accordion>
-    <nuxt-link
-      class="dropdown__link f-row"
-      :class="{ 'dropdown__link--active': $route.path === '/words' }"
-      to="/words"
-      >карточки</nuxt-link
-    >
+    <ul keep-alive class="dropdown__links" @click="$emit('close')">
+      <li>
+        <nuxt-link
+          class="dropdown__link f-row"
+          :class="{ 'dropdown__link--active': $route.path === '/words' }"
+          to="/words"
+          >карточки</nuxt-link
+        >
+      </li>
+    </ul>
   </div>
 </template>
 <script>
