@@ -3,12 +3,12 @@
     <Accordion title="буквы" dark>
       <template #content>
         <ul keep-alive class="dropdown__links" @click="$emit('close')">
-          <li v-for="link in links" :key="link.order_num">
+          <li v-for="i in 10" :key="i">
             <nuxt-link
               class="dropdown__link f-row"
-              :class="{ 'dropdown__link--active': isCurrent(link.order_num) }"
-              :to="`/lessons/${link.order_num}`"
-              >урок {{ link.order_num }}</nuxt-link
+              :class="{ 'dropdown__link--active': isCurrent(i) }"
+              :to="`/lessons/${i}`"
+              >урок {{ i }}</nuxt-link
             >
           </li>
         </ul>
@@ -45,17 +45,17 @@ export default {
   //   data: () => ({
   //     links: []
   //   }),
-  computed: {
-    ...mapState('links', ['links'])
-  },
+  // computed: {
+  //   ...mapState('links', ['links'])
+  // },
   methods: {
     isCurrent(linkNum) {
       return this.$route.params.id == linkNum
     }
-  },
-  created() {
-    this.$store.dispatch('links/getLinks')
   }
+  // created() {
+  //   this.$store.dispatch('links/getLinks')
+  // }
 }
 </script>
 

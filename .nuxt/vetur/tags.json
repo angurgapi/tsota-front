@@ -35,11 +35,11 @@
   "ElementsTooltip": {
     "description": "Auto imported from components/elements/Tooltip.vue"
   },
-  "HelpersVuePrototypeFunctions": {
-    "description": "Auto imported from components/helpers/vuePrototypeFunctions.js"
-  },
   "LessonsWordGuess": {
     "description": "Auto imported from components/lessons/WordGuess.vue"
+  },
+  "HelpersVuePrototypeFunctions": {
+    "description": "Auto imported from components/helpers/vuePrototypeFunctions.js"
   },
   "ToastsNotificationSlot": {
     "description": "Auto imported from components/toasts/NotificationSlot.vue"
