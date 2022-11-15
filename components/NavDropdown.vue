@@ -23,6 +23,14 @@
           >карточки</nuxt-link
         >
       </li>
+      <li>
+        <nuxt-link
+          class="dropdown__link f-row"
+          :class="{ 'dropdown__link--active': $route.path === '/shopping' }"
+          to="/shopping"
+          >шоппинг</nuxt-link
+        >
+      </li>
     </ul>
   </div>
 </template>

@@ -23,6 +23,9 @@
   "SvgIcon": {
     "description": "Auto imported from components/SvgIcon.vue"
   },
+  "HelpersVuePrototypeFunctions": {
+    "description": "Auto imported from components/helpers/vuePrototypeFunctions.js"
+  },
   "ElementsAccordion": {
     "description": "Auto imported from components/elements/Accordion.vue"
   },
@@ -37,9 +40,6 @@
   },
   "LessonsWordGuess": {
     "description": "Auto imported from components/lessons/WordGuess.vue"
-  },
-  "HelpersVuePrototypeFunctions": {
-    "description": "Auto imported from components/helpers/vuePrototypeFunctions.js"
   },
   "ToastsNotificationSlot": {
     "description": "Auto imported from components/toasts/NotificationSlot.vue"

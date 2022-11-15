@@ -1,21 +1,28 @@
 <template>
   <div class="page">
-    <div class="lesson__data card">
-      <h2 class="lesson__title">Слова для запоминания</h2>
-      <div v-if="words" class="lesson__images swiper-container">
-        <div class="swiper-wrapper">
-          <div
-            v-for="word in words"
-            :key="word.id"
-            class="swiper-slide flashcard"
-          >
-            <img class="flashcard__img" :src="word.image_url" />
-            <span class="flashcard__royalty"> ©getty images</span>
-          </div>
-        </div>
-        <div class="swiper-pagination"></div>
+    <template v-if="isLoading">
+      <div>
+        <img class="loader" src="img/khinkali.png" />
       </div>
-    </div>
+    </template>
+    <template v-else>
+      <div class="lesson__data card">
+        <h2 class="lesson__title">Слова для запоминания</h2>
+        <div v-if="words" class="lesson__images swiper-container">
+          <div class="swiper-wrapper">
+            <div
+              v-for="word in words"
+              :key="word.id"
+              class="swiper-slide flashcard"
+            >
+              <img class="flashcard__img" :src="word.image_url" />
+              <span class="flashcard__royalty"> ©getty images</span>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -27,8 +34,12 @@ export default {
   name: 'Words',
   data: () => ({
     words: [],
-    swiper: null
+    swiper: null,
+    isLoading: false
   }),
+  async fetch() {
+    await this.getImages()
+  },
 
   methods: {
     async getImages() {
@@ -57,10 +68,16 @@ export default {
       })
     }
   },
-  async mounted() {
-    await this.getImages()
+  beforeMount() {
+    this.isLoading = true
+    setTimeout(() => {
+      this.isLoading = false
+    }, 1500)
+
     if (this.words.length) {
-      this.initSwiper()
+      setTimeout(() => {
+        this.initSwiper()
+      }, 1600)
     }
   }
 }

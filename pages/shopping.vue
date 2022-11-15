@@ -1,19 +1,22 @@
 <template>
   <div class="page">
     <h2 class="lesson__title">Шоппинг</h2>
-    <p class="lesson__description">
-      Вас попросили сходить в супермаркет за продуктами. Вам даже выдали список,
-      но он написан на грузинском. Положите в корзину все товары из списка
-      (ничего лишнего!)
-    </p>
-    <div class="shopping-list card">
-      <ul>
-        <li v-for="(item, index) in shoppingList" :key="index">{{ item }}</li>
-      </ul>
+    <div class="shopping__intro">
+      <p class="lesson__description">
+        Вас попросили сходить в супермаркет за продуктами. Вам даже выдали
+        список, но он написан на грузинском. Перетащите в корзину все товары из
+        списка (ничего лишнего!)
+      </p>
+      <div class="shopping-list card">
+        <ul>
+          <li v-for="(item, index) in shoppingList" :key="index">{{ item }}</li>
+        </ul>
+      </div>
     </div>
     <div class="shopping">
       <div class="shopping__block">
-        <div class="shopping__header">
+        <div class="shopping__header f-row">
+          <svg-image name="carrot" height="22" width="22" />
           <span class="shopping__title">витрина</span>
         </div>
         <draggable class="shopping__market" :list="itemsList" group="my-group">
@@ -26,7 +29,8 @@
         </draggable>
       </div>
       <div class="shopping__block">
-        <div class="shopping__header">
+        <div class="shopping__header f-row">
+          <svg-image name="basket" height="22" width="22" />
           <span class="shopping__title">корзина</span>
         </div>
         <draggable
@@ -65,7 +69,7 @@ export default {
         kartuli: 'კარტოფილი'
       },
       {
-        id: 3,
+        id: 8,
         img: 'bacon',
         kartuli: 'ბეკონი'
       },
@@ -88,6 +92,16 @@ export default {
         id: 7,
         img: 'eggs',
         kartuli: 'კვერცხები'
+      },
+      {
+        id: 3,
+        img: 'cheese',
+        kartuli: 'ყველი'
+      },
+      {
+        id: 9,
+        img: 'honey',
+        kartuli: 'თაფლი'
       }
     ],
     cart: [],
@@ -101,14 +115,6 @@ export default {
           return item.kartuli
         })
       ].sort()
-      console.log(listSorted)
-      console.log(
-        this.cart
-          .map((item) => {
-            return item.kartuli
-          })
-          .sort()
-      )
       return JSON.stringify(cartSorted) === JSON.stringify(listSorted)
     }
   }
@@ -123,7 +129,11 @@ export default {
 }
 
 .shopping-list {
+  margin: auto;
   margin-top: 20px;
+  width: fit-content;
+  font-size: 20px;
+  text-align: center;
 }
 
 .shopping {
@@ -131,17 +141,49 @@ export default {
   grid-gap: 18px;
   grid-template-columns: repeat(2, 1fr);
   margin-top: 20px;
-  width: 100%;
+  width: 800px;
+  max-width: 100%;
+  font-family: 'PF';
+
+  &__intro {
+    display: grid;
+    align-items: center;
+    grid-gap: 18px;
+    grid-template-columns: repeat(2, 1fr);
+    width: 800px;
+    max-width: 100%;
+
+    p {
+      margin-top: 20px;
+      text-align: justify;
+    }
+
+    @media (max-width: 700px) {
+      grid-template-columns: 1fr;
+    }
+  }
 
   &__market {
-    background: rgb(169, 248, 176);
+    background: rgb(242, 183, 73);
+  }
+
+  &__header {
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  &__title {
+    margin-left: 10px;
+    color: #4b83a6;
   }
 
   &__cart {
-    background: coral;
+    background: rgb(217, 122, 67);
 
     &--correct {
-      background: green;
+      border: 2px dashed rgba(37, 112, 43, 70%);
+      background: rgba(17, 237, 75, 30%);
     }
   }
 
@@ -157,16 +199,28 @@ export default {
   &__market,
   &__cart {
     display: grid;
+    align-items: start;
+    justify-content: center;
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(50px, 100px));
     margin-top: 20px;
     border-radius: 8px;
     padding: 10px;
     height: 100%;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 12%);
 
     @media (max-width: 600px) {
       grid-template-columns: repeat(auto-fit, minmax(40px, 60px));
     }
+
+    @media (max-width: 430px) {
+      grid-gap: 5px;
+      padding: 8px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    grid-gap: 10px;
   }
 }
 </style>
