@@ -23,11 +23,11 @@
   "SvgIcon": {
     "description": "Auto imported from components/SvgIcon.vue"
   },
-  "HelpersVuePrototypeFunctions": {
-    "description": "Auto imported from components/helpers/vuePrototypeFunctions.js"
-  },
   "ElementsAccordion": {
     "description": "Auto imported from components/elements/Accordion.vue"
+  },
+  "ElementsIntroCard": {
+    "description": "Auto imported from components/elements/IntroCard.vue"
   },
   "ElementsPaginationBtns": {
     "description": "Auto imported from components/elements/PaginationBtns.vue"
@@ -37,6 +37,9 @@
   },
   "ElementsTooltip": {
     "description": "Auto imported from components/elements/Tooltip.vue"
+  },
+  "HelpersVuePrototypeFunctions": {
+    "description": "Auto imported from components/helpers/vuePrototypeFunctions.js"
   },
   "LessonsWordGuess": {
     "description": "Auto imported from components/lessons/WordGuess.vue"
