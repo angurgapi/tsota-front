@@ -84,7 +84,7 @@ export default {
   },
 
   head: {
-    title: 'Aguri'
+    title: 'Aguri - учите грузинский алфавит быстро'
     // script: [{ src: '/js/sortable.min.js', defer: true }]
   },
 
