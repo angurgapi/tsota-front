@@ -18,7 +18,11 @@
               <span>{{ letter.value }} ({{ letter.transliteration }})</span>
               <span>{{ letter.description }} </span>
             </div>
+            <span v-if="description" class="lesson__description"
+              ><i>{{ description }}</i></span
+            >
           </div>
+
           <div v-if="images" class="lesson__images swiper-container">
             <div class="swiper-wrapper">
               <div v-for="image in images" :key="image" class="swiper-slide">
@@ -48,6 +52,7 @@
           Вы <span class="highlighted">уже можете</span> это прочесть!<br />Заполните
           пропуски напротив слов латинской транслитерацией
         </p>
+        <img class="lesson__tutorial" src="/img/howto.gif" />
         <WordGuess
           v-for="word in words"
           :key="word.transliteration"
@@ -77,7 +82,8 @@ export default {
     images: [],
     swiper: null,
     pagesTotal: 0,
-    isSoundOn: true
+    isSoundOn: true,
+    description: ''
   }),
   async fetch() {
     await this.getLesson()
@@ -94,6 +100,7 @@ export default {
 
         const lessonData = data[0]
         // console.log('lesson data', data)
+        this.description = lessonData.description || null
         this.words = lessonData.words
         this.letters = lessonData.letters
         this.images = lessonData.words
