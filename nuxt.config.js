@@ -31,6 +31,10 @@ export default {
         property: 'og:description',
         content:
           'Aguri - платформа, где можно быстро выучить грузинский алфавит'
+      },
+      {
+        name: 'google-site-verification',
+        content: 'DTupBiYMNTWXChIu78dUiQLeMG7_crHKbxxRKiFKUAo'
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/img/aguri-small.svg' }]
