@@ -125,11 +125,15 @@
 }
 
 .loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: auto;
 
-  //border-radius: 50%;
-  width: 42px;
-  height: 42px;
+  // border-radius: 50%;
+  padding: 4px;
+  width: 46px;
+  height: 46px;
   fill: #000;
   animation: load8 2s infinite linear;
 }

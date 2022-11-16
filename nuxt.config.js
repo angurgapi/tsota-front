@@ -19,7 +19,19 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Aguri - платформа, где можно быстро выучить грузинский алфавит'
+      },
+
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content:
+          'Aguri - платформа, где можно быстро выучить грузинский алфавит'
+      }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/img/aguri-small.svg' }]
   },

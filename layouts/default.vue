@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    <div class="description-iv">грузинский алфавит</div>
     <NavBar />
     <div class="wrapper__content">
       <Nuxt />
@@ -40,5 +41,10 @@ export default {
     rgba(244, 195, 34, 16.3%) 50%,
     rgba(238, 115, 7, 16%) 100%
   );
+}
+
+.description-iv {
+  height: 0;
+  opacity: 0;
 }
 </style>

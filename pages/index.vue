@@ -121,10 +121,10 @@ export default {
           clickable: true
         },
         draggable: true,
-        spaceBetween: 20
-        // autoplay: {
-        //   delay: 3000
-        // }
+        spaceBetween: 20,
+        autoplay: {
+          delay: 4000
+        }
       })
     }
   },
@@ -146,7 +146,7 @@ export default {
   font-size: 26px;
 
   &__about {
-    margin-top: 60px;
+    margin-top: 40px;
     padding: 0 20px;
     width: 100%;
     height: 100%;
@@ -155,6 +155,10 @@ export default {
       letter-spacing: 0.6px;
       text-align: center;
       text-transform: uppercase;
+    }
+
+    @media (max-width: 800px) {
+      margin-top: 20px;
     }
   }
 
