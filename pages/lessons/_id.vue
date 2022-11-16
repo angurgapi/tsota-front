@@ -166,6 +166,12 @@ export default {
 </script>
 
 <style lang="scss">
+.page {
+  @media (max-width: 420px) {
+    padding: 20px 0;
+  }
+}
+
 .swiper-container {
   padding-bottom: 45px;
   max-width: 300px;

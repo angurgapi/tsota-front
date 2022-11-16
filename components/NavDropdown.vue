@@ -1,6 +1,6 @@
 <template>
   <div class="dropdown" @mouseleave="$emit('close')">
-    <Accordion title="буквы" dark>
+    <Accordion title="алфавит" dark>
       <template #content>
         <ul keep-alive class="dropdown__links" @click="$emit('close')">
           <li v-for="i in 10" :key="i">
@@ -78,6 +78,7 @@ export default {
 <style lang="scss" scoped>
 .dropdown {
   &::v-deep.accordion__btn {
+    padding-left: 20;
     font-family: 'PF';
     font-weight: 600;
     letter-spacing: 0.7px;
