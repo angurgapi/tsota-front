@@ -25,10 +25,18 @@
 
           <div v-if="images" class="lesson__images swiper-container">
             <div class="swiper-wrapper">
-              <div v-for="image in images" :key="image" class="swiper-slide">
+              <Polaroid
+                v-for="image in images"
+                :key="image"
+                class="swiper-slide"
+                :img="image.url"
+                :label="image.label"
+                :royalty="image.royalty || 'getty'"
+              />
+              <!-- <div v-for="image in images" :key="image" class="swiper-slide">
                 <img class="lesson__img" :src="image" />
                 <span class="lesson__royalty"> ©getty images</span>
-              </div>
+              </div> -->
             </div>
             <div class="swiper-pagination"></div>
           </div>
@@ -108,7 +116,11 @@ export default {
             return word.image_url
           })
           .map((word) => {
-            return word.image_url
+            return {
+              label: word.value,
+              url: word.image_url,
+              royalty: word.img_royalty
+            }
           })
         console.log(this.images)
       } catch (e) {
@@ -173,8 +185,17 @@ export default {
 }
 
 .swiper-container {
-  padding-bottom: 45px;
   max-width: 300px;
+}
+
+.swiper-pagination-bullet-active {
+  background: #4b83a6;
+}
+
+.swiper-container-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+  bottom: 1px;
 }
 
 .swiper-wrapper {

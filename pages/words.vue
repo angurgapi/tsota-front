@@ -88,12 +88,6 @@ export default {
   margin-bottom: 30px;
 }
 
-.swiper-container {
-  padding-bottom: 45px;
-
-  //   max-width: 450px;
-}
-
 .swiper-wrapper {
   width: 100%;
   max-width: 450px;
@@ -101,6 +95,10 @@ export default {
   @media (max-width: 700px) {
     max-width: 90vw;
   }
+}
+
+.swiper-pagination-bullet-active {
+  background: #4b83a6;
 }
 
 .swiper-slide {
