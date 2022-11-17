@@ -17,6 +17,7 @@ You can directly use them in pages and other components without the need to impo
 - `<ElementsAccordion>` | `<elements-accordion>` (components/elements/Accordion.vue)
 - `<ElementsIntroCard>` | `<elements-intro-card>` (components/elements/IntroCard.vue)
 - `<ElementsPaginationBtns>` | `<elements-pagination-btns>` (components/elements/PaginationBtns.vue)
+- `<ElementsPolaroid>` | `<elements-polaroid>` (components/elements/Polaroid.vue)
 - `<ElementsSvgImage>` | `<elements-svg-image>` (components/elements/SvgImage.vue)
 - `<ElementsTooltip>` | `<elements-tooltip>` (components/elements/Tooltip.vue)
 - `<HelpersVuePrototypeFunctions>` | `<helpers-vue-prototype-functions>` (components/helpers/vuePrototypeFunctions.js)

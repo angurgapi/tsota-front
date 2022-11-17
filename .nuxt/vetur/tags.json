@@ -32,6 +32,9 @@
   "ElementsPaginationBtns": {
     "description": "Auto imported from components/elements/PaginationBtns.vue"
   },
+  "ElementsPolaroid": {
+    "description": "Auto imported from components/elements/Polaroid.vue"
+  },
   "ElementsSvgImage": {
     "description": "Auto imported from components/elements/SvgImage.vue"
   },
