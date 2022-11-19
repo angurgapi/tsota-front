@@ -26,8 +26,20 @@
   "ElementsAccordion": {
     "description": "Auto imported from components/elements/Accordion.vue"
   },
+  "ElementsAlphabet": {
+    "description": "Auto imported from components/elements/Alphabet.vue"
+  },
+  "ElementsIntroCard": {
+    "description": "Auto imported from components/elements/IntroCard.vue"
+  },
+  "ElementsOverlayModal": {
+    "description": "Auto imported from components/elements/OverlayModal.vue"
+  },
   "ElementsPaginationBtns": {
     "description": "Auto imported from components/elements/PaginationBtns.vue"
+  },
+  "ElementsPolaroid": {
+    "description": "Auto imported from components/elements/Polaroid.vue"
   },
   "ElementsSvgImage": {
     "description": "Auto imported from components/elements/SvgImage.vue"

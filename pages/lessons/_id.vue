@@ -1,5 +1,5 @@
 <template>
-  <div class="page lesson">
+  <div class="page page--fullwidth lesson">
     <template v-if="isLoading">
       <div>
         <img class="loader" src="img/khinkali.png" />
@@ -18,13 +18,21 @@
               <span>{{ letter.value }} ({{ letter.transliteration }})</span>
               <span>{{ letter.description }} </span>
             </div>
+            <span v-if="description" class="lesson__description"
+              ><i>{{ description }}</i></span
+            >
           </div>
+
           <div v-if="images" class="lesson__images swiper-container">
             <div class="swiper-wrapper">
-              <div v-for="image in images" :key="image" class="swiper-slide">
-                <img class="lesson__img" :src="image" />
-                <span class="lesson__royalty"> ©getty images</span>
-              </div>
+              <Polaroid
+                v-for="image in images"
+                :key="image.label"
+                class="swiper-slide"
+                :img="image.url"
+                :label="image.label"
+                :royalty="image.royalty || ''"
+              />
             </div>
             <div class="swiper-pagination"></div>
           </div>
@@ -48,6 +56,7 @@
           Вы <span class="highlighted">уже можете</span> это прочесть!<br />Заполните
           пропуски напротив слов латинской транслитерацией
         </p>
+        <img class="lesson__tutorial" src="/img/howto.gif" />
         <WordGuess
           v-for="word in words"
           :key="word.transliteration"
@@ -77,7 +86,8 @@ export default {
     images: [],
     swiper: null,
     pagesTotal: 0,
-    isSoundOn: true
+    isSoundOn: true,
+    description: ''
   }),
   async fetch() {
     await this.getLesson()
@@ -94,6 +104,7 @@ export default {
 
         const lessonData = data[0]
         // console.log('lesson data', data)
+        this.description = lessonData.description || null
         this.words = lessonData.words
         this.letters = lessonData.letters
         this.images = lessonData.words
@@ -101,7 +112,11 @@ export default {
             return word.image_url
           })
           .map((word) => {
-            return word.image_url
+            return {
+              label: word.value,
+              url: word.image_url,
+              royalty: word.img_royalty
+            }
           })
         console.log(this.images)
       } catch (e) {
@@ -159,9 +174,18 @@ export default {
 </script>
 
 <style lang="scss">
+.page {
+  @media (max-width: 420px) {
+    padding: 20px 0;
+  }
+}
+
 .swiper-container {
-  padding-bottom: 45px;
   max-width: 300px;
+}
+
+.swiper-pagination-bullet-active {
+  background: #4b83a6;
 }
 
 .swiper-wrapper {

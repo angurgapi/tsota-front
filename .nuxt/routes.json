@@ -6,6 +6,13 @@
     "_name": "_6c0eeb9a"
   },
   {
+    "name": "numbers",
+    "path": "/numbers",
+    "component": "/home/s0f/_nuxt/tsota-frnt/pages/numbers.vue",
+    "chunkName": "pages/numbers",
+    "_name": "_a7994018"
+  },
+  {
     "name": "shopping",
     "path": "/shopping",
     "component": "/home/s0f/_nuxt/tsota-frnt/pages/shopping.vue",

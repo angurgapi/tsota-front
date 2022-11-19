@@ -1,6 +1,6 @@
 <template>
   <div class="footer f-column">
-    <Accordion title="контакты">
+    <Accordion title="написать">
       <template #content>
         <ul class="footer__links">
           <li>
@@ -33,6 +33,13 @@
         </ul>
       </template>
     </Accordion>
+    <a
+      class="footer__link footer__support"
+      href="https://www.buymeacoffee.com/angurgapi"
+      target="_blank"
+    >
+      <svg-image name="mug-saucer-solid" height="20" width="20" />поддержать
+    </a>
     <span class="footer__copyright">&#169; Aguri {{ currentYear }}</span>
   </div>
 </template>
@@ -79,6 +86,17 @@ export default {
     // svg {
     //   fill: #fff;
     // }
+  }
+
+  &__support {
+    margin-top: 10px;
+    font-family: 'PF';
+    font-size: 20px;
+    color: rgb(242, 183, 73);
+
+    img {
+      margin-right: 15px;
+    }
   }
 
   &__copyright {
