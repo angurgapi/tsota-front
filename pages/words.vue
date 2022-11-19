@@ -10,14 +10,14 @@
         <h2 class="lesson__title">Слова для запоминания</h2>
         <div v-if="words" class="lesson__images swiper-container">
           <div class="swiper-wrapper">
-            <div
-              v-for="word in words"
-              :key="word.id"
-              class="swiper-slide flashcard"
-            >
-              <img class="flashcard__img" :src="word.image_url" />
-              <span class="flashcard__royalty"> ©getty images</span>
-            </div>
+            <Polaroid
+              v-for="image in words"
+              :key="image.url"
+              class="swiper-slide"
+              :img="image.url"
+              :label="image.label"
+              :royalty="image.royalty || ''"
+            />
           </div>
           <div class="swiper-pagination"></div>
         </div>
@@ -51,6 +51,13 @@ export default {
         this.words = data
           .filter((word) => {
             return word.image_url
+          })
+          .map((word) => {
+            return {
+              url: word.image_url,
+              royalty: word.img_royalty,
+              label: word.value
+            }
           })
           .sort(() => Math.random() - 0.5)
       } catch (e) {

@@ -1,11 +1,15 @@
 <template>
   <div
-    class="polaroid f-column"
+    class="polaroid__wrapper f-column"
     :style="`width: ${width}px; height: ${height}`"
   >
-    <img class="polaroid__img" :src="img" />
-    <span v-if="royalty" class="polaroid__royalty">©{{ royalty }}</span>
-    <span class="polaroid__label">{{ label }}</span>
+    <div class="polaroid f-column">
+      <img class="polaroid__img" :src="img" />
+      <span v-if="royalty" class="polaroid__royalty">©{{ royalty }}</span>
+      <span class="polaroid__label" :style="`font-size: ${getFontSize}px;`">{{
+        label
+      }}</span>
+    </div>
   </div>
 </template>
 
@@ -33,6 +37,11 @@ export default {
       type: String,
       default: ''
     }
+  },
+  computed: {
+    getFontSize() {
+      return this.label.length > 7 ? 30 : 40
+    }
   }
 }
 </script>
@@ -41,8 +50,17 @@ export default {
 .polaroid {
   position: relative;
   padding: 20px 20px 15px;
-  box-shadow: 5px 17px 29px 1px rgba(34, 60, 80, 20%);
-  background: rgba(0, 0, 0, 2%);
+
+  // box-shadow: 5px 17px 29px 1px rgba(34, 60, 80, 20%);
+  box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 20%);
+
+  // background: rgba(0, 0, 0, 2%);
+  background: #fff;
+
+  &__wrapper {
+    padding: 5px 8px 12px;
+    background: #fff;
+  }
 
   &__img {
     object-fit: cover;
@@ -51,7 +69,9 @@ export default {
 
   &__label {
     margin-top: 10px;
-    font-size: 40px;
+
+    // font-size: 40px;
+    height: 60px;
     text-align: center;
     opacity: 0.9;
   }

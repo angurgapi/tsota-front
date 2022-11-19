@@ -27,16 +27,12 @@
             <div class="swiper-wrapper">
               <Polaroid
                 v-for="image in images"
-                :key="image"
+                :key="image.label"
                 class="swiper-slide"
                 :img="image.url"
                 :label="image.label"
-                :royalty="image.royalty || 'getty'"
+                :royalty="image.royalty || ''"
               />
-              <!-- <div v-for="image in images" :key="image" class="swiper-slide">
-                <img class="lesson__img" :src="image" />
-                <span class="lesson__royalty"> ©getty images</span>
-              </div> -->
             </div>
             <div class="swiper-pagination"></div>
           </div>
@@ -190,12 +186,6 @@ export default {
 
 .swiper-pagination-bullet-active {
   background: #4b83a6;
-}
-
-.swiper-container-horizontal > .swiper-pagination-bullets,
-.swiper-pagination-custom,
-.swiper-pagination-fraction {
-  bottom: 1px;
 }
 
 .swiper-wrapper {
