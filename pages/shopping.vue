@@ -2,12 +2,12 @@
   <div class="page">
     <h2 class="lesson__title">Шоппинг</h2>
     <div class="shopping__intro">
-      <p class="lesson__description">
+      <p class="shopping__description">
         Вас попросили сходить в супермаркет за продуктами. Вам даже выдали
         список, но он написан на грузинском. Перетащите в корзину все товары из
         списка (ничего лишнего!)
       </p>
-      <div class="shopping-list card">
+      <div class="shopping__list card">
         <ul>
           <li v-for="(item, index) in shoppingList" :key="index">{{ item }}</li>
         </ul>
@@ -141,13 +141,21 @@ export default {
   grid-gap: 18px;
   grid-template-columns: repeat(2, 1fr);
   margin-top: 20px;
+  margin-bottom: 40px;
   width: 800px;
   max-width: 100%;
   font-family: 'PF';
 
+  &__list {
+    float: right;
+    margin-top: 0;
+    width: fit-content;
+  }
+
   &__intro {
     display: grid;
     align-items: center;
+    justify-items: center;
     grid-gap: 18px;
     grid-template-columns: repeat(2, 1fr);
     width: 800px;
@@ -155,6 +163,9 @@ export default {
 
     p {
       margin-top: 20px;
+      font-family: 'PF';
+      font-size: 20px;
+      line-height: 21px;
       text-align: justify;
     }
 
@@ -200,9 +211,9 @@ export default {
   &__cart {
     display: grid;
     align-items: start;
-    justify-content: center;
+    grid-auto-rows: min-content;
     grid-gap: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(50px, 100px));
+    grid-template-columns: repeat(auto-fit, minmax(50px, 110px));
     margin-top: 20px;
     border-radius: 8px;
     padding: 10px;

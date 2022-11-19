@@ -8,6 +8,9 @@
         <svg-image height="20" width="20" name="book" />
         Уроки
       </nuxt-link> -->
+      <button class="navbar__btn" @click="isModalVisible = !isModalVisible">
+        алфавит
+      </button>
       <div
         v-click-outside="
           () => {
@@ -31,18 +34,23 @@
         {{ locale.name }}
       </button> -->
     </div>
+    <OverlayModal v-if="isModalVisible" @close="isModalVisible = false">
+      <template #content><Alphabet /></template>
+    </OverlayModal>
   </nav>
 </template>
 
 <script>
 import NavDropdown from './NavDropdown'
+import Alphabet from './elements/Alphabet'
 
 export default {
   name: 'NavBar',
-  components: { NavDropdown },
+  components: { NavDropdown, Alphabet },
   data: () => ({
     isFixed: false,
-    isDropdownOpen: false
+    isDropdownOpen: false,
+    isModalVisible: false
   }),
   computed: {
     availableLocales() {
@@ -71,3 +79,22 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.navbar::v-deep .overlay {
+  align-items: flex-start;
+
+  &__modal {
+    overflow-x: hidden;
+    margin-top: 40px;
+    max-height: 80vh;
+  }
+
+  &__close {
+    padding: 0;
+    width: 15px;
+    height: 15px;
+    box-shadow: none;
+    background: #fff;
+  }
+}
+</style>
