@@ -1,5 +1,5 @@
 <template>
-  <div class="page lesson">
+  <div class="page page--fullwidth lesson">
     <template v-if="isLoading">
       <div>
         <img class="loader" src="img/khinkali.png" />
