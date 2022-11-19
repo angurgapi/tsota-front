@@ -1,15 +1,17 @@
 <template>
   <div class="word-guess">
     <span class="word-guess__label">{{ wordData.value }}</span>
-    <input
-      maxlength="55"
-      type="text"
-      class="form__input"
-      :class="{ correct: isCorrect }"
-      :placeholder="wordData.hint"
-      @keypress="checkSpelling"
-      @input="checkSpelling"
-    />
+    <div class="word-guess__guess">
+      <span class="word-guess__hint">{{ wordData.hint }}</span>
+      <input
+        maxlength="55"
+        type="text"
+        class="form__input"
+        :class="{ correct: isCorrect }"
+        @keypress="checkSpelling"
+        @input="checkSpelling"
+      />
+    </div>
 
     <!-- <span>{{ wordData.attributes.hint }}</span> -->
   </div>
@@ -67,8 +69,26 @@ export default {
   // grid-template-columns: minmax(100px, 1fr);
 
   grid-template-columns: 34% 60%;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
   max-width: 100%;
+
+  &__guess {
+    position: relative;
+
+    &::v-deep .form__input {
+      padding: 11px 11px 5px !important;
+      height: 50px !important;
+    }
+  }
+
+  &__hint {
+    position: absolute;
+    left: 11px;
+    top: 3px;
+    z-index: 10;
+    font-size: 12px;
+    opacity: 0.6;
+  }
 
   &__label {
     width: 100%;
