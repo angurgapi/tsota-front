@@ -6,6 +6,12 @@
     "_name": "_6c0eeb9a"
   },
   {
+    "name": "icons-list",
+    "path": "/_icons",
+    "component": "/home/s0f/_nuxt/tsota-frnt/node_modules/@nuxtjs/svg-sprite/lib/pages/icons-list.vue",
+    "_name": "_6c0eeb9a"
+  },
+  {
     "name": "numbers",
     "path": "/numbers",
     "component": "/home/s0f/_nuxt/tsota-frnt/pages/numbers.vue",
