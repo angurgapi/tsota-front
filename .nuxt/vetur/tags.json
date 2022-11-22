@@ -50,6 +50,9 @@
   "HelpersVuePrototypeFunctions": {
     "description": "Auto imported from components/helpers/vuePrototypeFunctions.js"
   },
+  "LessonsFirework": {
+    "description": "Auto imported from components/lessons/Firework.vue"
+  },
   "LessonsWordGuess": {
     "description": "Auto imported from components/lessons/WordGuess.vue"
   },

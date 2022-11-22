@@ -62,10 +62,14 @@
           :key="word.transliteration"
           :wordData="word"
           :sound="isSoundOn"
+          @nailed="lessonNailedWords++"
+          @failed="lessonNailedWords--"
         />
       </div>
       <PaginationBtns v-if="pagesTotal" :totalPages="pagesTotal" />
     </template>
+
+    <Firework v-if="showFireworks" />
   </div>
 </template>
 
@@ -73,11 +77,12 @@
 import { Swiper, Navigation, Pagination, Autoplay } from 'swiper'
 import 'swiper/swiper-bundle.min.css'
 import WordGuess from '@/components/lessons/WordGuess'
+import Firework from '@/components/lessons/Firework'
 import PaginationBtns from '@/components/elements/PaginationBtns'
 
 export default {
   name: 'LessonPage',
-  components: { WordGuess, PaginationBtns },
+  components: { WordGuess, PaginationBtns, Firework },
 
   data: () => ({
     isLoading: false,
@@ -87,13 +92,25 @@ export default {
     swiper: null,
     pagesTotal: 0,
     isSoundOn: true,
-    description: ''
+    description: '',
+    lessonNailedWords: 0,
+    isLessonComplete: false,
+    showFireworks: false
   }),
   async fetch() {
     await this.getLesson()
     await this.getTotalPages()
   },
-
+  watch: {
+    lessonNailedWords(newVal) {
+      if (newVal === this.words.length) {
+        this.isLessonComplete = true
+        this.congratulateUser()
+      } else {
+        this.isLessonComplete = false
+      }
+    }
+  },
   methods: {
     async getLesson() {
       // this.isLoading = true
@@ -158,6 +175,13 @@ export default {
         //   prevEl: '.swiper-button-prev'
         // }
       })
+    },
+    congratulateUser() {
+      this.showFireworks = true
+      setTimeout(() => (this.showFireworks = false), 4000)
+      let audio = new Audio('sounds/trumpet.mp3')
+      audio.volume = 0.7
+      audio.play()
     }
   },
 

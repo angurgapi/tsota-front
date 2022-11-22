@@ -15,6 +15,7 @@ export { default as ElementsPolaroid } from '../../components/elements/Polaroid.
 export { default as ElementsSvgImage } from '../../components/elements/SvgImage.vue'
 export { default as ElementsTooltip } from '../../components/elements/Tooltip.vue'
 export { default as HelpersVuePrototypeFunctions } from '../../components/helpers/vuePrototypeFunctions.js'
+export { default as LessonsFirework } from '../../components/lessons/Firework.vue'
 export { default as LessonsWordGuess } from '../../components/lessons/WordGuess.vue'
 export { default as ToastsNotificationSlot } from '../../components/toasts/NotificationSlot.vue'
 export { default as ToastsToastForm } from '../../components/toasts/ToastForm.vue'

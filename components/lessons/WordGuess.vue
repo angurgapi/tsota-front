@@ -39,6 +39,13 @@ export default {
       if (newVal !== oldVal) {
         this.checkSpelling()
       }
+    },
+    isCorrect(newVal, oldVal) {
+      if (newVal < oldVal) {
+        this.$emit('failed')
+      } else {
+        this.$emit('nailed')
+      }
     }
   },
   methods: {
@@ -47,6 +54,7 @@ export default {
       this.isCorrect =
         word.toLowerCase().trim() ===
         this.wordData.transliteration.toLowerCase()
+
       if (this.isCorrect && this.sound) {
         this.playSound()
       }
