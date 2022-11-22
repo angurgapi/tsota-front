@@ -23,6 +23,7 @@ You can directly use them in pages and other components without the need to impo
 - `<ElementsSvgImage>` | `<elements-svg-image>` (components/elements/SvgImage.vue)
 - `<ElementsTooltip>` | `<elements-tooltip>` (components/elements/Tooltip.vue)
 - `<HelpersVuePrototypeFunctions>` | `<helpers-vue-prototype-functions>` (components/helpers/vuePrototypeFunctions.js)
+- `<LessonsFirework>` | `<lessons-firework>` (components/lessons/Firework.vue)
 - `<LessonsWordGuess>` | `<lessons-word-guess>` (components/lessons/WordGuess.vue)
 - `<ToastsNotificationSlot>` | `<toasts-notification-slot>` (components/toasts/NotificationSlot.vue)
 - `<ToastsToastForm>` | `<toasts-toast-form>` (components/toasts/ToastForm.vue)

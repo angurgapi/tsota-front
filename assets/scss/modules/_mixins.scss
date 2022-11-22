@@ -1,0 +1,37 @@
+@mixin animation($settings) {
+  animation: $settings;
+}
+
+@mixin animation-delay($settings) {
+    animation-delay: $settings;
+  }
+
+  @mixin animation-duration($settings) {
+    animation-duration: $settings;
+  }
+
+  @mixin transform($settings) {
+    transform: $settings;
+  }
+
+  @mixin keyframes($animationName) {
+    @keyframes #{$animationName} {
+      @content;
+    }
+
+    @keyframes #{$animationName} {
+      @content;
+    }
+
+    @keyframes #{$animationName} {
+      @content;
+    }
+
+    @keyframes #{$animationName} {
+      @content;
+    }
+
+    @keyframes #{$animationName} {
+      @content;
+    }
+  }
