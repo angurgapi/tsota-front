@@ -11,7 +11,13 @@
 
 <script>
 export default {
-  name: 'OverlayModal'
+  name: 'OverlayModal',
+  mounted() {
+    document.body.style.overflow = 'hidden'
+  },
+  beforeDestroy() {
+    document.body.style.overflow = 'auto'
+  }
 }
 </script>
 
