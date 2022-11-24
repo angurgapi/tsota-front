@@ -135,7 +135,6 @@ export default {
               royalty: word.img_royalty
             }
           })
-        console.log(this.images)
       } catch (e) {
         console.log(e)
       }
@@ -177,6 +176,9 @@ export default {
       })
     },
     congratulateUser() {
+      const inputs = document.querySelectorAll('input')
+      // console.log(inputs)
+      inputs.forEach((input) => input.blur())
       this.showFireworks = true
       setTimeout(() => (this.showFireworks = false), 4000)
       let audio = new Audio('sounds/trumpet.mp3')
