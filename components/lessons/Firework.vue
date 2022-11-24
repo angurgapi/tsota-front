@@ -23,7 +23,9 @@ export default {
   margin: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(#0007, #0000), #123;
+  background: linear-gradient(rgba(68, 34, 136, 40%), rgba(0, 0, 0, 40%)),
+    rgba(17, 34, 51, 40%);
+  transform: scale(1.5);
 }
 
 .firework__congrats {
@@ -31,10 +33,14 @@ export default {
   top: 40%;
   z-index: 1001;
   width: 100vw;
-  font-family: 'PF';
-  font-size: 40px;
+  font-family: 'Neucha';
+  font-weight: 700;
+  font-size: 26px;
   text-align: center;
   text-transform: uppercase;
+
+  //   color: linear-gradient(#0007, #0000), #123;
+
   color: #fff;
 }
 
