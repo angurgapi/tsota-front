@@ -84,11 +84,36 @@ export default {
   name: 'LessonPage',
   components: { WordGuess, PaginationBtns, Firework },
 
+  async asyncData({ $axios, params, error }) {
+    try {
+      const { data } = await $axios.get(
+        `http://localhost:3000/lesson/?order_num=${params.id}`
+      )
+      return {
+        description: data[0].description || null,
+        letters: data[0].letters || [],
+        words: data[0].words || [],
+        images:
+          data[0].words
+            .filter((word) => {
+              return word.image_url
+            })
+            .map((word) => {
+              return {
+                label: word.value,
+                url: word.image_url,
+                royalty: word.img_royalty
+              }
+            }) | null
+      }
+    } catch (e) {
+      console.error(e)
+      error({ statusCode: 404 })
+    }
+  },
+
   data: () => ({
     isLoading: false,
-    letters: [],
-    words: [],
-    images: [],
     swiper: null,
     pagesTotal: 0,
     isSoundOn: true,
@@ -97,10 +122,11 @@ export default {
     isLessonComplete: false,
     showFireworks: false
   }),
+
   async fetch() {
-    await this.getLesson()
     await this.getTotalPages()
   },
+
   watch: {
     lessonNailedWords(newVal) {
       if (newVal === this.words.length) {
@@ -112,39 +138,9 @@ export default {
     }
   },
   methods: {
-    async getLesson() {
-      // this.isLoading = true
-      try {
-        const { data } = await this.$axios.get(
-          `https://tsota.herokuapp.com/lessons?order_num=${this.$route.params.id}`
-        )
-
-        const lessonData = data[0]
-        // console.log('lesson data', data)
-        this.description = lessonData.description || null
-        this.words = lessonData.words
-        this.letters = lessonData.letters
-        this.images = lessonData.words
-          .filter((word) => {
-            return word.image_url
-          })
-          .map((word) => {
-            return {
-              label: word.value,
-              url: word.image_url,
-              royalty: word.img_royalty
-            }
-          })
-      } catch (e) {
-        console.log(e)
-      }
-      // this.isLoading = false
-    },
     async getTotalPages() {
       try {
-        const { data } = await this.$axios.get(
-          `https://tsota.herokuapp.com/lessons`
-        )
+        const { data } = await this.$axios.get(`http://localhost:3000/lesson`)
         this.pagesTotal = data.length
       } catch (e) {
         console.log(e)
@@ -188,13 +184,7 @@ export default {
   },
 
   mounted() {
-    this.isLoading = true
-    setTimeout(() => {
-      this.isLoading = false
-    }, 1500)
-    setTimeout(() => {
-      this.initSwiper()
-    }, 1500)
+    this.initSwiper()
   }
 }
 </script>

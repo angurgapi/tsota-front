@@ -1,6 +1,6 @@
 <template>
   <div class="overlay" @click="$emit('close')">
-    <div class="overlay__modal">
+    <div class="overlay__modal" @click.prevent>
       <button class="btn overlay__close" @click="$emit('close')">
         <svg-icon name="close" height="20" width="20" />
       </button>
@@ -21,7 +21,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .overlay {
   position: fixed;
   left: 0;

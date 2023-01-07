@@ -23,6 +23,10 @@ let store = {};
   resolveStoreModules(require('../store/mutations.js'), 'mutations.js')
   resolveStoreModules(require('../store/toasts/index.js'), 'toasts/index.js')
   resolveStoreModules(require('../store/links/index.js'), 'links/index.js')
+  resolveStoreModules(require('../store/auth/index.js'), 'auth/index.js')
+  resolveStoreModules(require('../store/auth/actions.js'), 'auth/actions.js')
+  resolveStoreModules(require('../store/auth/mutations.js'), 'auth/mutations.js')
+  resolveStoreModules(require('../store/auth/state.js'), 'auth/state.js')
   resolveStoreModules(require('../store/links/actions.js'), 'links/actions.js')
   resolveStoreModules(require('../store/links/mutations.js'), 'links/mutations.js')
   resolveStoreModules(require('../store/links/state.js'), 'links/state.js')
@@ -40,6 +44,10 @@ let store = {};
       '../store/mutations.js',
       '../store/toasts/index.js',
       '../store/links/index.js',
+      '../store/auth/index.js',
+      '../store/auth/actions.js',
+      '../store/auth/mutations.js',
+      '../store/auth/state.js',
       '../store/links/actions.js',
       '../store/links/mutations.js',
       '../store/links/state.js',

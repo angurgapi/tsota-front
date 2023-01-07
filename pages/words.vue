@@ -44,9 +44,7 @@ export default {
   methods: {
     async getImages() {
       try {
-        const { data } = await this.$axios.get(
-          'https://tsota.herokuapp.com/words'
-        )
+        const { data } = await this.$axios.get('http://localhost:3000/word')
 
         this.words = data
           .filter((word) => {

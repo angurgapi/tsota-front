@@ -12,7 +12,7 @@
         <button class="btn btn--success" @click="testNotify('success')">
           {{ $t('Toasts.success') }}
         </button>
-        <button class="btn btn--error" @click="testNotify('fail')">
+        <button class="btn btn--danger" @click="testNotify('fail')">
           {{ $t('Toasts.error') }}
         </button>
       </div>

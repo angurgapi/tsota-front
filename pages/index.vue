@@ -92,10 +92,7 @@ export default {
     async getLessons() {
       this.isLoading = true
       try {
-        const { data } = await this.$axios.get(
-          'https://tsota.herokuapp.com/lessons'
-        )
-
+        const { data } = await this.$axios.get('http://localhost:3000/lesson')
         this.links = data
       } catch (e) {
         console.log(e)
@@ -103,9 +100,11 @@ export default {
       this.isLoading = false
     },
     getLessonLetters(lesson) {
-      return lesson.letters.map((letter) => {
+      let lessonLetters = lesson.letters.map((letter) => {
         return letter.value
       })
+
+      return lessonLetters
     },
     initSwiper() {
       Swiper.use([Pagination, Navigation, Autoplay])
