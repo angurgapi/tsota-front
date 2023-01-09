@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="polaroid__wrapper f-column"
-    :style="`width: ${width}px; height: ${height}`"
-  >
+  <div class="polaroid__wrapper f-column">
     <div class="polaroid f-column">
       <img class="polaroid__img" :src="img" />
       <span v-if="royalty" class="polaroid__royalty">©{{ royalty }}</span>
@@ -25,14 +22,7 @@ export default {
       type: String,
       default: ''
     },
-    height: {
-      type: [String, Number],
-      default: 'auto'
-    },
-    width: {
-      type: [String, Number],
-      default: '300'
-    },
+
     royalty: {
       type: String,
       default: ''
@@ -60,6 +50,9 @@ export default {
   &__wrapper {
     padding: 5px 8px 12px;
     background: #fff;
+    @media (max-width: 340px) {
+      width: 90vw;
+    }
   }
 
   &__img {
@@ -83,10 +76,6 @@ export default {
     font-size: 12px;
     text-transform: uppercase;
     opacity: 0.3;
-  }
-
-  @media (max-width: 340px) {
-    max-width: 90%;
   }
 }
 </style>

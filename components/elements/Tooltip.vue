@@ -42,21 +42,30 @@ export default {
   methods: {
     getTooltipOffset() {
       const content = document.querySelector('.tooltip')
-      let offsetRight = content.getBoundingClientRect().right
+      let tooltipWidth = content.getBoundingClientRect().width
       let windowWidth = window.innerWidth
-
       let offsetLeft = content.getBoundingClientRect().left
+
       if (offsetLeft < 0) {
         content.style.transform = `translateX(${-offsetLeft}px)`
+        // content.style.left = '5px'
       }
-      if (offsetRight > windowWidth) {
-        console.log(offsetRight)
-        content.style.transform = `translateX(-${offsetRight - windowWidth}px)`
+
+      if (offsetLeft + tooltipWidth > windowWidth) {
+        content.style.transform = `translateX(-${
+          offsetLeft + tooltipWidth - windowWidth
+        }px)`
+        // content.style.left = 'none'
+        // content.style.right = '5px'
       }
     }
   },
   mounted() {
     this.getTooltipOffset()
+    window.addEventListener('resize', this.getTooltipOffset)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.getTooltipOffset)
   }
 }
 </script>
@@ -76,6 +85,7 @@ export default {
 .tooltip {
   display: flex;
   flex-direction: column;
+  align-items: center;
   position: absolute;
   left: 50%;
   bottom: 100%;
@@ -89,11 +99,6 @@ export default {
   height: fit-content;
   box-shadow: 0 8px 24px rgba(233, 233, 233, 84%),
     0 -8px 24px rgba(233, 233, 233, 84%);
-  font-family: 'Rubik';
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 22px;
-  letter-spacing: -0.3px;
   white-space: normal;
   text-align: center;
   color: #000;
@@ -101,6 +106,14 @@ export default {
 
   // opacity: 0;
   transition: opacity 1s;
+  @media (max-width: 290px) {
+    font-size: 10px;
+    max-width: 100vw;
+    flex-shrink: 1;
+    img {
+      width: 50px;
+    }
+  }
 
   .content {
     z-index: 1010;

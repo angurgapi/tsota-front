@@ -10,13 +10,11 @@
         <h2 class="lesson__title">Урок {{ $route.params.id }}</h2>
         <div class="lesson__info">
           <div class="lesson__letters">
-            <div
-              v-for="letter in letters"
-              :key="letter.id"
-              class="lesson__letter"
-            >
-              <span>{{ letter.value }} ({{ letter.transliteration }})</span>
-              <div class="letter__description f-row">
+            <div v-for="letter in letters" :key="letter.id" class="letter">
+              <span class="letter__value"
+                >{{ letter.value }} ({{ letter.transliteration }})</span
+              >
+              <div class="letter__details f-row">
                 {{ letter.description }}
                 <Tooltip v-if="letter.alternative_img">
                   <svg-icon height="20" width="20" name="circle-question" />
@@ -227,7 +225,6 @@ export default {
 .lesson {
   .tooltip {
     font-family: 'PF';
-    font-size: 14px !important;
     img {
       max-width: 60px;
     }
