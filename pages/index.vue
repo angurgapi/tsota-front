@@ -12,8 +12,9 @@
           <h2>გამარჯობა!</h2>
         </div>
       </div>
-      <div class="intro-page__about">
-        <div class="swiper-container">
+      <div class="intro-page__about card">
+        <p class="intro-page__introduction" v-html="introduction" />
+        <!-- <div class="swiper-container">
           <div class="swiper-wrapper">
             <div v-for="card in cards" :key="card.id" class="swiper-slide">
               <IntroCard :card="card" />
@@ -42,7 +43,7 @@
           </div>
 
           <div class="swiper-pagination" />
-        </div>
+        </div> -->
       </div>
     </template>
   </div>
@@ -77,7 +78,14 @@ export default {
     linksCard: {
       title: 'Поехали!',
       icon: 'rocket-launch'
-    }
+    },
+    introduction:
+      'Итак, вы приехали (или собираетесь) в Грузию. Хороший выбор! \
+                  <br/> Может быть, вы до глубины души очарованы культурой этой страны,\
+                   хотите ходить в театры и наслаждаться постановками на языке оригинала, разбить садик, выращивать тархун...\
+                  <br/>А может, у вас другая цель <s>(управлять электропоездом)</s> - дождаться своей гуманитарной визы в Германию и цифрово кочевать дальше.\
+                  <br/> Так или иначе, вокруг непонятные звуки и неразборчивые надписи. Это вас сейчас прокляли, или пожелали хорошего вечера? \
+                  Это сумма за хинкали, которые заказывал Серега, или за Дашину солянку?'
   }),
   async fetch() {
     await this.getLessons()

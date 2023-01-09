@@ -39,14 +39,18 @@ export default {
   }),
   async fetch() {
     await this.getImages()
+    this.initSwiper()
   },
 
   methods: {
     async getImages() {
+      this.isLoading = true
       try {
-        const { data } = await this.$axios.get('http://localhost:3000/word')
+        const {
+          data: { message, wordList }
+        } = await this.$axios.get('http://localhost:3000/word')
 
-        this.words = data
+        this.words = wordList
           .filter((word) => {
             return word.image_url
           })
@@ -61,6 +65,7 @@ export default {
       } catch (e) {
         console.log(e)
       }
+      this.isLoading = false
     },
     initSwiper() {
       Swiper.use([Navigation, Pagination, Autoplay])
@@ -73,17 +78,8 @@ export default {
       })
     }
   },
-  beforeMount() {
-    this.isLoading = true
-    setTimeout(() => {
-      this.isLoading = false
-    }, 1500)
-
-    if (this.words.length) {
-      setTimeout(() => {
-        this.initSwiper()
-      }, 1600)
-    }
+  mounted() {
+    this.initSwiper()
   }
 }
 </script>

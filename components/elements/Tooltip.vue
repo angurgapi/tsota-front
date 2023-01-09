@@ -41,10 +41,22 @@ export default {
   },
   methods: {
     getTooltipOffset() {
-      const offsetRight = document
-        .querySelector('.content')
-        .getBoundingClientRect().right
+      const content = document.querySelector('.tooltip')
+      let offsetRight = content.getBoundingClientRect().right
+      let windowWidth = window.innerWidth
+
+      let offsetLeft = content.getBoundingClientRect().left
+      if (offsetLeft < 0) {
+        content.style.transform = `translateX(${-offsetLeft}px)`
+      }
+      if (offsetRight > windowWidth) {
+        console.log(offsetRight)
+        content.style.transform = `translateX(-${offsetRight - windowWidth}px)`
+      }
     }
+  },
+  mounted() {
+    this.getTooltipOffset()
   }
 }
 </script>
@@ -57,20 +69,23 @@ export default {
 }
 
 .tooltip-trigger:hover .tooltip {
-  display: flex;
+  visibility: visible;
   opacity: 1;
 }
 
 .tooltip {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   left: 50%;
   bottom: 100%;
   z-index: 1010;
-  display: none;
+  visibility: hidden;
   margin-left: -125px;
   border-radius: 10px;
   padding: 10px;
-  width: 250px;
+  width: fit-content;
+  max-width: 250px;
   height: fit-content;
   box-shadow: 0 8px 24px rgba(233, 233, 233, 84%),
     0 -8px 24px rgba(233, 233, 233, 84%);
