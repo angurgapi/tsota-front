@@ -12,11 +12,29 @@
 <script>
 export default {
   name: 'OverlayModal',
+  methods: {
+    onKeyPress({ key }) {
+      let modal = document.querySelector('.overlay__modal')
+      switch (key) {
+        case 'ArrowDown':
+          modal.scrollBy(0, 20)
+          break
+        case 'ArrowUp':
+          modal.scrollBy(0, -20)
+          break
+        case 'Escape':
+          this.$emit('close')
+          break
+      }
+    }
+  },
   mounted() {
     document.body.style.overflow = 'hidden'
+    document.addEventListener('keydown', this.onKeyPress)
   },
   beforeDestroy() {
     document.body.style.overflow = 'auto'
+    document.removeEventListener('keydown', this.onKeyPress)
   }
 }
 </script>

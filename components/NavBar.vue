@@ -108,6 +108,8 @@ export default {
     overflow-x: hidden;
     margin-top: 40px;
     max-height: 80vh;
+    height: fit-content;
+    cursor: grab;
   }
 
   &__close {

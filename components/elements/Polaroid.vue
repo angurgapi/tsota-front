@@ -40,11 +40,8 @@ export default {
 .polaroid {
   position: relative;
   padding: 20px 20px 15px;
-
-  // box-shadow: 5px 17px 29px 1px rgba(34, 60, 80, 20%);
   box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 20%);
-
-  // background: rgba(0, 0, 0, 2%);
+  cursor: pointer;
   background: #fff;
 
   &__wrapper {

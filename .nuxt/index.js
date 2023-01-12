@@ -24,6 +24,7 @@ import nuxt_plugin_globalcomponents_54ec6fe8 from 'nuxt_plugin_globalcomponents_
 import nuxt_plugin_showtoastmixin_65319118 from 'nuxt_plugin_showtoastmixin_65319118' // Source: ../plugins/show-toast-mixin.js (mode: 'all')
 import nuxt_plugin_vueprototypefunctions_12a6ec62 from 'nuxt_plugin_vueprototypefunctions_12a6ec62' // Source: ../plugins/vue-prototype-functions.js (mode: 'all')
 import nuxt_plugin_vueclickoutside_f1d34236 from 'nuxt_plugin_vueclickoutside_f1d34236' // Source: ../plugins/vue-click-outside (mode: 'all')
+import nuxt_plugin_vuemobiledetection_69ad4875 from 'nuxt_plugin_vuemobiledetection_69ad4875' // Source: ../plugins/vue-mobile-detection (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -262,6 +263,10 @@ async function createApp(ssrContext, config = {}) {
 
   if (typeof nuxt_plugin_vueclickoutside_f1d34236 === 'function') {
     await nuxt_plugin_vueclickoutside_f1d34236(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_vuemobiledetection_69ad4875 === 'function') {
+    await nuxt_plugin_vuemobiledetection_69ad4875(app.context, inject)
   }
 
   // Lock enablePreview in context

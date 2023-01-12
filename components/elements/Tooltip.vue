@@ -103,9 +103,7 @@ export default {
   text-align: center;
   color: #000;
   background-color: #fff;
-
-  // opacity: 0;
-  transition: opacity 1s;
+  transition: 0.1s all ease-in-out;
   @media (max-width: 290px) {
     font-size: 10px;
     max-width: 100vw;
