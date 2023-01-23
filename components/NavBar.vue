@@ -4,10 +4,6 @@
       <img class="navbar__logo" src="img/ag.svg" />
     </nuxt-link>
     <div class="navbar__right f-row">
-      <!-- <nuxt-link class="navbar__link" to="/pets">
-        <svg-image height="20" width="20" name="book" />
-        Уроки
-      </nuxt-link> -->
       <button class="navbar__btn" @click="isModalVisible = !isModalVisible">
         алфавит
       </button>
@@ -27,21 +23,13 @@
         <NavDropdown v-if="isDropdownOpen" @close="isDropdownOpen = false" />
       </div>
       <button
-        v-if="!user"
+        v-if="!$auth.user"
         class="navbar__btn"
         @click="isAuthModalVisible = !isAuthModalVisible"
       >
         войти
       </button>
       <button v-else class="navbar__btn" @click="logOut">выйти</button>
-      <!-- <button
-        v-for="locale in availableLocales"
-        :key="locale.code"
-        class="btn navbar__link"
-        @click="changeLocale(locale.code)"
-      >
-        {{ locale.name }}
-      </button> -->
     </div>
     <OverlayModal v-if="isModalVisible" @close="isModalVisible = false">
       <template #content><Alphabet /></template>
@@ -69,17 +57,10 @@ export default {
     isAuthModalVisible: false
   }),
   computed: {
-    // availableLocales() {
-    //   return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
-    // },
     ...mapState('auth', ['user'])
   },
 
   methods: {
-    // changeLocale(code) {
-    //   this.$i18n.setLocale(code)
-    //   console.log(this.$i18n.locale)
-    // },
     onScroll() {
       if (window.pageYOffset > 0) {
         this.isFixed = true
@@ -88,11 +69,15 @@ export default {
       }
     },
     logOut() {
-      this.$store.commit('auth/LOGOUT')
+      this.$store.commit('authorization/LOGOUT')
     }
   },
   mounted() {
     window.addEventListener('scroll', this.onScroll)
+    if (window.pageYOffset > 0) {
+      this.isFixed = true
+    }
+    console.log(this.$auth)
   },
 
   beforeUnmount() {

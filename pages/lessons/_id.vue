@@ -94,9 +94,7 @@ export default {
   async asyncData({ $axios, params, error, isLoading }) {
     isLoading = true
     try {
-      const { data } = await $axios.get(
-        `http://localhost:3000/lesson/?order_num=${params.id}`
-      )
+      const { data } = await $axios.get(`/api/lesson/?order_num=${params.id}`)
       isLoading = false
       return {
         description: data[0].description || null,
@@ -150,7 +148,7 @@ export default {
     async getTotalPages() {
       this.isLoading = true
       try {
-        const { data } = await this.$axios.get(`http://localhost:3000/lesson`)
+        const { data } = await this.$axios.get(`${process.env.API_URL}/lesson`)
         this.pagesTotal = data.length
       } catch (e) {
         console.log(e)

@@ -37,11 +37,11 @@
             placeholder="password"
           />
           <div class="form__actions">
-            <button class="btn btn--success" @click="authUser">
-              {{ mode === 'registration' ? 'регистрация' : 'вход' }}
-            </button>
             <button class="btn btn--danger" @click="$emit('close')">
               отмена
+            </button>
+            <button class="btn btn--success" @click="authUser">
+              {{ mode === 'registration' ? 'регистрация' : 'вход' }}
             </button>
           </div>
         </div>
@@ -50,6 +50,8 @@
   </transition>
 </template>
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'AuthModal',
 
@@ -61,12 +63,14 @@ export default {
     }
   }),
   methods: {
+    ...mapActions('authorization', ['LOGIN']),
+
     async authUser() {
       console.log(this.userData)
       if (this.mode === 'registration') {
         try {
           const { data } = await this.$axios.post(
-            'http://localhost:3000/auth/register',
+            `${this.$config.apiUrl}/auth/register`,
             this.userData
           )
           if (data.id) {
@@ -77,14 +81,26 @@ export default {
         }
       } else {
         try {
-          const { data } = await this.$axios.post(
-            'http://localhost:3000/auth/login',
-            this.userData
-          )
+          // const { data } = await this.$axios.post(
+          //   `${this.$config.apiUrl}/auth/login`,
+          //   this.userData
+          // )
+          // console.log(data)
+          // console.log(this.$auth)
+          // const { data } = await this.$auth.loginWith('local', {
+          //   data: this.userData
+          // })
+          // console.log('auth module results: ', data)
+          // if (data.token) {
+          //   console.log('auth successful')
+          //   console.log(data)
+          //   this.$store.commit('authorization/SET_USER', data.user)
+          //   this.$emit('close')
+          //   this.$router.push('/')
+          // }
+          const data = await this.LOGIN(this.userData)
           console.log(data)
           if (data.token) {
-            console.log('auth successful')
-            this.$store.commit('auth/SET_USER', data.user)
             this.$emit('close')
             this.$router.push('/')
           }

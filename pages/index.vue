@@ -115,7 +115,7 @@ export default {
     reasons: [
       'Вы до глубины души очарованы грузинской культурой,\
                    хотите ходить в театры и наслаждаться постановками на языке оригинала, разбить садик, выращивать тархун..? <br/> <b>Смягчите себе погружение в язык!</b>',
-      'У вас другая цель <s>(управлять электропоездом)</s> - дождаться своей гуманитарной визы в Германию и цифрово кочевать дальше? <br/> <b>Зато наловчитесь быстро читать ценники в магазине.</b>',
+      'Вы в Грузии, но вас другая цель <s>(управлять электропоездом)</s> - дождаться своей гуманитарной визы в Германию и цифрово кочевать дальше? <br/> <b>Зато наловчитесь быстро выбирать гречу в магазине.</b>',
       'На улице <span class="rare">некомфортно</span> - это вас сейчас прокляли, или пожелали хорошего вечера? <br/> <b>Пора пополнять словарный запас.</b>'
     ],
     linksCard: {
@@ -136,7 +136,7 @@ export default {
     async getLessons() {
       this.isLoading = true
       try {
-        const { data } = await this.$axios.get('http://localhost:3000/lesson')
+        const { data } = await this.$axios.get(`${process.env.API_URL}/lesson`)
         this.links = data
       } catch (e) {
         console.log(e)
@@ -152,8 +152,8 @@ export default {
     },
     initSwiper() {
       let windowWidth = window.innerWidth
-      console.log(windowWidth)
-      console.log(document.querySelectorAll('.swiper-slide'))
+      // console.log(windowWidth)
+      // console.log(document.querySelectorAll('.swiper-slide'))
       Swiper.use([Pagination, Navigation, Autoplay])
       this.swiper = new Swiper('.swiper-container', {
         direction: 'horizontal',

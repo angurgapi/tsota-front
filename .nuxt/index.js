@@ -14,6 +14,7 @@ import { createStore } from './store.js'
 /* Plugins */
 
 import nuxt_plugin_plugin_5055428a from 'nuxt_plugin_plugin_5055428a' // Source: ./components/plugin.js (mode: 'all')
+import nuxt_plugin_cookieuniversalnuxt_a3086770 from 'nuxt_plugin_cookieuniversalnuxt_a3086770' // Source: ./cookie-universal-nuxt.js (mode: 'all')
 import nuxt_plugin_pluginutils_2a89d59b from 'nuxt_plugin_pluginutils_2a89d59b' // Source: ./nuxt-i18n/plugin.utils.js (mode: 'all')
 import nuxt_plugin_pluginrouting_656b6826 from 'nuxt_plugin_pluginrouting_656b6826' // Source: ./nuxt-i18n/plugin.routing.js (mode: 'all')
 import nuxt_plugin_pluginmain_0834e509 from 'nuxt_plugin_pluginmain_0834e509' // Source: ./nuxt-i18n/plugin.main.js (mode: 'all')
@@ -24,7 +25,7 @@ import nuxt_plugin_globalcomponents_54ec6fe8 from 'nuxt_plugin_globalcomponents_
 import nuxt_plugin_showtoastmixin_65319118 from 'nuxt_plugin_showtoastmixin_65319118' // Source: ../plugins/show-toast-mixin.js (mode: 'all')
 import nuxt_plugin_vueprototypefunctions_12a6ec62 from 'nuxt_plugin_vueprototypefunctions_12a6ec62' // Source: ../plugins/vue-prototype-functions.js (mode: 'all')
 import nuxt_plugin_vueclickoutside_f1d34236 from 'nuxt_plugin_vueclickoutside_f1d34236' // Source: ../plugins/vue-click-outside (mode: 'all')
-import nuxt_plugin_vuemobiledetection_69ad4875 from 'nuxt_plugin_vuemobiledetection_69ad4875' // Source: ../plugins/vue-mobile-detection (mode: 'all')
+import nuxt_plugin_auth_51442890 from 'nuxt_plugin_auth_51442890' // Source: ./auth.js (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -225,6 +226,10 @@ async function createApp(ssrContext, config = {}) {
     await nuxt_plugin_plugin_5055428a(app.context, inject)
   }
 
+  if (typeof nuxt_plugin_cookieuniversalnuxt_a3086770 === 'function') {
+    await nuxt_plugin_cookieuniversalnuxt_a3086770(app.context, inject)
+  }
+
   if (typeof nuxt_plugin_pluginutils_2a89d59b === 'function') {
     await nuxt_plugin_pluginutils_2a89d59b(app.context, inject)
   }
@@ -265,8 +270,8 @@ async function createApp(ssrContext, config = {}) {
     await nuxt_plugin_vueclickoutside_f1d34236(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_vuemobiledetection_69ad4875 === 'function') {
-    await nuxt_plugin_vuemobiledetection_69ad4875(app.context, inject)
+  if (typeof nuxt_plugin_auth_51442890 === 'function') {
+    await nuxt_plugin_auth_51442890(app.context, inject)
   }
 
   // Lock enablePreview in context
