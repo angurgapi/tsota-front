@@ -60,7 +60,7 @@ export default {
   },
 
   proxy: {
-    '/api/': process.env.API_URL
+    '/api/': process.env.API_URL,
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
