@@ -18,6 +18,14 @@
       color: rgba(0, 0, 0, 65%);
     }
 
+    &__complete {
+      margin-left: 20px;
+      background-color: $logo-indigo;
+      color: #fff;
+      font-size: 1rem;
+      padding: 3px;
+    }
+
     &__volume {
       position: absolute;
       right: 10px;

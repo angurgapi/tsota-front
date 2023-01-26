@@ -30,11 +30,15 @@
             v-model="userData.email"
             class="form__input"
             placeholder="email"
+            :class="{ 'form__input--error': invalidData }"
+            @input="invalidData = false"
           />
           <input
             v-model="userData.password"
             class="form__input"
             placeholder="password"
+            :class="{ 'form__input--error': invalidData }"
+            @input="invalidData = false"
           />
           <div class="form__actions">
             <button class="btn btn--danger" @click="$emit('close')">
@@ -60,10 +64,11 @@ export default {
     userData: {
       email: '',
       password: ''
-    }
+    },
+    invalidData: false
   }),
   methods: {
-    ...mapActions('authorization', ['LOGIN']),
+    ...mapActions('authorization', ['login']),
 
     async authUser() {
       console.log(this.userData)
@@ -81,31 +86,14 @@ export default {
         }
       } else {
         try {
-          // const { data } = await this.$axios.post(
-          //   `${this.$config.apiUrl}/auth/login`,
-          //   this.userData
-          // )
-          // console.log(data)
-          // console.log(this.$auth)
-          // const { data } = await this.$auth.loginWith('local', {
-          //   data: this.userData
-          // })
-          // console.log('auth module results: ', data)
-          // if (data.token) {
-          //   console.log('auth successful')
-          //   console.log(data)
-          //   this.$store.commit('authorization/SET_USER', data.user)
-          //   this.$emit('close')
-          //   this.$router.push('/')
-          // }
-          const data = await this.LOGIN(this.userData)
-          console.log(data)
+          const data = await this.login(this.userData)
           if (data.token) {
             this.$emit('close')
-            this.$router.push('/')
+            this.$router.push('/profile')
           }
         } catch (e) {
           console.log(e)
+          this.invalidData = true
         }
       }
     }
@@ -127,6 +115,10 @@ export default {
   .form__actions,
   .form__input {
     margin-top: 20px;
+  }
+
+  .form__input--error {
+    border-color: red;
   }
 }
 </style>

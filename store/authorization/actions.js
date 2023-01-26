@@ -1,36 +1,28 @@
 export default {
-  async LOGIN({ commit }, { email, password }) {
+  async login({ commit }, { email, password }) {
     try {
-      console.log(email, password)
       const { data } = await this.$auth.loginWith('local', {
         data: { email: email, password: password }
       })
-      console.log('auth module results: ', data)
+      console.log('$auth res: ', data)
       if (data.token) {
         console.log('auth successful')
-        // commit('SET_USER', data.user)
-        // this.$auth.setUser(data.user)
-        await this.$auth.setUser({
-          email: data.user.email,
-          password: data.user.password,
-          role: data.user.role
-        })
-        console.log(this.$auth)
+        this.$cookiz.set('user', data.user)
+        commit('setUser', data.user)
+        return data
       }
-
-      return data
     } catch (e) {
       console.log(e)
+      console.log('login request did not return token')
     }
   },
 
-  async LOGOUT({ commit }) {
+  async logout({ commit }) {
     try {
       await this.$auth.logout()
-      console.log(this.$auth.user)
-
-      commit('SET_USER', null)
-
+      console.log('auth module logged out')
+      commit('setUser', null)
+      this.$cookiz.remove('user')
       return Promise.resolve(true)
     } catch (e) {
       return Promise.reject(e)

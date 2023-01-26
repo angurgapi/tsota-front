@@ -48,7 +48,7 @@ export default {
       try {
         const {
           data: { message, wordList }
-        } = await this.$axios.get('http://localhost:3000/word')
+        } = await this.$axios.get('/word')
 
         this.words = wordList
           .filter((word) => {

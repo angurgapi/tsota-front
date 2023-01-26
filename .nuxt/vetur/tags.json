@@ -11,15 +11,6 @@
   "NavDropdown": {
     "description": "Auto imported from components/NavDropdown.vue"
   },
-  "ProjectTemplate": {
-    "description": "Auto imported from components/ProjectTemplate.vue"
-  },
-  "Puzzle": {
-    "description": "Auto imported from components/Puzzle.vue"
-  },
-  "PuzzleTile": {
-    "description": "Auto imported from components/PuzzleTile.vue"
-  },
   "SvgIcon": {
     "description": "Auto imported from components/SvgIcon.vue"
   },

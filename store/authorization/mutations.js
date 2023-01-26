@@ -1,9 +1,9 @@
 export default {
-  SET_USER(state, user) {
+  setUser(state, user) {
     state.user = user ? user : null
   },
 
-  LOGOUT(state) {
+  logout(state) {
     state.user = null
   }
 }

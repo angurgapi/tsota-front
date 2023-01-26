@@ -22,14 +22,21 @@
         </button>
         <NavDropdown v-if="isDropdownOpen" @close="isDropdownOpen = false" />
       </div>
-      <button
-        v-if="!$auth.user"
-        class="navbar__btn"
-        @click="isAuthModalVisible = !isAuthModalVisible"
-      >
-        войти
-      </button>
-      <button v-else class="navbar__btn" @click="logOut">выйти</button>
+      <template v-if="$auth.loggedIn">
+        <nuxt-link class="navbar__btn" to="/profile">{{
+          user?.name
+        }}</nuxt-link>
+        <!-- <button class="navbar__btn" @click="logOut">выйти</button> -->
+      </template>
+
+      <template v-else>
+        <button
+          class="navbar__btn"
+          @click="isAuthModalVisible = !isAuthModalVisible"
+        >
+          войти
+        </button>
+      </template>
     </div>
     <OverlayModal v-if="isModalVisible" @close="isModalVisible = false">
       <template #content><Alphabet /></template>
@@ -56,8 +63,9 @@ export default {
     isModalVisible: false,
     isAuthModalVisible: false
   }),
+
   computed: {
-    ...mapState('auth', ['user'])
+    ...mapState('authorization', ['user'])
   },
 
   methods: {
@@ -67,9 +75,6 @@ export default {
       } else {
         this.isFixed = false
       }
-    },
-    logOut() {
-      this.$store.commit('authorization/LOGOUT')
     }
   },
   mounted() {
@@ -77,7 +82,6 @@ export default {
     if (window.pageYOffset > 0) {
       this.isFixed = true
     }
-    console.log(this.$auth)
   },
 
   beforeUnmount() {

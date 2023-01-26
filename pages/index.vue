@@ -136,7 +136,7 @@ export default {
     async getLessons() {
       this.isLoading = true
       try {
-        const { data } = await this.$axios.get(`${process.env.API_URL}/lesson`)
+        const { data } = await this.$axios.get('/lesson')
         this.links = data
       } catch (e) {
         console.log(e)
