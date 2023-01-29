@@ -278,10 +278,6 @@ export default {
   max-width: 300px;
 }
 
-.swiper-pagination-bullet-active {
-  background: #4b83a6;
-}
-
 .swiper-wrapper {
   width: 100%;
   max-width: 300px;

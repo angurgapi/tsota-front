@@ -145,35 +145,9 @@ export default {
 
       return lessonLetters
     }
-    // initSwiper() {
-    //   let windowWidth = window.innerWidth
-    //   // console.log(windowWidth)
-    //   // console.log(document.querySelectorAll('.swiper-slide'))
-    //   Swiper.use([Pagination, Navigation, Autoplay])
-    //   this.swiper = new Swiper('.swiper-container', {
-    //     direction: 'horizontal',
-    //     loop: true,
-    //     modules: [Navigation, Pagination, Autoplay],
-    //     slidesPerView: '1',
-
-    //     pagination: {
-    //       el: '.swiper-pagination',
-    //       type: 'bullets',
-    //       clickable: true
-    //     },
-    //     draggable: true,
-    //     spaceBetween: 20,
-    //     autoplay: {
-    //       delay: 4000
-    //     }
-    //   })
-    // }
   },
 
   mounted() {
-    // if (this.matchMedia('width < 800')) {
-    //   this.initSwiper()
-    // }
     this.useSwiper()
   }
 }
@@ -383,9 +357,7 @@ export default {
 .swiper-pagination {
   position: relative;
   .swiper-pagination-bullet {
-    &:not(:first-child) {
-      margin-left: 7px;
-    }
+    margin: 0 4px;
   }
 }
 </style>
