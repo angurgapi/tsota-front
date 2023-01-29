@@ -9,6 +9,7 @@ const _940bd72c = () => interopDefault(import('../pages/lessons/index.vue' /* we
 const _f81a8894 = () => interopDefault(import('../pages/numbers.vue' /* webpackChunkName: "pages/numbers" */))
 const _7b3c9b50 = () => interopDefault(import('../pages/profile/index.vue' /* webpackChunkName: "pages/profile/index" */))
 const _2a9ffaac = () => interopDefault(import('../pages/shopping.vue' /* webpackChunkName: "pages/shopping" */))
+const _21d64254 = () => interopDefault(import('../pages/test.vue' /* webpackChunkName: "pages/test" */))
 const _7297e595 = () => interopDefault(import('../pages/words.vue' /* webpackChunkName: "pages/words" */))
 const _6af62952 = () => interopDefault(import('../pages/lessons/_id.vue' /* webpackChunkName: "pages/lessons/_id" */))
 const _0c5cb73e = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
@@ -44,6 +45,10 @@ export const routerOptions = {
     path: "/shopping",
     component: _2a9ffaac,
     name: "shopping"
+  }, {
+    path: "/test",
+    component: _21d64254,
+    name: "test"
   }, {
     path: "/words",
     component: _7297e595,

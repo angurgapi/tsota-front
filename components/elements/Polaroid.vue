@@ -1,12 +1,10 @@
 <template>
-  <div class="polaroid__wrapper f-column">
-    <div class="polaroid f-column">
-      <img class="polaroid__img" :src="img" />
-      <span v-if="royalty" class="polaroid__royalty">©{{ royalty }}</span>
-      <span class="polaroid__label" :style="`font-size: ${getFontSize}px;`">{{
-        label
-      }}</span>
-    </div>
+  <div class="polaroid f-column">
+    <img class="polaroid__img" :src="img" />
+    <span v-if="royalty" class="polaroid__royalty">©{{ royalty }}</span>
+    <span class="polaroid__label" :style="`font-size: ${getFontSize}px;`">{{
+      label
+    }}</span>
   </div>
 </template>
 
@@ -43,18 +41,15 @@ export default {
   box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 20%);
   cursor: pointer;
   background: #fff;
-
-  &__wrapper {
-    padding: 5px 8px 12px;
-    background: #fff;
-    @media (max-width: 340px) {
-      width: 90vw;
-    }
-  }
+  max-height: 80vh;
+  width: auto;
+  aspect-ratio: 3/4;
 
   &__img {
     object-fit: cover;
     aspect-ratio: 1;
+    display: flex;
+    max-height: 90%;
   }
 
   &__label {

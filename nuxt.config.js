@@ -74,7 +74,7 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: ['@nuxtjs/moment'],
+  buildModules: ['@nuxtjs/moment',  '@nuxt/typescript-build'],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: ['@nuxtjs/svg-sprite', '@nuxtjs/axios', '@nuxtjs/auth-next',  ['cookie-universal-nuxt', { alias: 'cookiz' }]],
