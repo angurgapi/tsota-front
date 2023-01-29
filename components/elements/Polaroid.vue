@@ -62,9 +62,7 @@ export default {
   }
 
   &__royalty {
-    position: absolute;
-    right: 20px;
-    bottom: 66px;
+    align-self: flex-end;
     font-size: 12px;
     text-transform: uppercase;
     opacity: 0.3;

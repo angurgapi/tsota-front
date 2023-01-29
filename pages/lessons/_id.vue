@@ -276,11 +276,18 @@ export default {
 
 .swiper-container {
   max-width: 300px;
+  @media (max-width: 400px) {
+    max-width: 90vw;
+  }
 }
 
-.swiper-wrapper {
-  width: 100%;
-  max-width: 300px;
+// .swiper-wrapper {
+//   width: 100%;
+//   max-width: 300px;
+// }
+.polaroid {
+  max-width: 100%;
+  height: auto;
 }
 
 .lesson {

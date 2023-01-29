@@ -87,10 +87,25 @@ export default {
         // }
         navigation: true
       })
+    },
+    onKeyPress({ key }) {
+      let modal = document.querySelector('.overlay__modal')
+      switch (key) {
+        case 'ArrowLeft':
+          this.swiper.slidePrev()
+          break
+        case 'ArrowRight':
+          this.swiper.slideNext()
+          break
+      }
     }
   },
   mounted() {
     this.initSwiper()
+    document.addEventListener('keydown', this.onKeyPress)
+  },
+  beforeDestroy() {
+    document.removeEventListener('keydown', this.onKeyPress)
   }
 }
 </script>
@@ -120,14 +135,6 @@ export default {
     margin: auto;
     width: 100%;
     height: auto;
-  }
-
-  &__royalty {
-    float: right;
-    width: 100%;
-    text-align: right;
-    text-transform: uppercase;
-    opacity: 0.3;
   }
 }
 </style>
