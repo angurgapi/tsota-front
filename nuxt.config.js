@@ -54,8 +54,9 @@ export default {
     base: '/'
   },
   axios: {
-    proxy: true,
-    credentials: false
+    proxy: false,
+    credentials: false,
+    prefix: process.env.API_URL
     // proxyHeaders: false,
   },
 
@@ -68,7 +69,8 @@ export default {
     '@/plugins/global-components',
     '@/plugins/show-toast-mixin.js',
     '@/plugins/vue-prototype-functions.js',
-    '@/plugins/vue-click-outside'
+    '@/plugins/vue-click-outside',
+    '@/plugins/axios.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -78,7 +80,7 @@ export default {
   buildModules: ['@nuxtjs/moment'],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/svg-sprite', '@nuxtjs/axios', 'nuxt-i18n'],
+  modules: ['@nuxtjs/svg-sprite', '@nuxtjs/axios', '@nuxtjs/auth-next',  ['cookie-universal-nuxt', { alias: 'cookiz' }]],
   svgSprite: {
     input: '~/assets/icons/'
   },
@@ -86,24 +88,6 @@ export default {
     defaultLocale: 'ru',
     locales: ['ru']
   },
-  // i18n: {
-  //   locales: [
-  //     {
-  //       code: 'en',
-  //       name: 'en',
-  //       file: 'en.js'
-  //     },
-  //     {
-  //       code: 'ru',
-  //       name: 'ru',
-  //       file: 'ru.js'
-  //     }
-  //   ],
-  //   lazy: true,
-  //   langDir: 'lang/',
-  //   defaultLocale: 'en',
-  //   loadLanguagesAsync: true
-  // },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -111,7 +95,7 @@ export default {
      ** Run ESLint on save
      */
 
-    postcss: null,
+    // postcss: null,
     filenames: {
       chunk: ({ isDev }) =>
         isDev ? `[name].${currentTime}.js` : `[contenthash].${currentTime}.js`,
@@ -130,6 +114,38 @@ export default {
             fix: true
           }
         })
+      }
+    }
+  },
+
+  publicRuntimeConfig: {
+    apiUrl: process.env.API_URL
+  },
+
+  auth: {
+    redirect: {
+      callback: false,
+      logout: '/',
+      home: false
+    },
+    // rewriteRedirects: true,
+    cookie: {
+      prefix: 'c.',
+      options: {
+        path: '/',
+        expires: 30,
+        sameSite: 'lax'
+      }
+    },
+
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: `${process.env.API_URL}/auth/login`, method: 'post', propertyName: 'token' },
+          user: { url: `${process.env.API_URL}/auth/profile`, method: 'get', propertyName: 'user' },
+          logout: false
+        },
+        autoFetchUser: true
       }
     }
   }

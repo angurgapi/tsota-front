@@ -7,23 +7,35 @@
     </template>
     <template v-else>
       <div class="lesson__data card">
-        <h2 class="lesson__title">Урок {{ $route.params.id }}</h2>
+        <h2 class="lesson__title">
+          Урок {{ $route.params.id
+          }}<span v-if="hasCompletedRecord" class="lesson__complete"
+            >Пройден</span
+          >
+        </h2>
         <div class="lesson__info">
           <div class="lesson__letters">
-            <div
-              v-for="letter in letters"
-              :key="letter.id"
-              class="lesson__letter"
-            >
-              <span>{{ letter.value }} ({{ letter.transliteration }})</span>
-              <span>{{ letter.description }} </span>
+            <div v-for="letter in letters" :key="letter.id" class="letter">
+              <span class="letter__value"
+                >{{ letter.value }} ({{ letter.transliteration }})</span
+              >
+              <div class="letter__details f-row">
+                {{ letter.description }}
+                <Tooltip v-if="letter.alternative_img">
+                  <svg-icon height="20" width="20" name="circle-question" />
+                  <template #content>
+                    <span>Варианты написания:</span>
+                    <img :src="letter.alternative_img" />
+                  </template>
+                </Tooltip>
+              </div>
             </div>
             <span v-if="description" class="lesson__description"
               ><i>{{ description }}</i></span
             >
           </div>
 
-          <div v-if="images" class="lesson__images swiper-container">
+          <div v-if="images.length" class="lesson__images swiper-container">
             <div class="swiper-wrapper">
               <Polaroid
                 v-for="image in images"
@@ -69,7 +81,7 @@
       <PaginationBtns v-if="pagesTotal" :totalPages="pagesTotal" />
     </template>
 
-    <Firework v-if="showFireworks" />
+    <Firework v-if="showFireworks" @close="showFireworks = false" />
   </div>
 </template>
 
@@ -79,27 +91,69 @@ import 'swiper/swiper-bundle.min.css'
 import WordGuess from '@/components/lessons/WordGuess'
 import Firework from '@/components/lessons/Firework'
 import PaginationBtns from '@/components/elements/PaginationBtns'
+import { mapState } from 'vuex'
 
 export default {
   name: 'LessonPage',
   components: { WordGuess, PaginationBtns, Firework },
 
+  // async asyncData({ $axios, params, error, isLoading }) {
+  //   try {
+  //     const { data } = await $axios.get(`/lesson/?order_num=${params.id}`)
+  //     return {
+  //       description: data[0].description || null,
+  //       letters: data[0].letters || [],
+  //       words: data[0].words || [],
+  //       images: data[0].words
+  //         .filter((word) => {
+  //           return word.image_url
+  //         })
+  //         .map((word) => {
+  //           return {
+  //             label: word.value,
+  //             url: word.image_url,
+  //             royalty: word.img_royalty
+  //           }
+  //         })
+  //     }
+  //   } catch (e) {
+  //     console.error(e)
+  //     error({ statusCode: 404 })
+  //   }
+  // },
+
   data: () => ({
     isLoading: false,
-    letters: [],
-    words: [],
-    images: [],
     swiper: null,
     pagesTotal: 0,
     isSoundOn: true,
-    description: '',
     lessonNailedWords: 0,
     isLessonComplete: false,
-    showFireworks: false
+    showFireworks: false,
+    //no asyncdata initialized vars
+    description: '',
+    letters: [],
+    words: [],
+    images: []
   }),
+
   async fetch() {
-    await this.getLesson()
-    await this.getTotalPages()
+    // await this.getTotalPages()
+    await this.getLessonData()
+    this.getTotalPages()
+    this.initSwiper()
+  },
+  computed: {
+    ...mapState('authorization', ['user']),
+    ...mapState('links', ['links']),
+
+    hasCompletedRecord() {
+      return (
+        this.$auth.loggedIn &&
+        this.user &&
+        this.user.completedLessons.includes(+this.$route.params.id)
+      )
+    }
   },
   watch: {
     lessonNailedWords(newVal) {
@@ -111,20 +165,28 @@ export default {
       }
     }
   },
+
   methods: {
-    async getLesson() {
-      // this.isLoading = true
+    // async getTotalPages() {
+    //   this.isLoading = true
+    //   try {
+    //     const { data } = await this.$axios.get('/lesson')
+    //     this.pagesTotal = data.length
+    //   } catch (e) {
+    //     console.log(e)
+    //   }
+    //   this.isLoading = false
+    // },
+    async getLessonData() {
+      this.isLoading = true
       try {
         const { data } = await this.$axios.get(
-          `https://tsota.herokuapp.com/lessons?order_num=${this.$route.params.id}`
+          `/lesson/?order_num=${this.$route.params.id}`
         )
-
-        const lessonData = data[0]
-        // console.log('lesson data', data)
-        this.description = lessonData.description || null
-        this.words = lessonData.words
-        this.letters = lessonData.letters
-        this.images = lessonData.words
+        this.description = data[0].description || null
+        this.letters = data[0].letters || []
+        this.words = data[0].words || []
+        this.images = data[0].words
           .filter((word) => {
             return word.image_url
           })
@@ -138,18 +200,13 @@ export default {
       } catch (e) {
         console.log(e)
       }
-      // this.isLoading = false
+
+      this.isLoading = false
     },
-    async getTotalPages() {
-      try {
-        const { data } = await this.$axios.get(
-          `https://tsota.herokuapp.com/lessons`
-        )
-        this.pagesTotal = data.length
-      } catch (e) {
-        console.log(e)
-      }
+    getTotalPages() {
+      this.pagesTotal = this.links.length
     },
+
     initSwiper() {
       Swiper.use([Navigation, Pagination, Autoplay])
       this.swiper = new Swiper('.swiper-container', {
@@ -177,24 +234,35 @@ export default {
     },
     congratulateUser() {
       const inputs = document.querySelectorAll('input')
-      // console.log(inputs)
       inputs.forEach((input) => input.blur())
       this.showFireworks = true
       setTimeout(() => (this.showFireworks = false), 4000)
-      let audio = new Audio('sounds/trumpet.mp3')
-      audio.volume = 0.7
-      audio.play()
+      if (this.isSoundOn) {
+        let audio = new Audio('sounds/trumpet.mp3')
+        audio.volume = 0.7
+        audio.play()
+      }
+      if (this.user) {
+        this.addCompletedLesson()
+      }
+    },
+    async addCompletedLesson() {
+      try {
+        const user = await this.$axios.patch(`/user/${this.user.id}`, {
+          lessonNum: +this.$route.params.id
+        })
+        console.log(user)
+      } catch (e) {
+        console.log(e)
+      }
     }
   },
-
   mounted() {
-    this.isLoading = true
-    setTimeout(() => {
-      this.isLoading = false
-    }, 1500)
-    setTimeout(() => {
-      this.initSwiper()
-    }, 1500)
+    this.initSwiper()
+    console.log(this.links)
+  },
+  beforeDestroy() {
+    this.swiper = null
   }
 }
 </script>
@@ -208,15 +276,27 @@ export default {
 
 .swiper-container {
   max-width: 300px;
+  @media (max-width: 400px) {
+    max-width: 90vw;
+  }
 }
 
-.swiper-pagination-bullet-active {
-  background: #4b83a6;
+// .swiper-wrapper {
+//   width: 100%;
+//   max-width: 300px;
+// }
+.polaroid {
+  max-width: 100%;
+  height: auto;
 }
 
-.swiper-wrapper {
-  width: 100%;
-  max-width: 300px;
+.lesson {
+  .tooltip {
+    font-family: 'PF';
+    img {
+      max-width: 60px;
+    }
+  }
 }
 
 // .swiper-pagination-bullets {

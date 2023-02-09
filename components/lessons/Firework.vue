@@ -1,5 +1,5 @@
 <template>
-  <div class="firework__wrapper">
+  <div class="firework__wrapper" @click="$emit('close')">
     <div class="firework__congrats">Поздравляем! <br />Урок пройден!</div>
     <div class="firework"></div>
     <div class="firework"></div>
