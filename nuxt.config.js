@@ -74,7 +74,7 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: ['@nuxtjs/moment',  '@nuxt/typescript-build'],
+  buildModules: ['@nuxtjs/moment'],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: ['@nuxtjs/svg-sprite', '@nuxtjs/axios', '@nuxtjs/auth-next',  ['cookie-universal-nuxt', { alias: 'cookiz' }]],
@@ -92,7 +92,7 @@ export default {
      ** Run ESLint on save
      */
 
-    postcss: null,
+    // postcss: null,
     filenames: {
       chunk: ({ isDev }) =>
         isDev ? `[name].${currentTime}.js` : `[contenthash].${currentTime}.js`,

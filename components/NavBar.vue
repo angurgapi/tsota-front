@@ -22,21 +22,21 @@
         </button>
         <NavDropdown v-if="isDropdownOpen" @close="isDropdownOpen = false" />
       </div>
-      <template v-if="$auth.loggedIn">
+      <!-- <template v-if="$auth.loggedIn">
         <nuxt-link class="navbar__btn" to="/profile">{{
           user?.name
         }}</nuxt-link>
-        <!-- <button class="navbar__btn" @click="logOut">выйти</button> -->
-      </template>
+      <button class="navbar__btn" @click="logOut">выйти</button>
+      </template> -->
 
-      <template v-else>
+      <!-- <template v-else>
         <button
           class="navbar__btn"
           @click="isAuthModalVisible = !isAuthModalVisible"
         >
           войти
         </button>
-      </template>
+      </template> -->
     </div>
     <OverlayModal v-if="isModalVisible" @close="isModalVisible = false">
       <template #content><Alphabet /></template>

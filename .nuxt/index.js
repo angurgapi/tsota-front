@@ -52,7 +52,7 @@ Vue.component(Nuxt.name, Nuxt)
 
 Object.defineProperty(Vue.prototype, '$nuxt', {
   get() {
-    const globalNuxt = this.$root.$options.$nuxt
+    const globalNuxt = this.$root ? this.$root.$options.$nuxt : null
     if (process.client && !globalNuxt && typeof window !== 'undefined') {
       return window.$nuxt
     }
@@ -77,9 +77,9 @@ function registerModule (path, rawModule, options = {}) {
 }
 
 async function createApp(ssrContext, config = {}) {
-  const router = await createRouter(ssrContext, config)
-
   const store = createStore(ssrContext)
+  const router = await createRouter(ssrContext, config, { store })
+
   // Add this.$router into store actions/mutations
   store.$router = router
 
@@ -161,6 +161,7 @@ async function createApp(ssrContext, config = {}) {
     req: ssrContext ? ssrContext.req : undefined,
     res: ssrContext ? ssrContext.res : undefined,
     beforeRenderFns: ssrContext ? ssrContext.beforeRenderFns : undefined,
+    beforeSerializeFns: ssrContext ? ssrContext.beforeSerializeFns : undefined,
     ssrContext
   })
 
