@@ -41,11 +41,11 @@
   "ElementsTooltip": {
     "description": "Auto imported from components/elements/Tooltip.vue"
   },
-  "HelpersVuePrototypeFunctions": {
-    "description": "Auto imported from components/helpers/vuePrototypeFunctions.js"
-  },
   "Errors": {
     "description": "Auto imported from components/errors/404.vue"
+  },
+  "HelpersVuePrototypeFunctions": {
+    "description": "Auto imported from components/helpers/vuePrototypeFunctions.js"
   },
   "LessonsFirework": {
     "description": "Auto imported from components/lessons/Firework.vue"
