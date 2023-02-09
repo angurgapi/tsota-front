@@ -113,7 +113,7 @@ export default {
      ** Run ESLint on save
      */
 
-    postcss: null,
+    // postcss: null,
     filenames: {
       chunk: ({ isDev }) =>
         isDev ? `[name].${currentTime}.js` : `[contenthash].${currentTime}.js`,

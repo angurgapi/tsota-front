@@ -22,14 +22,14 @@
         </button>
         <NavDropdown v-if="isDropdownOpen" @close="isDropdownOpen = false" />
       </div>
-      <button
+      <!-- <button
         v-if="!$auth.user"
         class="navbar__btn"
         @click="isAuthModalVisible = !isAuthModalVisible"
       >
         войти
       </button>
-      <button v-else class="navbar__btn" @click="logOut">выйти</button>
+      <button v-else class="navbar__btn" @click="logOut">выйти</button> -->
     </div>
     <OverlayModal v-if="isModalVisible" @close="isModalVisible = false">
       <template #content><Alphabet /></template>
