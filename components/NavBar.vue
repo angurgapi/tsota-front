@@ -4,13 +4,10 @@
       <img class="navbar__logo" src="img/ag.svg" />
     </nuxt-link>
     <div class="navbar__right f-row">
-      <!-- <nuxt-link class="navbar__link" to="/pets">
-        <svg-image height="20" width="20" name="book" />
-        Уроки
-      </nuxt-link> -->
       <button class="navbar__btn" @click="isModalVisible = !isModalVisible">
         алфавит
       </button>
+
       <div
         v-click-outside="
           () => {
@@ -26,52 +23,61 @@
         <NavDropdown v-if="isDropdownOpen" @close="isDropdownOpen = false" />
       </div>
       <!-- <button
-        v-for="locale in availableLocales"
-        :key="locale.code"
-        class="btn navbar__link"
-        @click="changeLocale(locale.code)"
+        v-if="!$auth.user"
+        class="navbar__btn"
+        @click="isAuthModalVisible = !isAuthModalVisible"
       >
-        {{ locale.name }}
-      </button> -->
+        войти
+      </button>
+      <button v-else class="navbar__btn" @click="logOut">выйти</button> -->
     </div>
     <OverlayModal v-if="isModalVisible" @close="isModalVisible = false">
       <template #content><Alphabet /></template>
     </OverlayModal>
+    <AuthModal
+      v-show="isAuthModalVisible"
+      @close="isAuthModalVisible = false"
+    />
   </nav>
 </template>
 
 <script>
 import NavDropdown from './NavDropdown'
 import Alphabet from './elements/Alphabet'
+import AuthModal from './elements/AuthModal.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'NavBar',
-  components: { NavDropdown, Alphabet },
+  components: { NavDropdown, Alphabet, AuthModal },
   data: () => ({
     isFixed: false,
     isDropdownOpen: false,
-    isModalVisible: false
+    isModalVisible: false,
+    isAuthModalVisible: false
   }),
   computed: {
-    availableLocales() {
-      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
-    }
+    ...mapState('auth', ['user'])
   },
+
   methods: {
-    changeLocale(code) {
-      this.$i18n.setLocale(code)
-      console.log(this.$i18n.locale)
-    },
     onScroll() {
       if (window.pageYOffset > 0) {
         this.isFixed = true
       } else {
         this.isFixed = false
       }
+    },
+    logOut() {
+      this.$store.commit('authorization/LOGOUT')
     }
   },
   mounted() {
     window.addEventListener('scroll', this.onScroll)
+    if (window.pageYOffset > 0) {
+      this.isFixed = true
+    }
+    console.log(this.$auth)
   },
 
   beforeUnmount() {
@@ -87,6 +93,8 @@ export default {
     overflow-x: hidden;
     margin-top: 40px;
     max-height: 80vh;
+    height: fit-content;
+    cursor: grab;
   }
 
   &__close {

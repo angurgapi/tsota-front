@@ -1,0 +1,33 @@
+.btn {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    padding: 0 15px;
+    height: 42px;
+    font-family: 'PF';
+    font-size: 17px;
+    white-space: nowrap;
+    background: none;
+    transition: .1s ease-out;
+    cursor: pointer;
+  
+    &--success {
+        background-color: $logo-indigo;
+        color: $white;
+        &:hover {
+            background: $primary;
+        }
+      }
+      &--danger {
+        background-color: $logo-orange;
+        color: $white;
+        &:hover {
+            background: #7d3e23;
+          }
+      }
+
+  }

@@ -1,6 +1,6 @@
 <template>
   <div class="overlay" @click="$emit('close')">
-    <div class="overlay__modal">
+    <div class="overlay__modal" @click.prevent>
       <button class="btn overlay__close" @click="$emit('close')">
         <svg-icon name="close" height="20" width="20" />
       </button>
@@ -12,16 +12,34 @@
 <script>
 export default {
   name: 'OverlayModal',
+  methods: {
+    onKeyPress({ key }) {
+      let modal = document.querySelector('.overlay__modal')
+      switch (key) {
+        case 'ArrowDown':
+          modal.scrollBy(0, 20)
+          break
+        case 'ArrowUp':
+          modal.scrollBy(0, -20)
+          break
+        case 'Escape':
+          this.$emit('close')
+          break
+      }
+    }
+  },
   mounted() {
     document.body.style.overflow = 'hidden'
+    document.addEventListener('keydown', this.onKeyPress)
   },
   beforeDestroy() {
     document.body.style.overflow = 'auto'
+    document.removeEventListener('keydown', this.onKeyPress)
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .overlay {
   position: fixed;
   left: 0;

@@ -41,10 +41,31 @@ export default {
   },
   methods: {
     getTooltipOffset() {
-      const offsetRight = document
-        .querySelector('.content')
-        .getBoundingClientRect().right
+      const content = document.querySelector('.tooltip')
+      let tooltipWidth = content.getBoundingClientRect().width
+      let windowWidth = window.innerWidth
+      let offsetLeft = content.getBoundingClientRect().left
+
+      if (offsetLeft < 0) {
+        content.style.transform = `translateX(${-offsetLeft}px)`
+        // content.style.left = '5px'
+      }
+
+      if (offsetLeft + tooltipWidth > windowWidth) {
+        content.style.transform = `translateX(-${
+          offsetLeft + tooltipWidth - windowWidth
+        }px)`
+        // content.style.left = 'none'
+        // content.style.right = '5px'
+      }
     }
+  },
+  mounted() {
+    this.getTooltipOffset()
+    window.addEventListener('resize', this.getTooltipOffset)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.getTooltipOffset)
   }
 }
 </script>
@@ -57,35 +78,40 @@ export default {
 }
 
 .tooltip-trigger:hover .tooltip {
-  display: flex;
+  visibility: visible;
   opacity: 1;
 }
 
 .tooltip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
   left: 50%;
   bottom: 100%;
   z-index: 1010;
-  display: none;
+  visibility: hidden;
   margin-left: -125px;
   border-radius: 10px;
   padding: 10px;
-  width: 250px;
+  width: fit-content;
+  max-width: 250px;
   height: fit-content;
   box-shadow: 0 8px 24px rgba(233, 233, 233, 84%),
     0 -8px 24px rgba(233, 233, 233, 84%);
-  font-family: 'Rubik';
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 22px;
-  letter-spacing: -0.3px;
   white-space: normal;
   text-align: center;
   color: #000;
   background-color: #fff;
-
-  // opacity: 0;
-  transition: opacity 1s;
+  transition: 0.1s all ease-in-out;
+  @media (max-width: 290px) {
+    font-size: 10px;
+    max-width: 100vw;
+    flex-shrink: 1;
+    img {
+      width: 50px;
+    }
+  }
 
   .content {
     z-index: 1010;

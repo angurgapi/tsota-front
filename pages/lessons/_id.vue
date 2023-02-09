@@ -10,20 +10,27 @@
         <h2 class="lesson__title">Урок {{ $route.params.id }}</h2>
         <div class="lesson__info">
           <div class="lesson__letters">
-            <div
-              v-for="letter in letters"
-              :key="letter.id"
-              class="lesson__letter"
-            >
-              <span>{{ letter.value }} ({{ letter.transliteration }})</span>
-              <span>{{ letter.description }} </span>
+            <div v-for="letter in letters" :key="letter.id" class="letter">
+              <span class="letter__value"
+                >{{ letter.value }} ({{ letter.transliteration }})</span
+              >
+              <div class="letter__details f-row">
+                {{ letter.description }}
+                <Tooltip v-if="letter.alternative_img">
+                  <svg-icon height="20" width="20" name="circle-question" />
+                  <template #content>
+                    <span>Варианты написания:</span>
+                    <img :src="letter.alternative_img" />
+                  </template>
+                </Tooltip>
+              </div>
             </div>
             <span v-if="description" class="lesson__description"
               ><i>{{ description }}</i></span
             >
           </div>
 
-          <div v-if="images" class="lesson__images swiper-container">
+          <div v-if="images.length" class="lesson__images swiper-container">
             <div class="swiper-wrapper">
               <Polaroid
                 v-for="image in images"
@@ -69,7 +76,7 @@
       <PaginationBtns v-if="pagesTotal" :totalPages="pagesTotal" />
     </template>
 
-    <Firework v-if="showFireworks" />
+    <Firework v-if="showFireworks" @close="showFireworks = false" />
   </div>
 </template>
 
@@ -84,11 +91,35 @@ export default {
   name: 'LessonPage',
   components: { WordGuess, PaginationBtns, Firework },
 
+  async asyncData({ $axios, params, error, isLoading }) {
+    isLoading = true
+    try {
+      const { data } = await $axios.get(`/api/lesson/?order_num=${params.id}`)
+      isLoading = false
+      return {
+        description: data[0].description || null,
+        letters: data[0].letters || [],
+        words: data[0].words || [],
+        images: data[0].words
+          .filter((word) => {
+            return word.image_url
+          })
+          .map((word) => {
+            return {
+              label: word.value,
+              url: word.image_url,
+              royalty: word.img_royalty
+            }
+          })
+      }
+    } catch (e) {
+      console.error(e)
+      error({ statusCode: 404 })
+    }
+  },
+
   data: () => ({
     isLoading: false,
-    letters: [],
-    words: [],
-    images: [],
     swiper: null,
     pagesTotal: 0,
     isSoundOn: true,
@@ -97,10 +128,12 @@ export default {
     isLessonComplete: false,
     showFireworks: false
   }),
+
   async fetch() {
-    await this.getLesson()
     await this.getTotalPages()
+    this.initSwiper()
   },
+
   watch: {
     lessonNailedWords(newVal) {
       if (newVal === this.words.length) {
@@ -112,44 +145,17 @@ export default {
     }
   },
   methods: {
-    async getLesson() {
-      // this.isLoading = true
-      try {
-        const { data } = await this.$axios.get(
-          `https://tsota.herokuapp.com/lessons?order_num=${this.$route.params.id}`
-        )
-
-        const lessonData = data[0]
-        // console.log('lesson data', data)
-        this.description = lessonData.description || null
-        this.words = lessonData.words
-        this.letters = lessonData.letters
-        this.images = lessonData.words
-          .filter((word) => {
-            return word.image_url
-          })
-          .map((word) => {
-            return {
-              label: word.value,
-              url: word.image_url,
-              royalty: word.img_royalty
-            }
-          })
-      } catch (e) {
-        console.log(e)
-      }
-      // this.isLoading = false
-    },
     async getTotalPages() {
+      this.isLoading = true
       try {
-        const { data } = await this.$axios.get(
-          `https://tsota.herokuapp.com/lessons`
-        )
+        const { data } = await this.$axios.get(`${process.env.API_URL}/lesson`)
         this.pagesTotal = data.length
       } catch (e) {
         console.log(e)
       }
+      this.isLoading = false
     },
+
     initSwiper() {
       Swiper.use([Navigation, Pagination, Autoplay])
       this.swiper = new Swiper('.swiper-container', {
@@ -177,7 +183,6 @@ export default {
     },
     congratulateUser() {
       const inputs = document.querySelectorAll('input')
-      // console.log(inputs)
       inputs.forEach((input) => input.blur())
       this.showFireworks = true
       setTimeout(() => (this.showFireworks = false), 4000)
@@ -186,15 +191,11 @@ export default {
       audio.play()
     }
   },
-
   mounted() {
-    this.isLoading = true
-    setTimeout(() => {
-      this.isLoading = false
-    }, 1500)
-    setTimeout(() => {
-      this.initSwiper()
-    }, 1500)
+    this.initSwiper()
+  },
+  beforeDestroy() {
+    this.swiper = null
   }
 }
 </script>
@@ -217,6 +218,15 @@ export default {
 .swiper-wrapper {
   width: 100%;
   max-width: 300px;
+}
+
+.lesson {
+  .tooltip {
+    font-family: 'PF';
+    img {
+      max-width: 60px;
+    }
+  }
 }
 
 // .swiper-pagination-bullets {

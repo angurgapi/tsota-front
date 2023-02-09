@@ -60,7 +60,9 @@ export default {
   },
 
   proxy: {
-    '/api/': process.env.API_URL
+    '/api/': {
+      target: process.env.API_URL
+    }
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -78,7 +80,7 @@ export default {
   buildModules: ['@nuxtjs/moment'],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/svg-sprite', '@nuxtjs/axios', 'nuxt-i18n'],
+  modules: ['@nuxtjs/svg-sprite', '@nuxtjs/axios', 'nuxt-i18n', '@nuxtjs/auth-next', 'cookie-universal-nuxt'],
   svgSprite: {
     input: '~/assets/icons/'
   },
@@ -111,7 +113,7 @@ export default {
      ** Run ESLint on save
      */
 
-    postcss: null,
+    // postcss: null,
     filenames: {
       chunk: ({ isDev }) =>
         isDev ? `[name].${currentTime}.js` : `[contenthash].${currentTime}.js`,
@@ -130,6 +132,45 @@ export default {
             fix: true
           }
         })
+      }
+    }
+  },
+
+  publicRuntimeConfig: {
+    apiUrl: process.env.API_URL
+  },
+
+  auth: {
+    redirect: {
+      // login: '/',
+      callback: false,
+      logout: false,
+      home: false
+    },
+    rewriteRedirects: true,
+    cookie: {
+      prefix: 'c.',
+      options: {
+        path: '/',
+        expires: 30,
+        sameSite: 'lax'
+      }
+    },
+    strategies: {
+      local: {
+        token: {
+          property: 'data,token',
+          maxAge: 2592000 // 30 days
+        },
+        user: {
+          property: 'data.user',
+          autoFetch: true
+        },
+        endpoints: {
+          login: { url: `${process.env.API_URL}/auth/login`, method: 'post' },
+          user: false,
+          // logout: false
+        }
       }
     }
   }

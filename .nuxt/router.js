@@ -4,13 +4,13 @@ import { normalizeURL, decode } from 'ufo'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _6c0eeb9a = () => interopDefault(import('../node_modules/@nuxtjs/svg-sprite/lib/pages/icons-list.vue' /* webpackChunkName: "" */))
-const _081bdbb0 = () => interopDefault(import('../pages/lessons/index.vue' /* webpackChunkName: "pages/lessons/index" */))
-const _a7994018 = () => interopDefault(import('../pages/numbers.vue' /* webpackChunkName: "pages/numbers" */))
-const _0a73de2e = () => interopDefault(import('../pages/shopping.vue' /* webpackChunkName: "pages/shopping" */))
-const _92defd5a = () => interopDefault(import('../pages/words.vue' /* webpackChunkName: "pages/words" */))
-const _7dae7e90 = () => interopDefault(import('../pages/lessons/_id.vue' /* webpackChunkName: "pages/lessons/_id" */))
-const _505552fc = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _14bfb998 = () => interopDefault(import('../node_modules/@nuxtjs/svg-sprite/lib/pages/icons-list.vue' /* webpackChunkName: "" */))
+const _940bd72c = () => interopDefault(import('../pages/lessons/index.vue' /* webpackChunkName: "pages/lessons/index" */))
+const _f81a8894 = () => interopDefault(import('../pages/numbers.vue' /* webpackChunkName: "pages/numbers" */))
+const _2a9ffaac = () => interopDefault(import('../pages/shopping.vue' /* webpackChunkName: "pages/shopping" */))
+const _7297e595 = () => interopDefault(import('../pages/words.vue' /* webpackChunkName: "pages/words" */))
+const _6af62952 = () => interopDefault(import('../pages/lessons/_id.vue' /* webpackChunkName: "pages/lessons/_id" */))
+const _0c5cb73e = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 const emptyFn = () => {}
 
@@ -25,31 +25,31 @@ export const routerOptions = {
 
   routes: [{
     path: "/_icons",
-    component: _6c0eeb9a,
+    component: _14bfb998,
     name: "icons-list"
   }, {
     path: "/lessons",
-    component: _081bdbb0,
+    component: _940bd72c,
     name: "lessons"
   }, {
     path: "/numbers",
-    component: _a7994018,
+    component: _f81a8894,
     name: "numbers"
   }, {
     path: "/shopping",
-    component: _0a73de2e,
+    component: _2a9ffaac,
     name: "shopping"
   }, {
     path: "/words",
-    component: _92defd5a,
+    component: _7297e595,
     name: "words"
   }, {
     path: "/lessons/:id",
-    component: _7dae7e90,
+    component: _6af62952,
     name: "lessons-id"
   }, {
     path: "/",
-    component: _505552fc,
+    component: _0c5cb73e,
     name: "index"
   }],
 

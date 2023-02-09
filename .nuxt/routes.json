@@ -2,49 +2,49 @@
   {
     "name": "icons-list",
     "path": "/_icons",
-    "component": "/home/s0f/_nuxt/tsota-frnt/node_modules/@nuxtjs/svg-sprite/lib/pages/icons-list.vue",
-    "_name": "_6c0eeb9a"
+    "component": "/home/sof/angurgapi/nuxt/tsota-front/node_modules/@nuxtjs/svg-sprite/lib/pages/icons-list.vue",
+    "_name": "_14bfb998"
   },
   {
     "name": "lessons",
     "path": "/lessons",
-    "component": "/home/s0f/_nuxt/tsota-frnt/pages/lessons/index.vue",
+    "component": "/home/sof/angurgapi/nuxt/tsota-front/pages/lessons/index.vue",
     "chunkName": "pages/lessons/index",
-    "_name": "_081bdbb0"
+    "_name": "_940bd72c"
   },
   {
     "name": "numbers",
     "path": "/numbers",
-    "component": "/home/s0f/_nuxt/tsota-frnt/pages/numbers.vue",
+    "component": "/home/sof/angurgapi/nuxt/tsota-front/pages/numbers.vue",
     "chunkName": "pages/numbers",
-    "_name": "_a7994018"
+    "_name": "_f81a8894"
   },
   {
     "name": "shopping",
     "path": "/shopping",
-    "component": "/home/s0f/_nuxt/tsota-frnt/pages/shopping.vue",
+    "component": "/home/sof/angurgapi/nuxt/tsota-front/pages/shopping.vue",
     "chunkName": "pages/shopping",
-    "_name": "_0a73de2e"
+    "_name": "_2a9ffaac"
   },
   {
     "name": "words",
     "path": "/words",
-    "component": "/home/s0f/_nuxt/tsota-frnt/pages/words.vue",
+    "component": "/home/sof/angurgapi/nuxt/tsota-front/pages/words.vue",
     "chunkName": "pages/words",
-    "_name": "_92defd5a"
+    "_name": "_7297e595"
   },
   {
     "name": "lessons-id",
     "path": "/lessons/:id",
-    "component": "/home/s0f/_nuxt/tsota-frnt/pages/lessons/_id.vue",
+    "component": "/home/sof/angurgapi/nuxt/tsota-front/pages/lessons/_id.vue",
     "chunkName": "pages/lessons/_id",
-    "_name": "_7dae7e90"
+    "_name": "_6af62952"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "/home/s0f/_nuxt/tsota-frnt/pages/index.vue",
+    "component": "/home/sof/angurgapi/nuxt/tsota-front/pages/index.vue",
     "chunkName": "pages/index",
-    "_name": "_505552fc"
+    "_name": "_0c5cb73e"
   }
 ]

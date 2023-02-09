@@ -29,6 +29,9 @@
   "ElementsAlphabet": {
     "description": "Auto imported from components/elements/Alphabet.vue"
   },
+  "ElementsAuthModal": {
+    "description": "Auto imported from components/elements/AuthModal.vue"
+  },
   "ElementsIntroCard": {
     "description": "Auto imported from components/elements/IntroCard.vue"
   },
@@ -46,6 +49,9 @@
   },
   "ElementsTooltip": {
     "description": "Auto imported from components/elements/Tooltip.vue"
+  },
+  "Errors": {
+    "description": "Auto imported from components/errors/404.vue"
   },
   "HelpersVuePrototypeFunctions": {
     "description": "Auto imported from components/helpers/vuePrototypeFunctions.js"
