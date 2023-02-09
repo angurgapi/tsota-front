@@ -6,10 +6,12 @@
       </div>
     </template>
     <template v-else>
-      <div class="lesson__data card">
+      <div class="lesson__data">
         <h2 class="lesson__title">Слова для запоминания</h2>
         <div v-if="words" class="lesson__images swiper-container">
           <div class="swiper-wrapper">
+            <!-- <button class="swiper-button-prev">-</button>
+            <button class="swiper-button-next">+</button> -->
             <Polaroid
               v-for="image in words"
               :key="image.url"
@@ -48,7 +50,7 @@ export default {
       try {
         const {
           data: { message, wordList }
-        } = await this.$axios.get('http://localhost:3000/word')
+        } = await this.$axios.get('/word')
 
         this.words = wordList
           .filter((word) => {
@@ -74,12 +76,36 @@ export default {
         loop: true,
         modules: [Navigation, Pagination, Autoplay],
         slidesPerView: 1,
-        draggable: true
+        draggable: true,
+        scrollbar: {
+          el: '.swiper-scrollbar',
+          draggable: true
+        },
+        // navigation: {
+        //   nextEl: '.swiper-button-next',
+        //   prevEl: '.swiper-button-prev'
+        // }
+        navigation: true
       })
+    },
+    onKeyPress({ key }) {
+      let modal = document.querySelector('.overlay__modal')
+      switch (key) {
+        case 'ArrowLeft':
+          this.swiper.slidePrev()
+          break
+        case 'ArrowRight':
+          this.swiper.slideNext()
+          break
+      }
     }
   },
   mounted() {
     this.initSwiper()
+    document.addEventListener('keydown', this.onKeyPress)
+  },
+  beforeDestroy() {
+    document.removeEventListener('keydown', this.onKeyPress)
   }
 }
 </script>
@@ -91,35 +117,24 @@ export default {
 
 .swiper-wrapper {
   width: 100%;
-  max-width: 450px;
+  max-width: 40vw;
+  // max-width: 450px;
 
   @media (max-width: 700px) {
     max-width: 90vw;
   }
 }
 
-.swiper-pagination-bullet-active {
-  background: #4b83a6;
-}
-
-.swiper-slide {
-  width: 100%;
-  height: auto;
-}
+// .swiper-slide {
+//   width: 100%;
+//   height: auto;
+// }
 
 .flashcard {
   img {
     margin: auto;
     width: 100%;
     height: auto;
-  }
-
-  &__royalty {
-    float: right;
-    width: 100%;
-    text-align: right;
-    text-transform: uppercase;
-    opacity: 0.3;
   }
 }
 </style>

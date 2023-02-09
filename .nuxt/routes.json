@@ -20,6 +20,13 @@
     "_name": "_f81a8894"
   },
   {
+    "name": "profile",
+    "path": "/profile",
+    "component": "/home/sof/angurgapi/nuxt/tsota-front/pages/profile/index.vue",
+    "chunkName": "pages/profile/index",
+    "_name": "_7b3c9b50"
+  },
+  {
     "name": "shopping",
     "path": "/shopping",
     "component": "/home/sof/angurgapi/nuxt/tsota-front/pages/shopping.vue",

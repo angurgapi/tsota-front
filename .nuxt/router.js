@@ -7,6 +7,7 @@ import scrollBehavior from './router.scrollBehavior.js'
 const _14bfb998 = () => interopDefault(import('../node_modules/@nuxtjs/svg-sprite/lib/pages/icons-list.vue' /* webpackChunkName: "" */))
 const _940bd72c = () => interopDefault(import('../pages/lessons/index.vue' /* webpackChunkName: "pages/lessons/index" */))
 const _f81a8894 = () => interopDefault(import('../pages/numbers.vue' /* webpackChunkName: "pages/numbers" */))
+const _7b3c9b50 = () => interopDefault(import('../pages/profile/index.vue' /* webpackChunkName: "pages/profile/index" */))
 const _2a9ffaac = () => interopDefault(import('../pages/shopping.vue' /* webpackChunkName: "pages/shopping" */))
 const _7297e595 = () => interopDefault(import('../pages/words.vue' /* webpackChunkName: "pages/words" */))
 const _6af62952 = () => interopDefault(import('../pages/lessons/_id.vue' /* webpackChunkName: "pages/lessons/_id" */))
@@ -35,6 +36,10 @@ export const routerOptions = {
     path: "/numbers",
     component: _f81a8894,
     name: "numbers"
+  }, {
+    path: "/profile",
+    component: _7b3c9b50,
+    name: "profile"
   }, {
     path: "/shopping",
     component: _2a9ffaac,

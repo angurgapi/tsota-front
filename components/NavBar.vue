@@ -56,8 +56,9 @@ export default {
     isModalVisible: false,
     isAuthModalVisible: false
   }),
+
   computed: {
-    ...mapState('auth', ['user'])
+    ...mapState('authorization', ['user'])
   },
 
   methods: {
@@ -67,9 +68,6 @@ export default {
       } else {
         this.isFixed = false
       }
-    },
-    logOut() {
-      this.$store.commit('authorization/LOGOUT')
     }
   },
   mounted() {
@@ -77,7 +75,6 @@ export default {
     if (window.pageYOffset > 0) {
       this.isFixed = true
     }
-    console.log(this.$auth)
   },
 
   beforeUnmount() {

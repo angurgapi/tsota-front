@@ -7,7 +7,12 @@
     </template>
     <template v-else>
       <div class="lesson__data card">
-        <h2 class="lesson__title">Урок {{ $route.params.id }}</h2>
+        <h2 class="lesson__title">
+          Урок {{ $route.params.id
+          }}<span v-if="hasCompletedRecord" class="lesson__complete"
+            >Пройден</span
+          >
+        </h2>
         <div class="lesson__info">
           <div class="lesson__letters">
             <div v-for="letter in letters" :key="letter.id" class="letter">
@@ -86,54 +91,70 @@ import 'swiper/swiper-bundle.min.css'
 import WordGuess from '@/components/lessons/WordGuess'
 import Firework from '@/components/lessons/Firework'
 import PaginationBtns from '@/components/elements/PaginationBtns'
+import { mapState } from 'vuex'
 
 export default {
   name: 'LessonPage',
   components: { WordGuess, PaginationBtns, Firework },
 
-  async asyncData({ $axios, params, error, isLoading }) {
-    isLoading = true
-    try {
-      const { data } = await $axios.get(`/api/lesson/?order_num=${params.id}`)
-      isLoading = false
-      return {
-        description: data[0].description || null,
-        letters: data[0].letters || [],
-        words: data[0].words || [],
-        images: data[0].words
-          .filter((word) => {
-            return word.image_url
-          })
-          .map((word) => {
-            return {
-              label: word.value,
-              url: word.image_url,
-              royalty: word.img_royalty
-            }
-          })
-      }
-    } catch (e) {
-      console.error(e)
-      error({ statusCode: 404 })
-    }
-  },
+  // async asyncData({ $axios, params, error, isLoading }) {
+  //   try {
+  //     const { data } = await $axios.get(`/lesson/?order_num=${params.id}`)
+  //     return {
+  //       description: data[0].description || null,
+  //       letters: data[0].letters || [],
+  //       words: data[0].words || [],
+  //       images: data[0].words
+  //         .filter((word) => {
+  //           return word.image_url
+  //         })
+  //         .map((word) => {
+  //           return {
+  //             label: word.value,
+  //             url: word.image_url,
+  //             royalty: word.img_royalty
+  //           }
+  //         })
+  //     }
+  //   } catch (e) {
+  //     console.error(e)
+  //     error({ statusCode: 404 })
+  //   }
+  // },
 
   data: () => ({
     isLoading: false,
     swiper: null,
     pagesTotal: 0,
     isSoundOn: true,
-    description: '',
     lessonNailedWords: 0,
     isLessonComplete: false,
-    showFireworks: false
+    showFireworks: false,
+    //no asyncdata initialized vars
+    description: '',
+    letters: [],
+    words: [],
+    images: []
   }),
 
   async fetch() {
-    await this.getTotalPages()
+    // await this.getTotalPages()
+    await this.getLessonData()
+    this.getTotalPages()
     this.initSwiper()
   },
+  computed: {
+    ...mapState('authorization', ['user']),
+    ...mapState('links', ['links']),
 
+    hasCompletedRecord() {
+      return (
+        this.$auth.loggedIn &&
+        this.user &&
+        this.user.completedLessons.includes(+this.$route.params.id)
+      )
+    }
+  },
   watch: {
     lessonNailedWords(newVal) {
       if (newVal === this.words.length) {
@@ -144,16 +165,46 @@ export default {
       }
     }
   },
+
   methods: {
-    async getTotalPages() {
+    // async getTotalPages() {
+    //   this.isLoading = true
+    //   try {
+    //     const { data } = await this.$axios.get('/lesson')
+    //     this.pagesTotal = data.length
+    //   } catch (e) {
+    //     console.log(e)
+    //   }
+    //   this.isLoading = false
+    // },
+    async getLessonData() {
       this.isLoading = true
       try {
-        const { data } = await this.$axios.get(`${process.env.API_URL}/lesson`)
-        this.pagesTotal = data.length
+        const { data } = await this.$axios.get(
+          `/lesson/?order_num=${this.$route.params.id}`
+        )
+        this.description = data[0].description || null
+        this.letters = data[0].letters || []
+        this.words = data[0].words || []
+        this.images = data[0].words
+          .filter((word) => {
+            return word.image_url
+          })
+          .map((word) => {
+            return {
+              label: word.value,
+              url: word.image_url,
+              royalty: word.img_royalty
+            }
+          })
       } catch (e) {
         console.log(e)
       }
+
       this.isLoading = false
+    },
+    getTotalPages() {
+      this.pagesTotal = this.links.length
     },
 
     initSwiper() {
@@ -186,13 +237,29 @@ export default {
       inputs.forEach((input) => input.blur())
       this.showFireworks = true
       setTimeout(() => (this.showFireworks = false), 4000)
-      let audio = new Audio('sounds/trumpet.mp3')
-      audio.volume = 0.7
-      audio.play()
+      if (this.isSoundOn) {
+        let audio = new Audio('sounds/trumpet.mp3')
+        audio.volume = 0.7
+        audio.play()
+      }
+      if (this.user) {
+        this.addCompletedLesson()
+      }
+    },
+    async addCompletedLesson() {
+      try {
+        const user = await this.$axios.patch(`/user/${this.user.id}`, {
+          lessonNum: +this.$route.params.id
+        })
+        console.log(user)
+      } catch (e) {
+        console.log(e)
+      }
     }
   },
   mounted() {
     this.initSwiper()
+    console.log(this.links)
   },
   beforeDestroy() {
     this.swiper = null
@@ -209,15 +276,18 @@ export default {
 
 .swiper-container {
   max-width: 300px;
+  @media (max-width: 400px) {
+    max-width: 90vw;
+  }
 }
 
-.swiper-pagination-bullet-active {
-  background: #4b83a6;
-}
-
-.swiper-wrapper {
-  width: 100%;
-  max-width: 300px;
+// .swiper-wrapper {
+//   width: 100%;
+//   max-width: 300px;
+// }
+.polaroid {
+  max-width: 100%;
+  height: auto;
 }
 
 .lesson {
