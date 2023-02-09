@@ -6,12 +6,6 @@
     "_name": "_14bfb998"
   },
   {
-    "name": "icons-list",
-    "path": "/_icons",
-    "component": "/home/sof/angurgapi/nuxt/tsota-front/node_modules/@nuxtjs/svg-sprite/lib/pages/icons-list.vue",
-    "_name": "_14bfb998"
-  },
-  {
     "name": "lessons",
     "path": "/lessons",
     "component": "/home/sof/angurgapi/nuxt/tsota-front/pages/lessons/index.vue",
@@ -24,6 +18,13 @@
     "component": "/home/sof/angurgapi/nuxt/tsota-front/pages/numbers.vue",
     "chunkName": "pages/numbers",
     "_name": "_f81a8894"
+  },
+  {
+    "name": "profile",
+    "path": "/profile",
+    "component": "/home/sof/angurgapi/nuxt/tsota-front/pages/profile/index.vue",
+    "chunkName": "pages/profile/index",
+    "_name": "_7b3c9b50"
   },
   {
     "name": "shopping",

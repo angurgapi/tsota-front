@@ -242,9 +242,9 @@ export default {
         audio.volume = 0.7
         audio.play()
       }
-      if (this.user) {
-        this.addCompletedLesson()
-      }
+      // if (this.user) {
+      //   this.addCompletedLesson()
+      // }
     },
     async addCompletedLesson() {
       try {

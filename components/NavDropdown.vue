@@ -7,7 +7,7 @@
             <nuxt-link
               class="dropdown__link f-row"
               :class="{ 'dropdown__link--active': isCurrent(link.order_num) }"
-              :to="`/lessons/${i}`"
+              :to="`/lessons/${link.order_num}`"
               >урок {{ link.order_num }}</nuxt-link
             >
           </li>
