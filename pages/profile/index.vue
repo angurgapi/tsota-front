@@ -32,9 +32,9 @@ import { mapState, mapGetters } from 'vuex'
 export default {
   middleware: ['auth'],
 
-  // async fetch() {
-  //   this.getUserData()
-  // },
+  async fetch() {
+    this.getUserData()
+  },
 
   computed: {
     ...mapState('authorization', ['user']),
@@ -49,7 +49,6 @@ export default {
       try {
         console.log('triggered user data')
         const data = await this.$axios.get('/auth/profile')
-        console.log('retrieved user data hehe')
         console.log(data)
       } catch (e) {
         console.log(e)

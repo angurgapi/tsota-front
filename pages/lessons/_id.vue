@@ -138,10 +138,8 @@ export default {
   }),
 
   async fetch() {
-    // await this.getTotalPages()
     await this.getLessonData()
     this.getTotalPages()
-    this.initSwiper()
   },
   computed: {
     ...mapState('authorization', ['user']),
@@ -258,9 +256,14 @@ export default {
     }
   },
   mounted() {
-    this.initSwiper()
-    console.log(this.links)
+    setTimeout(() => {
+      if (this.images.length) {
+        this.initSwiper()
+      }
+    }, 1000)
+    console.log(this.swiper)
   },
+
   beforeDestroy() {
     this.swiper = null
   }

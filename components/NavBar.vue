@@ -28,8 +28,8 @@
         @click="isAuthModalVisible = !isAuthModalVisible"
       >
         войти
-      </button>
-      <button v-else class="navbar__btn" @click="logOut">выйти</button> -->
+      </button> -->
+      <!-- <nuxt-link v-else class="navbar__btn" to="/profile"> кабинет </nuxt-link> -->
     </div>
     <OverlayModal v-if="isModalVisible" @close="isModalVisible = false">
       <template #content><Alphabet /></template>
@@ -62,6 +62,10 @@ export default {
   },
 
   methods: {
+    logOut() {
+      this.$store.dispatch('authorization/logout')
+    },
+
     onScroll() {
       if (window.pageYOffset > 0) {
         this.isFixed = true
