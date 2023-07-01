@@ -123,7 +123,7 @@ export default {
   // },
 
   data: () => ({
-    isLoading: false,
+    isLoading: true,
     swiper: null,
     pagesTotal: 0,
     isSoundOn: true,
@@ -138,6 +138,9 @@ export default {
   }),
 
   async fetch() {
+    setTimeout(() => {
+      this.isLoading = false
+    }, 1000)
     await this.getLessonData()
     this.getTotalPages()
   },
@@ -176,7 +179,7 @@ export default {
     //   this.isLoading = false
     // },
     async getLessonData() {
-      this.isLoading = true
+      // this.isLoading = true
       try {
         const { data } = await this.$axios.get(
           `/lesson/?order_num=${this.$route.params.id}`
@@ -199,7 +202,7 @@ export default {
         console.log(e)
       }
 
-      this.isLoading = false
+      // this.isLoading = false
     },
     getTotalPages() {
       this.pagesTotal = this.links.length
