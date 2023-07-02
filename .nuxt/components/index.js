@@ -1,25 +1,25 @@
-export { default as Contacts } from '../../components/Contacts.vue'
-export { default as FooterBlock } from '../../components/FooterBlock.vue'
-export { default as NavBar } from '../../components/NavBar.vue'
-export { default as NavDropdown } from '../../components/NavDropdown.vue'
-export { default as SvgIcon } from '../../components/SvgIcon.vue'
-export { default as ElementsAccordion } from '../../components/elements/Accordion.vue'
-export { default as ElementsAlphabet } from '../../components/elements/Alphabet.vue'
-export { default as ElementsAuthModal } from '../../components/elements/AuthModal.vue'
-export { default as ElementsIntroCard } from '../../components/elements/IntroCard.vue'
-export { default as ElementsLocaleSwitcher } from '../../components/elements/LocaleSwitcher.vue'
-export { default as ElementsOverlayModal } from '../../components/elements/OverlayModal.vue'
-export { default as ElementsPaginationBtns } from '../../components/elements/PaginationBtns.vue'
-export { default as ElementsPolaroid } from '../../components/elements/Polaroid.vue'
-export { default as ElementsSvgImage } from '../../components/elements/SvgImage.vue'
-export { default as ElementsTooltip } from '../../components/elements/Tooltip.vue'
-export { default as Errors } from '../../components/errors/404.vue'
-export { default as HelpersVuePrototypeFunctions } from '../../components/helpers/vuePrototypeFunctions.js'
-export { default as LessonsFirework } from '../../components/lessons/Firework.vue'
-export { default as LessonsWordGuess } from '../../components/lessons/WordGuess.vue'
-export { default as ToastsNotificationSlot } from '../../components/toasts/NotificationSlot.vue'
-export { default as ToastsToastForm } from '../../components/toasts/ToastForm.vue'
-export { default as ToastsToastMessage } from '../../components/toasts/ToastMessage.vue'
+export const Contacts = () => import('../../components/Contacts.vue' /* webpackChunkName: "components/contacts" */).then(c => wrapFunctional(c.default || c))
+export const FooterBlock = () => import('../../components/FooterBlock.vue' /* webpackChunkName: "components/footer-block" */).then(c => wrapFunctional(c.default || c))
+export const NavBar = () => import('../../components/NavBar.vue' /* webpackChunkName: "components/nav-bar" */).then(c => wrapFunctional(c.default || c))
+export const NavDropdown = () => import('../../components/NavDropdown.vue' /* webpackChunkName: "components/nav-dropdown" */).then(c => wrapFunctional(c.default || c))
+export const SvgIcon = () => import('../../components/SvgIcon.vue' /* webpackChunkName: "components/svg-icon" */).then(c => wrapFunctional(c.default || c))
+export const ElementsAccordion = () => import('../../components/elements/Accordion.vue' /* webpackChunkName: "components/elements-accordion" */).then(c => wrapFunctional(c.default || c))
+export const ElementsAlphabet = () => import('../../components/elements/Alphabet.vue' /* webpackChunkName: "components/elements-alphabet" */).then(c => wrapFunctional(c.default || c))
+export const ElementsAuthModal = () => import('../../components/elements/AuthModal.vue' /* webpackChunkName: "components/elements-auth-modal" */).then(c => wrapFunctional(c.default || c))
+export const ElementsIntroCard = () => import('../../components/elements/IntroCard.vue' /* webpackChunkName: "components/elements-intro-card" */).then(c => wrapFunctional(c.default || c))
+export const ElementsLocaleSwitcher = () => import('../../components/elements/LocaleSwitcher.vue' /* webpackChunkName: "components/elements-locale-switcher" */).then(c => wrapFunctional(c.default || c))
+export const ElementsOverlayModal = () => import('../../components/elements/OverlayModal.vue' /* webpackChunkName: "components/elements-overlay-modal" */).then(c => wrapFunctional(c.default || c))
+export const ElementsPaginationBtns = () => import('../../components/elements/PaginationBtns.vue' /* webpackChunkName: "components/elements-pagination-btns" */).then(c => wrapFunctional(c.default || c))
+export const ElementsPolaroid = () => import('../../components/elements/Polaroid.vue' /* webpackChunkName: "components/elements-polaroid" */).then(c => wrapFunctional(c.default || c))
+export const ElementsSvgImage = () => import('../../components/elements/SvgImage.vue' /* webpackChunkName: "components/elements-svg-image" */).then(c => wrapFunctional(c.default || c))
+export const ElementsTooltip = () => import('../../components/elements/Tooltip.vue' /* webpackChunkName: "components/elements-tooltip" */).then(c => wrapFunctional(c.default || c))
+export const Errors = () => import('../../components/errors/404.vue' /* webpackChunkName: "components/errors" */).then(c => wrapFunctional(c.default || c))
+export const HelpersVuePrototypeFunctions = () => import('../../components/helpers/vuePrototypeFunctions.js' /* webpackChunkName: "components/helpers-vue-prototype-functions" */).then(c => wrapFunctional(c.default || c))
+export const LessonsFirework = () => import('../../components/lessons/Firework.vue' /* webpackChunkName: "components/lessons-firework" */).then(c => wrapFunctional(c.default || c))
+export const LessonsWordGuess = () => import('../../components/lessons/WordGuess.vue' /* webpackChunkName: "components/lessons-word-guess" */).then(c => wrapFunctional(c.default || c))
+export const ToastsNotificationSlot = () => import('../../components/toasts/NotificationSlot.vue' /* webpackChunkName: "components/toasts-notification-slot" */).then(c => wrapFunctional(c.default || c))
+export const ToastsToastForm = () => import('../../components/toasts/ToastForm.vue' /* webpackChunkName: "components/toasts-toast-form" */).then(c => wrapFunctional(c.default || c))
+export const ToastsToastMessage = () => import('../../components/toasts/ToastMessage.vue' /* webpackChunkName: "components/toasts-toast-message" */).then(c => wrapFunctional(c.default || c))
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {

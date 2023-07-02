@@ -22,22 +22,6 @@ import NuxtLink from './components/nuxt-link.server.js' // should be included af
     Vue.__nuxt__fetch__mixin__ = true
   }
 
-if (!Vue.__original_use__) {
-    Vue.__original_use__ = Vue.use
-    Vue.__install_times__ = 0
-    Vue.use = function (plugin, ...args) {
-      plugin.__nuxt_external_installed__ = Vue._installedPlugins.includes(plugin)
-      return Vue.__original_use__(plugin, ...args)
-    }
-  }
-  if (Vue.__install_times__ === 2) {
-    Vue.__install_times__ = 0
-    Vue._installedPlugins = Vue._installedPlugins.filter(plugin => {
-      return plugin.__nuxt_external_installed__ === true
-    })
-  }
-  Vue.__install_times__++
-
       // Component: <NuxtLink>
       Vue.component(NuxtLink.name, NuxtLink)
        Vue.component('NLink', NuxtLink)
@@ -91,6 +75,10 @@ export default async (ssrContext) => {
 
   // Remove query from url is static target
 
+  if (ssrContext.url) {
+    ssrContext.url = ssrContext.url.split('?')[0]
+  }
+
   // Public runtime config
   ssrContext.nuxt.config = ssrContext.runtimeConfig.public
 if (ssrContext.nuxt.config._app) {
@@ -118,6 +106,12 @@ ssrContext.nuxt.routePath = app.context.route.path
 
         // Add the state from the vuex store
         ssrContext.nuxt.state = store.state
+
+      // Stop recording store mutations
+      // unsetMutationObserver is only set after all router middleware are evaluated
+      if (ssrContext.unsetMutationObserver) {
+        ssrContext.unsetMutationObserver()
+      }
     }
 }
 
@@ -141,8 +135,6 @@ const render404Page = () => {
   app.context.error({ statusCode: 404, path: ssrContext.url, message: 'This page could not be found' })
   return renderErrorPage()
 }
-
-  const s = Date.now()
 
   // Components are already resolved by setContext -> getRouteData (app/utils.js)
   const Components = getMatchedComponents(app.context.route)
@@ -187,6 +179,10 @@ const render404Page = () => {
   if (ssrContext.nuxt.error) {
     return renderErrorPage()
   }
+
+  // Record store mutations for full-static after nuxtServerInit and Middleware
+  ssrContext.nuxt.mutations =[]
+  ssrContext.unsetMutationObserver = store.subscribe(m => { ssrContext.nuxt.mutations.push([m.type, m.payload]) })
 
   /*
   ** Set layout
@@ -297,8 +293,6 @@ const render404Page = () => {
 
     return Promise.all(promises)
 }))
-
-    if (process.env.DEBUG && asyncDatas.length) console.debug('Data fetching ' + ssrContext.url + ': ' + (Date.now() - s) + 'ms')
 
       // datas are the first row of each
       ssrContext.nuxt.data = asyncDatas.map(r => r[0] || {})
