@@ -42,20 +42,19 @@ export default {
   cursor: pointer;
   background: #fff;
   max-height: 80vh;
-  width: auto;
+  width: 100%;
+  height: auto;
   aspect-ratio: 3/4;
 
   &__img {
     object-fit: cover;
     aspect-ratio: 1;
     display: flex;
-    max-height: 90%;
+    max-height: 80%;
   }
 
   &__label {
     margin-top: 10px;
-
-    // font-size: 40px;
     height: 60px;
     text-align: center;
     opacity: 0.9;

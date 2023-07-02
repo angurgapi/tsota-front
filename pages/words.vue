@@ -41,12 +41,11 @@ export default {
   }),
   async fetch() {
     await this.getImages()
-    this.initSwiper()
   },
 
   methods: {
     async getImages() {
-      this.isLoading = true
+      // this.isLoading = true
       try {
         const {
           data: { message, wordList }
@@ -67,7 +66,7 @@ export default {
       } catch (e) {
         console.log(e)
       }
-      this.isLoading = false
+      // this.isLoading = false
     },
     initSwiper() {
       Swiper.use([Navigation, Pagination, Autoplay])

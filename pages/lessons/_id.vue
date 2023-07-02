@@ -78,7 +78,7 @@
           @failed="lessonNailedWords--"
         />
       </div>
-      <PaginationBtns v-if="pagesTotal" :totalPages="pagesTotal" />
+      <PaginationBtns v-if="links" :totalPages="links.length" />
     </template>
 
     <Firework v-if="showFireworks" @close="showFireworks = false" />
@@ -97,40 +97,13 @@ export default {
   name: 'LessonPage',
   components: { WordGuess, PaginationBtns, Firework },
 
-  // async asyncData({ $axios, params, error, isLoading }) {
-  //   try {
-  //     const { data } = await $axios.get(`/lesson/?order_num=${params.id}`)
-  //     return {
-  //       description: data[0].description || null,
-  //       letters: data[0].letters || [],
-  //       words: data[0].words || [],
-  //       images: data[0].words
-  //         .filter((word) => {
-  //           return word.image_url
-  //         })
-  //         .map((word) => {
-  //           return {
-  //             label: word.value,
-  //             url: word.image_url,
-  //             royalty: word.img_royalty
-  //           }
-  //         })
-  //     }
-  //   } catch (e) {
-  //     console.error(e)
-  //     error({ statusCode: 404 })
-  //   }
-  // },
-
   data: () => ({
     isLoading: true,
     swiper: null,
-    pagesTotal: 0,
     isSoundOn: true,
     lessonNailedWords: 0,
     isLessonComplete: false,
     showFireworks: false,
-    //no asyncdata initialized vars
     description: '',
     letters: [],
     words: [],
@@ -138,11 +111,7 @@ export default {
   }),
 
   async fetch() {
-    setTimeout(() => {
-      this.isLoading = false
-    }, 1000)
     await this.getLessonData()
-    this.getTotalPages()
   },
   computed: {
     ...mapState('authorization', ['user']),
@@ -164,20 +133,15 @@ export default {
       } else {
         this.isLessonComplete = false
       }
+    },
+    isLoading(newVal) {
+      if (!newVal && this.images.length) {
+        this.initSwiper()
+      }
     }
   },
 
   methods: {
-    // async getTotalPages() {
-    //   this.isLoading = true
-    //   try {
-    //     const { data } = await this.$axios.get('/lesson')
-    //     this.pagesTotal = data.length
-    //   } catch (e) {
-    //     console.log(e)
-    //   }
-    //   this.isLoading = false
-    // },
     async getLessonData() {
       // this.isLoading = true
       try {
@@ -204,35 +168,29 @@ export default {
 
       // this.isLoading = false
     },
-    getTotalPages() {
-      this.pagesTotal = this.links.length
-    },
 
     initSwiper() {
       Swiper.use([Navigation, Pagination, Autoplay])
-      this.swiper = new Swiper('.swiper-container', {
-        //https://swiperjs.com/swiper-api#parameters
-        direction: 'horizontal',
-        loop: true,
-        modules: [Navigation, Pagination, Autoplay],
-        slidesPerView: 'auto',
-        pagination: {
-          el: '.swiper-pagination',
-          type: 'bullets',
-          clickable: true
-        },
-        draggable: true,
+      this.$nextTick(() => {
+        this.swiper = new Swiper('.swiper-container', {
+          direction: 'horizontal',
+          loop: true,
+          modules: [Navigation, Pagination, Autoplay],
+          slidesPerView: 'auto',
+          pagination: {
+            el: '.swiper-pagination',
+            type: 'bullets',
+            clickable: true
+          },
+          draggable: true,
 
-        autoplay: {
-          delay: 3000
-        }
-        // Navigation arrows
-        // navigation: {
-        //   nextEl: '.swiper-button-next',
-        //   prevEl: '.swiper-button-prev'
-        // }
+          autoplay: {
+            delay: 3000
+          }
+        })
       })
     },
+
     congratulateUser() {
       const inputs = document.querySelectorAll('input')
       inputs.forEach((input) => input.blur())
@@ -258,15 +216,12 @@ export default {
       }
     }
   },
+
   mounted() {
     setTimeout(() => {
-      if (this.images.length) {
-        this.initSwiper()
-      }
+      this.isLoading = false
     }, 1000)
-    console.log(this.swiper)
   },
-
   beforeDestroy() {
     this.swiper = null
   }

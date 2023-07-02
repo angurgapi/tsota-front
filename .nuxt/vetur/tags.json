@@ -14,9 +14,6 @@
   "SvgIcon": {
     "description": "Auto imported from components/SvgIcon.vue"
   },
-  "Errors": {
-    "description": "Auto imported from components/errors/404.vue"
-  },
   "ElementsAccordion": {
     "description": "Auto imported from components/elements/Accordion.vue"
   },
@@ -46,6 +43,9 @@
   },
   "HelpersVuePrototypeFunctions": {
     "description": "Auto imported from components/helpers/vuePrototypeFunctions.js"
+  },
+  "Errors": {
+    "description": "Auto imported from components/errors/404.vue"
   },
   "LessonsFirework": {
     "description": "Auto imported from components/lessons/Firework.vue"
