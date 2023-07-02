@@ -14,10 +14,12 @@
       </div>
       <div class="intro-page__about">
         <section class="intro-page__section f-column">
-          <h2 class="intro-page__subheader">Что тут полезного?</h2>
+          <h2 class="intro-page__subheader">
+            {{ $t('Index.description.title') }}
+          </h2>
           <div class="intro-page__motivation">
             <div
-              v-for="(reason, index) in reasons"
+              v-for="(reason, index) in $t('Index.description.blocks')"
               :key="index"
               class="intro-page__card card"
             >
@@ -27,7 +29,7 @@
         </section>
 
         <section class="intro-page__section f-column">
-          <h2 class="intro-page__subheader">Как учиться?</h2>
+          <h2 class="intro-page__subheader">{{ $t('Index.process.title') }}</h2>
 
           <div v-if="matchMedia('width > 800')" class="intro-page__motivation">
             <div v-for="(card, index) in learningCards" :key="index">
@@ -61,7 +63,7 @@
                   class="lesson-link f-row"
                   :to="`/lessons/${link.order_num}`"
                   ><span class="lesson-link__title">
-                    урок {{ link.order_num }}:</span
+                    {{ $t('Navbar.lesson') }} {{ link.order_num }}:</span
                   >
                   <p class="lesson-link__description">
                     <!-- буквы -->

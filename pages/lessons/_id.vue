@@ -8,7 +8,7 @@
     <template v-else>
       <div class="lesson__data card">
         <h2 class="lesson__title">
-          Урок {{ $route.params.id
+          {{ $t('Navbar.lesson') }} {{ $route.params.id
           }}<span v-if="hasCompletedRecord" class="lesson__complete"
             >Пройден</span
           >

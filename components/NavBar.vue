@@ -5,8 +5,15 @@
     </nuxt-link>
     <div class="navbar__right f-row">
       <button class="navbar__btn" @click="isModalVisible = !isModalVisible">
-        алфавит
+        {{ $t('Navbar.alphabet') }}
       </button>
+
+      <LocaleSwitcher
+        :option="getLocaleOption"
+        :locale="locale"
+        @toggle="toggleLocale"
+      />
+      <NavDropdown v-if="isDropdownOpen" @close="isDropdownOpen = false" />
 
       <div
         v-click-outside="
@@ -18,7 +25,7 @@
       >
         <button class="navbar__btn" @click="isDropdownOpen = !isDropdownOpen">
           <svg-image height="20" width="20" name="book" />
-          учиться
+          <span>{{ $t('Navbar.learn') }}</span>
         </button>
         <NavDropdown v-if="isDropdownOpen" @close="isDropdownOpen = false" />
       </div>
@@ -43,13 +50,14 @@
 
 <script>
 import NavDropdown from './NavDropdown'
+import LocaleSwitcher from '@/components/elements/LocaleSwitcher'
 import Alphabet from './elements/Alphabet'
 import AuthModal from './elements/AuthModal.vue'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'NavBar',
-  components: { NavDropdown, Alphabet, AuthModal },
+  components: { NavDropdown, Alphabet, AuthModal, LocaleSwitcher },
   data: () => ({
     isFixed: false,
     isDropdownOpen: false,
@@ -58,10 +66,28 @@ export default {
   }),
 
   computed: {
-    ...mapState('authorization', ['user'])
+    ...mapState('authorization', ['user']),
+    ...mapState('i18n', ['locale']),
+    // ...mapState({
+    //   user: 'authorization/user',
+    //   locale: 'i18n/locale'
+    // }),
+
+    getLocaleOption() {
+      return this.locale === 'ru' ? 'en' : 'ru'
+    }
   },
 
   methods: {
+    ...mapMutations('i18n', ['setLocale']),
+
+    toggleLocale() {
+      this.$i18n.setLocale(this.getLocaleOption)
+      this.$cookiz.set('lang', this.getLocaleOption)
+      console.log(this.locale)
+      console.log(this.$i18n.locale)
+      console.log(this.$store)
+    },
     logOut() {
       this.$store.dispatch('authorization/logout')
     },
@@ -79,6 +105,7 @@ export default {
     if (window.pageYOffset > 0) {
       this.isFixed = true
     }
+    console.log(this.$store)
   },
 
   beforeUnmount() {

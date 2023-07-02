@@ -1,13 +1,13 @@
 .f-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .f-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .card {
@@ -26,7 +26,6 @@
   }
 }
 
-
 .section-title {
   margin: 30px auto;
   font-size: 26px;
@@ -35,9 +34,15 @@
 }
 
 @keyframes blinking {
-  0% { display: visible; }
-  50% { opacity: .1; }
-  100% { visibility: hidden }
+  0% {
+    display: visible;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    visibility: hidden;
+  }
 }
 
 .page {
@@ -73,7 +78,7 @@
     width: 100%;
     height: 42px;
     max-width: 100%;
-    font-family: 'PF';
+    font-family: "PF";
     background: #fff;
 
     &:focus {
@@ -87,7 +92,6 @@
     grid-template-columns: repeat(2, 1fr);
     margin-top: 30px;
   }
-
 }
 
 .highlighted {
@@ -118,7 +122,6 @@
   }
 }
 
-
 .error-page {
   padding-top: 0;
   align-items: center;
@@ -132,13 +135,16 @@
     margin-top: 20px;
   }
   &__animation {
-    transform: scale(.7);
+    transform: scale(0.7);
     max-height: 350px;
-
   }
 }
 
 .rare {
   letter-spacing: 1.2px;
-  opacity: .8;
+  opacity: 0.8;
+}
+
+.bold {
+  font-weight: 700;
 }

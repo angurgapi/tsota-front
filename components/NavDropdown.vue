@@ -1,6 +1,6 @@
 <template>
   <div class="dropdown" @mouseleave="$emit('close')">
-    <Accordion title="буквы" dark>
+    <Accordion :title="$t('Navbar.letters')" dark>
       <template #content>
         <ul keep-alive class="dropdown__links" @click="$emit('close')">
           <li v-for="link in links" :key="link.order_num">
@@ -8,7 +8,7 @@
               class="dropdown__link f-row"
               :class="{ 'dropdown__link--active': isCurrent(link.order_num) }"
               :to="`/lessons/${link.order_num}`"
-              >урок {{ link.order_num }}</nuxt-link
+              >{{ $t('Navbar.lesson') }} {{ link.order_num }}</nuxt-link
             >
           </li>
         </ul>
@@ -20,24 +20,24 @@
           class="dropdown__link f-row"
           :class="{ 'dropdown__link--active': $route.path === '/words' }"
           to="/words"
-          >карточки</nuxt-link
-        >
+          >{{ $t('Navbar.cards') }}
+        </nuxt-link>
       </li>
       <li>
         <nuxt-link
           class="dropdown__link f-row"
           :class="{ 'dropdown__link--active': $route.path === '/numbers' }"
           to="/numbers"
-          >числа</nuxt-link
-        >
+          >{{ $t('Navbar.numbers') }}
+        </nuxt-link>
       </li>
       <li>
         <nuxt-link
           class="dropdown__link f-row"
           :class="{ 'dropdown__link--active': $route.path === '/shopping' }"
           to="/shopping"
-          >шоппинг</nuxt-link
-        >
+          >{{ $t('Navbar.shopping') }}
+        </nuxt-link>
       </li>
     </ul>
   </div>

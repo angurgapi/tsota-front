@@ -55,6 +55,7 @@
   "devDependencies": {
     "@nuxt/types": "^2.15.8",
     "@nuxt/typescript-build": "^2.1.0",
+    "@nuxtjs/composition-api": "^0.33.1",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/eslint-config-prettier": "6.0.0",
     "babel-eslint": "^10.0.1",

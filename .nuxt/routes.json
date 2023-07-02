@@ -1,5 +1,11 @@
 [
   {
+    "name": "icons-list",
+    "path": "/_icons",
+    "component": "/home/sof/angurgapi/nuxt/tsota-front/node_modules/@nuxtjs/svg-sprite/lib/pages/icons-list.vue",
+    "_name": "_14bfb998"
+  },
+  {
     "name": "lessons",
     "path": "/lessons",
     "component": "/home/sof/angurgapi/nuxt/tsota-front/pages/lessons/index.vue",

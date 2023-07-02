@@ -228,7 +228,7 @@ export default {
 <style lang="scss" scoped>
 .alphabet {
   padding: 20px;
-  min-width: 300px;
+  // min-width: 300px;
 
   &__cell {
     padding: 2px 8px;
