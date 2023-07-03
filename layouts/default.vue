@@ -19,6 +19,17 @@ import FooterBlock from '@/components/FooterBlock.vue'
 
 export default {
   components: { NavBar, FooterBlock, NotificationSlot },
+  head() {
+    return {
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('Description')
+        }
+      ]
+    }
+  },
   computed: {
     ...mapState('toasts', ['toasts'])
   },

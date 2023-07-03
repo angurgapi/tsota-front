@@ -11,6 +11,7 @@ export { default as ElementsLocaleSwitcher } from '../../components/elements/Loc
 export { default as ElementsOverlayModal } from '../../components/elements/OverlayModal.vue'
 export { default as ElementsPaginationBtns } from '../../components/elements/PaginationBtns.vue'
 export { default as ElementsPolaroid } from '../../components/elements/Polaroid.vue'
+export { default as ElementsReasonCard } from '../../components/elements/ReasonCard.vue'
 export { default as ElementsSvgImage } from '../../components/elements/SvgImage.vue'
 export { default as ElementsTooltip } from '../../components/elements/Tooltip.vue'
 export { default as Errors } from '../../components/errors/404.vue'

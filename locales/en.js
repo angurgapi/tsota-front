@@ -1,4 +1,6 @@
 export default {
+  Description: 'Kodala - a quick way to learn the basics of Georgian language',
+  Main: 'Main',
   Navbar: {
     alphabet: 'ABC',
     learn: 'Learn',
@@ -9,7 +11,8 @@ export default {
     lesson: 'lesson'
   },
   Footer: {
-    contacts: 'Contacts'
+    contact: 'contact',
+    support: 'support'
   },
   Lesson: {
     alts: 'alternative writing',
@@ -18,8 +21,10 @@ export default {
   `
   },
   Index: {
+    banner: `Learn the basics of Georgian quick & easy`,
+    bannerSub: 'Kodala, a tireless woodpecker, will lead the way',
     description: {
-      title: 'How motivated are you?',
+      title: 'What fuels your enthusiasm?',
       blocks: [
         `You're charmed by georgian culture, want to go to theaters and enjoy performances in local language, then start a garden eventually and grow tarragon..?
       <span class="bold">Make your journey smooth!</span>`,
@@ -30,7 +35,26 @@ export default {
     },
     process: {
       title: 'What is the process?',
-      subOne: 'Step by step'
-    }
+      blocks: [
+        {
+          title: 'No stress',
+          text: '<span class="highlighted">Chunk by chunk</span>. The journey of a thousand miles begins with one step, and ours begins with alphabet.'
+        },
+        {
+          title: 'Simplest things first',
+          text: `You'll learn 3-4 letters each lesson, practice reading words with them, upgrading your vocabulary in the meantime.`
+        },
+        {
+          title: 'Images',
+          text: 'Swipe pictures of common objects, try reading and memorizing them.'
+        }
+      ]
+    },
+    work: `Let's get going!`
+  },
+  Shopping: {
+    legend: `You've been asked to buy groceries. You've even been given a list, but it's written in Georgian. Figure out what you need and drag only the items listed to the cart.`,
+    shelf: 'shelf',
+    cart: 'cart'
   }
 }

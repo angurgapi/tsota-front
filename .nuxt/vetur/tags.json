@@ -38,6 +38,9 @@
   "ElementsPolaroid": {
     "description": "Auto imported from components/elements/Polaroid.vue"
   },
+  "ElementsReasonCard": {
+    "description": "Auto imported from components/elements/ReasonCard.vue"
+  },
   "ElementsSvgImage": {
     "description": "Auto imported from components/elements/SvgImage.vue"
   },

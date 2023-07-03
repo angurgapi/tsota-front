@@ -1,7 +1,10 @@
 <template>
   <nav class="navbar f-row" :class="{ 'navbar--fixed': isFixed }">
     <nuxt-link class="navbar__link" to="/">
-      <img class="navbar__logo" src="img/ag.svg" />
+      <div class="navbar__logo f-row">
+        <img class="navbar__logo navbar__logo--mob" src="img/logo-pic.svg" />
+        <img class="navbar__logo navbar__logo--desk" src="img/logo-text.svg" />
+      </div>
     </nuxt-link>
     <div class="navbar__right f-row">
       <button class="navbar__btn" @click="isModalVisible = !isModalVisible">

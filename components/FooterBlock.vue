@@ -1,6 +1,6 @@
 <template>
   <div class="footer f-column">
-    <Accordion title="написать">
+    <Accordion :title="$t('Footer.contact')">
       <template #content>
         <ul class="footer__links">
           <li>
@@ -38,7 +38,9 @@
       href="https://www.buymeacoffee.com/angurgapi"
       target="_blank"
     >
-      <svg-image name="mug-saucer-solid" height="20" width="20" />поддержать
+      <svg-image name="mug-saucer-solid" height="20" width="20" />{{
+        $t('Footer.support')
+      }}
     </a>
     <span class="footer__copyright">&#169; Aguri {{ currentYear }}</span>
   </div>

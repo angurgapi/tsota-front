@@ -1,11 +1,9 @@
 <template>
   <div class="page">
-    <h2 class="lesson__title">Шоппинг</h2>
+    <h2 class="lesson__title">{{ $t('Navbar.shopping') }}</h2>
     <div class="shopping__intro">
       <p class="shopping__description">
-        Вас попросили сходить в супермаркет за продуктами. Вам даже выдали
-        список, но он написан на грузинском. Перетащите в корзину все товары из
-        списка (ничего лишнего!)
+        {{ $t('Shopping.legend') }}
       </p>
       <div class="shopping__list card">
         <ul>
@@ -17,7 +15,7 @@
       <div class="shopping__block">
         <div class="shopping__header f-row">
           <svg-image name="carrot" height="22" width="22" />
-          <span class="shopping__title">витрина</span>
+          <span class="shopping__title">{{ $t('Shopping.shelf') }}</span>
         </div>
         <draggable class="shopping__market" :list="itemsList" group="my-group">
           <div
@@ -31,7 +29,7 @@
       <div class="shopping__block">
         <div class="shopping__header f-row">
           <svg-image name="basket" height="22" width="22" />
-          <span class="shopping__title">корзина</span>
+          <span class="shopping__title">{{ $t('Shopping.cart') }}</span>
         </div>
         <draggable
           class="shopping__cart"

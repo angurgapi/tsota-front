@@ -19,6 +19,7 @@ You can directly use them in pages and other components without the need to impo
 - `<ElementsOverlayModal>` | `<elements-overlay-modal>` (components/elements/OverlayModal.vue)
 - `<ElementsPaginationBtns>` | `<elements-pagination-btns>` (components/elements/PaginationBtns.vue)
 - `<ElementsPolaroid>` | `<elements-polaroid>` (components/elements/Polaroid.vue)
+- `<ElementsReasonCard>` | `<elements-reason-card>` (components/elements/ReasonCard.vue)
 - `<ElementsSvgImage>` | `<elements-svg-image>` (components/elements/SvgImage.vue)
 - `<ElementsTooltip>` | `<elements-tooltip>` (components/elements/Tooltip.vue)
 - `<Errors>` | `<errors>` (components/errors/404.vue)

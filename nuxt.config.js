@@ -1,10 +1,4 @@
 const currentTime = new Date().getTime();
-// let script = [
-//   {
-//     src: 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.3.7/js/swiper.min.js',
-//     defer: true
-//   }
-// ]
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -12,32 +6,20 @@ export default {
   ssr: true,
 
   head: {
-    title: "Aguri",
+    titleTemplate: "Kodala  | %s",
     // htmlAttrs: {
     //   lang: 'en'
     // },
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      {
-        hid: "description",
-        name: "description",
-        content:
-          "Aguri - платформа, где можно быстро выучить грузинский алфавит",
-      },
 
-      {
-        hid: "og:description",
-        property: "og:description",
-        content:
-          "Aguri - платформа, где можно быстро выучить грузинский алфавит",
-      },
       {
         name: "google-site-verification",
         content: "DTupBiYMNTWXChIu78dUiQLeMG7_crHKbxxRKiFKUAo",
       },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/img/aguri-small.svg" }],
+    link: [{ rel: "icon", type: "image/x-icon", href: "/img/logo-min.svg" }],
   },
   script: [
     {
