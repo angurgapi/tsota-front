@@ -53,6 +53,9 @@
   "LessonsFirework": {
     "description": "Auto imported from components/lessons/Firework.vue"
   },
+  "LessonsLetterSlice": {
+    "description": "Auto imported from components/lessons/LetterSlice.vue"
+  },
   "LessonsWordGuess": {
     "description": "Auto imported from components/lessons/WordGuess.vue"
   },

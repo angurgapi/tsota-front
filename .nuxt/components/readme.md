@@ -24,6 +24,7 @@ You can directly use them in pages and other components without the need to impo
 - `<Errors>` | `<errors>` (components/errors/404.vue)
 - `<HelpersVuePrototypeFunctions>` | `<helpers-vue-prototype-functions>` (components/helpers/vuePrototypeFunctions.js)
 - `<LessonsFirework>` | `<lessons-firework>` (components/lessons/Firework.vue)
+- `<LessonsLetterSlice>` | `<lessons-letter-slice>` (components/lessons/LetterSlice.vue)
 - `<LessonsWordGuess>` | `<lessons-word-guess>` (components/lessons/WordGuess.vue)
 - `<ToastsNotificationSlot>` | `<toasts-notification-slot>` (components/toasts/NotificationSlot.vue)
 - `<ToastsToastForm>` | `<toasts-toast-form>` (components/toasts/ToastForm.vue)

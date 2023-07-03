@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <h2 class="lesson__title">Числа</h2>
+    <h2 class="lesson__title">{{ $t('Navbar.numbers') }}</h2>
     <div class="numbers">
       <div class="card">
         <div class="card__header">1-10</div>

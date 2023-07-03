@@ -1,135 +1,103 @@
 .lesson {
-    display: grid;
-    grid-template-columns: 1fr;
-    width: 100%;
-    max-width: 700px;
-
-    &__legend {
-      margin: 20px auto;
-      font-family: 'PF';
-      font-size: 18px;
-      line-height: 20px;
-      text-align: center;
-    }
-
-    &__description {
-      margin-top: 20px;
-      line-height: 20px;
-      color: rgba(0, 0, 0, 65%);
-    }
-
-    &__complete {
-      margin-left: 20px;
-      background-color: $logo-indigo;
-      color: #fff;
-      font-size: 1rem;
-      padding: 3px;
-    }
-
-    &__volume {
-      position: absolute;
-      right: 10px;
-      top: 10px;
-      border-radius: 50%;
-      padding: 0;
-      width: 42px;
-      height: 42px;
-      box-shadow: rgba(0, 0, 0, 35%) 0 5px 15px;
-      background: rgba(53, 68, 115, 2%);
-      opacity: .6;
-
-      &--active {
-        opacity: 1;
-      }
-    }
-
-    &__info {
-      display: grid;
-      align-items: start;
-      grid-gap: 30px;
-      grid-template-columns: repeat(2, 1fr);
-      padding-top: 30px;
-      width: 100%;
-
-      @media (max-width: 800px) {
-        grid-template-columns: 1fr;
-        justify-items: center;
-      }
-    }
-
-    &__letters {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      max-width: 400px;
-
-      // width: fit-content;
-    }
-
-
-
-    &__img {
-      position: relative;
-      width: 100%;
-      height: auto;
-      max-width: 300px;
-    }
-
-    &__tutorial {
-      margin-bottom: 20px;
-      border: 2px dotted $logo-indigo;
-      border-radius: 8px;
-      width: 100%;
-      height: 60px;
-
-      @media (max-width: 500px) {
-        transform: scaleX(1.1);
-      }
-    }
-
-
-    &__words {
-      position: relative;
-      margin-top: 30px;
-      margin-bottom: 30px;
-      max-width: 100%;
-    }
-
-    &__title,
-    &__headline {
-      font-family: 'PF';
-      text-align: center;
-      color: $logo-indigo;
-    }
-  }
-
-
-.letter {
   display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-gap: 20px;
-  font-size: 18px;
-  font-family: 'PF';
+  grid-template-columns: 1fr;
+  width: 100%;
+  max-width: 700px;
 
-  &:not(:first-child) {
-    margin-top: 18px;
+  &__legend {
+    margin: 20px auto;
+    font-family: "PF";
+    font-size: 18px;
+    line-height: 20px;
+    text-align: center;
   }
 
-  &__value {
-    font-size: 22px;
-    margin-right: 20px;
-    white-space: nowrap;
+  &__description {
+    margin-top: 20px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 65%);
   }
 
+  &__complete {
+    margin-left: 20px;
+    background-color: $logo-indigo;
+    color: #fff;
+    font-size: 1rem;
+    padding: 3px;
+  }
 
-  &__details {    
-      line-height: 1.1;
-      opacity: .9;
-  }  
+  &__volume {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border-radius: 50%;
+    padding: 0;
+    width: 42px;
+    height: 42px;
+    box-shadow: rgba(0, 0, 0, 35%) 0 5px 15px;
+    background: rgba(53, 68, 115, 2%);
+    opacity: 0.6;
 
-  @media (max-width: 800px) {
-    grid-template-columns: 1fr;
-    grid-gap: 10px;
+    &--active {
+      opacity: 1;
+    }
+  }
+
+  &__info {
+    display: grid;
+    align-items: start;
+    grid-gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    padding-top: 30px;
+    width: 100%;
+
+    @media (max-width: 800px) {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+  }
+
+  &__letters {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 400px;
+
+    // width: fit-content;
+  }
+
+  &__img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+  }
+
+  &__tutorial {
+    margin-bottom: 20px;
+    border: 2px dotted $logo-indigo;
+    border-radius: 8px;
+    width: 100%;
+    height: 60px;
+
+    @media (max-width: 500px) {
+      transform: scaleX(1.1);
+    }
+  }
+
+  &__words {
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    max-width: 100%;
+  }
+
+  &__title,
+  &__headline {
+    font-family: "PF";
+    text-align: center;
+    text-transform: capitalize;
+    color: $logo-indigo;
   }
 }

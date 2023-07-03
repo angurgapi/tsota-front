@@ -15,12 +15,17 @@
         </h2>
         <div class="lesson__info">
           <div class="lesson__letters">
-            <div v-for="letter in letters" :key="letter.id" class="letter">
+            <LetterSlice
+              v-for="letter in letters"
+              :key="letter.id"
+              :letter="letter"
+            />
+            <!-- <div v-for="letter in letters" :key="letter.id" class="letter">
               <span class="letter__value"
                 >{{ letter.value }} ({{ letter.transliteration }})</span
               >
               <div class="letter__details f-row">
-                {{ letter.description }}
+                {{ letter[locale] || letter.description }}
                 <Tooltip v-if="letter.alternative_img">
                   <svg-icon height="20" width="20" name="circle-question" />
                   <template #content>
@@ -29,7 +34,7 @@
                   </template>
                 </Tooltip>
               </div>
-            </div>
+            </div> -->
             <span v-if="description" class="lesson__description"
               ><i>{{ description }}</i></span
             >
@@ -63,11 +68,9 @@
             width="25"
           />
         </button>
-        <h3 class="lesson__headline">Тренировка</h3>
-        <p class="lesson__legend">
-          Вы <span class="highlighted">уже можете</span> это прочесть!<br />Заполните
-          пропуски напротив слов латинской транслитерацией
-        </p>
+        <h3 class="lesson__headline">{{ $t('Lesson.exercise') }}</h3>
+        <p class="lesson__legend" v-html="$t('Lesson.exerciseHint')" />
+
         <img class="lesson__tutorial" src="/img/howto.gif" />
         <WordGuess
           v-for="word in words"
@@ -91,11 +94,12 @@ import 'swiper/swiper-bundle.min.css'
 import WordGuess from '@/components/lessons/WordGuess'
 import Firework from '@/components/lessons/Firework'
 import PaginationBtns from '@/components/elements/PaginationBtns'
+import LetterSlice from '@/components/lessons/LetterSlice'
 import { mapState } from 'vuex'
 
 export default {
   name: 'LessonPage',
-  components: { WordGuess, PaginationBtns, Firework },
+  components: { WordGuess, PaginationBtns, Firework, LetterSlice },
 
   data: () => ({
     isLoading: true,
@@ -112,10 +116,15 @@ export default {
 
   async fetch() {
     await this.getLessonData()
+    console.log(this.letters, this.locale)
   },
   computed: {
     ...mapState('authorization', ['user']),
     ...mapState('links', ['links']),
+
+    locale() {
+      return this.$i18n.locale
+    },
 
     hasCompletedRecord() {
       return (

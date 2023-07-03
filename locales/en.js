@@ -11,24 +11,11 @@ export default {
   Footer: {
     contacts: 'Contacts'
   },
-  Projects: {
-    demo: 'demo',
-    source: 'source'
-  },
-  Dropzone: {
-    greeting: 'Test the dropzone',
-    hint: 'Click & pick or drag images here',
-    limit: 'Max 30 images less than 10mb in size',
-    errorText:
-      'Error uploading file, make sure the size/extention are correct. '
-  },
-  Toasts: {
-    greeting: 'Test notification system',
-    placeholder: 'Enter notification text...',
-    error: 'Error',
-    success: 'Success',
-    testSuccess: 'Everything went fine!',
-    testError: 'Something went wrong!'
+  Lesson: {
+    alts: 'alternative writing',
+    exercise: 'exercise',
+    exerciseHint: `You <span class="highlighted">can read this</span> now! <br />Fill in spaces with latin transliterations
+  `
   },
   Index: {
     description: {

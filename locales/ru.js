@@ -11,24 +11,13 @@ export default {
   Footer: {
     contacts: 'Контакты'
   },
-  Projects: {
-    demo: 'демо',
-    source: 'код'
+  Lesson: {
+    alts: 'варианты написания',
+    exercise: 'тренировка',
+    exerciseHint: `Вы <span class="highlighted">уже можете</span> это прочесть! <br />Заполните
+    пропуски напротив слов латинской транслитерацией`
   },
-  Dropzone: {
-    greeting: 'Дропзона',
-    hint: 'Загрузите фотографии или перетащите в эту область',
-    limit: 'Максимум 30 фото до 10мб',
-    errorText: 'Неподходящий размер/формат изображения'
-  },
-  Toasts: {
-    greeting: 'Система оповещения',
-    placeholder: 'Введите текст оповещения...',
-    error: 'Ошибка',
-    success: 'Успех',
-    testSuccess: 'Страница загружена',
-    testError: 'Что-то пошло не так'
-  },
+
   Index: {
     description: {
       title: 'Что тут полезного?',

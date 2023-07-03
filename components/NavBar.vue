@@ -84,9 +84,6 @@ export default {
     toggleLocale() {
       this.$i18n.setLocale(this.getLocaleOption)
       this.$cookiz.set('lang', this.getLocaleOption)
-      console.log(this.locale)
-      console.log(this.$i18n.locale)
-      console.log(this.$store)
     },
     logOut() {
       this.$store.dispatch('authorization/logout')
