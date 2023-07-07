@@ -8,15 +8,15 @@
     <template v-else>
       <div class="lesson__data card">
         <h2 class="lesson__title">
-          {{ $t('Navbar.lesson') }} {{ $route.params.id
-          }}<span v-if="hasCompletedRecord" class="lesson__complete"
+          {{ $t('Navbar.lesson') }} {{ $route.params.id }}
+          <!-- <span v-if="hasCompletedRecord" class="lesson__complete"
             >Пройден</span
-          >
+          > -->
         </h2>
         <div class="lesson__info">
           <div class="lesson__letters">
             <LetterSlice
-              v-for="letter in letters"
+              v-for="letter in lesson.letters"
               :key="letter.id"
               :letter="letter"
             />
@@ -35,15 +35,18 @@
                 </Tooltip>
               </div>
             </div> -->
-            <span v-if="description" class="lesson__description"
-              ><i>{{ description }}</i></span
+            <span v-if="getDescription" class="lesson__description"
+              ><i>{{ getDescription }}</i></span
             >
           </div>
 
-          <div v-if="images.length" class="lesson__images swiper-container">
+          <div
+            v-if="lesson.images.length"
+            class="lesson__images swiper-container"
+          >
             <div class="swiper-wrapper">
               <Polaroid
-                v-for="image in images"
+                v-for="image in lesson.images"
                 :key="image.label"
                 class="swiper-slide"
                 :img="image.url"
@@ -73,7 +76,7 @@
 
         <img class="lesson__tutorial" src="/img/howto.gif" />
         <WordGuess
-          v-for="word in words"
+          v-for="word in lesson.words"
           :key="word.transliteration"
           :wordData="word"
           :sound="isSoundOn"
@@ -108,15 +111,11 @@ export default {
     lessonNailedWords: 0,
     isLessonComplete: false,
     showFireworks: false,
-    description: '',
-    letters: [],
-    words: [],
-    images: []
+    lesson: {}
   }),
 
   async fetch() {
     await this.getLessonData()
-    console.log(this.letters, this.locale)
   },
   computed: {
     ...mapState('authorization', ['user']),
@@ -124,6 +123,10 @@ export default {
 
     locale() {
       return this.$i18n.locale
+    },
+
+    getDescription() {
+      return this.lesson[this.locale] || null
     },
 
     hasCompletedRecord() {
@@ -144,7 +147,7 @@ export default {
       }
     },
     isLoading(newVal) {
-      if (!newVal && this.images.length) {
+      if (!newVal && this.lesson.images.length) {
         this.initSwiper()
       }
     }
@@ -157,10 +160,8 @@ export default {
         const { data } = await this.$axios.get(
           `/lesson/?order_num=${this.$route.params.id}`
         )
-        this.description = data[0].description || null
-        this.letters = data[0].letters || []
-        this.words = data[0].words || []
-        this.images = data[0].words
+        this.lesson = data[0]
+        this.lesson.images = data[0].words
           .filter((word) => {
             return word.image_url
           })
@@ -172,7 +173,8 @@ export default {
             }
           })
       } catch (e) {
-        console.log(e)
+        // console.log(e)
+        return this.$nuxt.error(e)
       }
 
       // this.isLoading = false

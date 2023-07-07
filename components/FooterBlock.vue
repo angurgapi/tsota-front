@@ -42,7 +42,7 @@
         $t('Footer.support')
       }}
     </a>
-    <span class="footer__copyright">&#169; Aguri {{ currentYear }}</span>
+    <span class="footer__copyright">&#169; Kodala {{ currentYear }}</span>
   </div>
 </template>
 

@@ -7,7 +7,7 @@
     </template>
     <template v-else>
       <div class="lesson__data">
-        <h2 class="lesson__title">Слова для запоминания</h2>
+        <h2 class="lesson__title">{{ $t('Navbar.cards') }}</h2>
         <div v-if="words" class="lesson__images swiper-container">
           <div class="swiper-wrapper">
             <!-- <button class="swiper-button-prev">-</button>

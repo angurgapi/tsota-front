@@ -2,9 +2,9 @@
   <div class="alphabet card">
     <table class="alphabet__table">
       <tr class="alphabet__header">
-        <th class="alphabet__cell">буква</th>
-        <th class="alphabet__cell">транслит</th>
-        <th class="alphabet__cell">название</th>
+        <th class="alphabet__cell">{{ $t('letter') }}</th>
+        <th class="alphabet__cell">{{ $t('sound') }}</th>
+        <th class="alphabet__cell">{{ $t('name') }}</th>
       </tr>
       <tr v-for="letter in letters" :key="letter.is" class="alphabet__letter">
         <td class="alphabet__cell">{{ letter.value }}</td>

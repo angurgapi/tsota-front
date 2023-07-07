@@ -1,5 +1,8 @@
 export default {
   Description: 'Kodala - a quick way to learn the basics of Georgian language',
+  letter: 'letter',
+  sound: 'sound',
+  name: 'name',
   Main: 'Main',
   Navbar: {
     alphabet: 'ABC',
@@ -56,5 +59,11 @@ export default {
     legend: `You've been asked to buy groceries. You've even been given a list, but it's written in Georgian. Figure out what you need and drag only the items listed to the cart.`,
     shelf: 'shelf',
     cart: 'cart'
+  },
+  error: {
+    404: `Oops! Page doesn't exist`,
+    back: 'Back home',
+    500: 'Oops! Something went wrong',
+    reload: 'Reload page'
   }
 }

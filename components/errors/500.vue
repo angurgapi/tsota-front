@@ -6,9 +6,9 @@
       loop
       autoPlay
     />
-    <span class="error-page__title">Упс! Что-то пошло не так</span>
+    <span class="error-page__title">{{ $t('error.500') }}</span>
     <button class="btn btn--success error-page__btn" @click="refresh">
-      Перезагрузить
+      {{ $t('error.reload') }}
     </button>
   </div>
 </template>

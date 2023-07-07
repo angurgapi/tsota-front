@@ -1,15 +1,15 @@
 <template>
   <div class="error-page f-column">
     <lottie-player
-      src="/animations/error-404.json"
+      src="/animations/error-500.json"
       class="error-page__animation"
       loop
       autoPlay
     />
-    <span class="error-page__title">Упс! Страница не найдена</span>
-    <nuxt-link to="/" class="btn btn--success error-page__btn"
-      >На главную</nuxt-link
-    >
+    <span class="error-page__title">{{ $t('error.404') }}</span>
+    <nuxt-link to="/" class="btn btn--success error-page__btn">{{
+      $t('error.back')
+    }}</nuxt-link>
   </div>
 </template>
 
