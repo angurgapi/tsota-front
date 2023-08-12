@@ -1,16 +1,23 @@
 <template>
   <nav class="navbar f-row" :class="{ 'navbar--fixed': isFixed }">
     <nuxt-link class="navbar__link" to="/">
-      <img class="navbar__logo" src="img/ag.svg" />
+      <div class="navbar__logo f-row">
+        <img class="navbar__logo navbar__logo--mob" src="img/logo-pic.svg" />
+        <img class="navbar__logo navbar__logo--desk" src="img/logo-text.svg" />
+      </div>
     </nuxt-link>
     <div class="navbar__right f-row">
-      <!-- <nuxt-link class="navbar__link" to="/pets">
-        <svg-image height="20" width="20" name="book" />
-        Уроки
-      </nuxt-link> -->
       <button class="navbar__btn" @click="isModalVisible = !isModalVisible">
-        алфавит
+        {{ $t('Navbar.alphabet') }}
       </button>
+
+      <LocaleSwitcher
+        :option="getLocaleOption"
+        :locale="locale"
+        @toggle="toggleLocale"
+      />
+      <NavDropdown v-if="isDropdownOpen" @close="isDropdownOpen = false" />
+
       <div
         v-click-outside="
           () => {
@@ -21,47 +28,70 @@
       >
         <button class="navbar__btn" @click="isDropdownOpen = !isDropdownOpen">
           <svg-image height="20" width="20" name="book" />
-          учиться
+          <span>{{ $t('Navbar.learn') }}</span>
         </button>
         <NavDropdown v-if="isDropdownOpen" @close="isDropdownOpen = false" />
       </div>
       <!-- <button
-        v-for="locale in availableLocales"
-        :key="locale.code"
-        class="btn navbar__link"
-        @click="changeLocale(locale.code)"
+        v-if="!$auth.user"
+        class="navbar__btn"
+        @click="isAuthModalVisible = !isAuthModalVisible"
       >
-        {{ locale.name }}
+        войти
       </button> -->
+      <!-- <nuxt-link v-else class="navbar__btn" to="/profile"> кабинет </nuxt-link> -->
     </div>
     <OverlayModal v-if="isModalVisible" @close="isModalVisible = false">
       <template #content><Alphabet /></template>
     </OverlayModal>
+    <AuthModal
+      v-show="isAuthModalVisible"
+      @close="isAuthModalVisible = false"
+    />
   </nav>
 </template>
 
 <script>
 import NavDropdown from './NavDropdown'
+import LocaleSwitcher from '@/components/elements/LocaleSwitcher'
 import Alphabet from './elements/Alphabet'
+import AuthModal from './elements/AuthModal.vue'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'NavBar',
-  components: { NavDropdown, Alphabet },
+  components: { NavDropdown, Alphabet, AuthModal, LocaleSwitcher },
   data: () => ({
     isFixed: false,
     isDropdownOpen: false,
-    isModalVisible: false
+    isModalVisible: false,
+    isAuthModalVisible: false
   }),
+
   computed: {
-    availableLocales() {
-      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
+    ...mapState('authorization', ['user']),
+    ...mapState('i18n', ['locale']),
+    // ...mapState({
+    //   user: 'authorization/user',
+    //   locale: 'i18n/locale'
+    // }),
+
+    getLocaleOption() {
+      return this.locale === 'ru' ? 'en' : 'ru'
     }
   },
+
   methods: {
-    changeLocale(code) {
-      this.$i18n.setLocale(code)
-      console.log(this.$i18n.locale)
+    ...mapMutations('i18n', ['setLocale']),
+
+    toggleLocale() {
+      this.$i18n.setLocale(this.getLocaleOption)
+      this.$cookiz.set('lang', this.getLocaleOption)
     },
+    logOut() {
+      this.$store.dispatch('authorization/logout')
+    },
+
     onScroll() {
       if (window.pageYOffset > 0) {
         this.isFixed = true
@@ -72,6 +102,10 @@ export default {
   },
   mounted() {
     window.addEventListener('scroll', this.onScroll)
+    if (window.pageYOffset > 0) {
+      this.isFixed = true
+    }
+    console.log(this.$store)
   },
 
   beforeUnmount() {
@@ -87,6 +121,8 @@ export default {
     overflow-x: hidden;
     margin-top: 40px;
     max-height: 80vh;
+    height: fit-content;
+    cursor: grab;
   }
 
   &__close {

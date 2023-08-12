@@ -2,7 +2,7 @@
   <div class="word-guess">
     <span class="word-guess__label">{{ wordData.value }}</span>
     <div class="word-guess__guess">
-      <span class="word-guess__hint">{{ wordData.hint }}</span>
+      <span class="word-guess__hint">{{ getHint }}</span>
       <input
         maxlength="55"
         type="text"
@@ -30,9 +30,18 @@ export default {
       default: true
     }
   },
+
   data: () => ({
     isCorrect: false
   }),
+
+  computed: {
+    getHint() {
+      const locale = this.$i18n.locale
+      const word = this.wordData
+      return word[locale] ? word[locale] : word.hint
+    }
+  },
 
   watch: {
     word(newVal, oldVal) {
@@ -48,6 +57,7 @@ export default {
       }
     }
   },
+
   methods: {
     checkSpelling(event) {
       let word = event.target.value

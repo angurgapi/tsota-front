@@ -1,107 +1,118 @@
 .navbar {
-    position: fixed;
-    top: 0;
-    z-index: 500;
-    justify-content: space-between;
-    padding: 0;
-    width: 100%;
-    height: 60px;
-    font-family: "PF";
+  position: fixed;
+  top: 0;
+  padding: 0 12px;
+  z-index: 500;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  font-family: "PF";
 
-    &__right {
-        height: 100%;
+  &__right {
+    height: 100%;
 
-        button {
-            padding-left: 20px;
-        }
+    button {
+      padding-left: 20px;
     }
+  }
 
-    &__menu {
-        display: flex;
-        height: 100%;
-    }
-
-    &__logo {
-       margin-left: 12px;
-       width: 100px;
-       height: 60px;
-    }
-
-    &__link {
-        display: flex;
-        align-items: center;
-        border: none;
-        font-family: 'PF';
-        font-weight: 500;
-        font-size: 20px;
-        text-decoration: none;
-        color: #02071d;
-        background: none;
-        transition: 0.4s all ease-in-out;
-    }
-
-    &__btn {
-        display: flex;
-        align-items: center;
-        border: none;
-        padding: 14px;
-        height: 100%;
-        font-size: 18px;
-        letter-spacing: .5px;
-        color: $logo-indigo;
-        background: none;
-        transition: 0.4s all ease-in-out;
-
-        img {
-            margin-right: 10px;
-        }
-
-        &:hover {
-            text-decoration: underline;
-            opacity: .8;
-        }
-    }
-
-    &--fixed {
-        box-shadow: 0 4px 6px -2px rgb(0 0 0 / 30%);
-        background-color: rgba(234, 237, 240, 80%);
-        backdrop-filter: blur(6px);
-    }
-}
-
-.dropdown {
-    position: absolute;
-    right: 18px;
-    top: 70px;
-    z-index: 1000;
+  &__menu {
     display: flex;
-    flex-direction: column;
-    border-radius: 5px;
-    padding: 10px 0;
-    height: fit-content;
-    background: #fff;
+    height: 100%;
+  }
 
-    &__links {
-      display: flex;
-      flex-direction: column;
-      list-style: none;
-      height: fit-content;
-    }
-
-    &__link {
-      padding: 6px 20px;
-      height: 36px;
-      font-size: 18px;
-      line-height: 20px;
-      letter-spacing: .5px;
-      color: #000;
-
-      &:hover {
-        color: $logo-indigo;
-      }
-
-      &--active {
-        color: $logo-indigo;
+  &__logo {
+    height: 30px;
+    &--desk {
+      height: 24px;
+      margin-left: 12px;
+      @media (max-width: 600px) {
+        display: none;
       }
     }
   }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    border: none;
+    font-family: "PF";
+    font-weight: 500;
+    font-size: 20px;
+    text-decoration: none;
+    color: #02071d;
+    background: none;
+    transition: 0.4s all ease-in-out;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border: none;
+    padding: 14px;
+    height: 100%;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    color: $logo-indigo;
+    background: none;
+    transition: 0.4s all ease-in-out;
+
+    @media (max-width: 500px) {
+      span {
+        display: none;
+      }
+    }
+    img {
+      margin-right: 10px;
+    }
+
+    &:hover {
+      text-decoration: underline;
+      opacity: 0.8;
+    }
+  }
+
+  &--fixed {
+    box-shadow: 0 4px 6px -2px rgb(0 0 0 / 30%);
+    background-color: rgba(234, 237, 240, 80%);
+    backdrop-filter: blur(6px);
+  }
+}
+
+.dropdown {
+  position: absolute;
+  right: 18px;
+  top: 70px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  padding: 10px 0;
+  height: fit-content;
+  background: #fff;
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    height: fit-content;
+  }
+
+  &__link {
+    padding: 6px 20px;
+    height: 36px;
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    color: #000;
+
+    &:hover {
+      color: $logo-indigo;
+    }
+
+    &--active {
+      color: $logo-indigo;
+    }
+  }
+}

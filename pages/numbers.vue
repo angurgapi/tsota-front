@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <h2 class="lesson__title">Числа</h2>
+    <h2 class="lesson__title">{{ $t('Navbar.numbers') }}</h2>
     <div class="numbers">
       <div class="card">
         <div class="card__header">1-10</div>
@@ -266,6 +266,9 @@ export default {
 <style lang="scss" scoped>
 .card {
   margin-top: 30px;
+  @media (max-width: 440px) {
+    padding: 8px;
+  }
 
   &__header {
     text-align: center;
@@ -279,8 +282,24 @@ export default {
   grid-template-columns: repeat(2, 1fr);
 
   &__num {
-    margin-right: 20px;
+    // margin-right: 20px;
     color: #4b83a6;
+    text-align: center;
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 40px 1fr 1fr;
+    @media (max-width: 600px) {
+      grid-gap: 8px;
+    }
+    @media (max-width: 400px) {
+      font-size: 14px;
+    }
+  }
+
+  &__transliteration {
+    opacity: 0.8;
   }
 
   @media (max-width: 800px) {
